@@ -9,9 +9,9 @@ import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
 
-	private final CustomerDataJpaRepository customerDataJpaRepository;
+	private final CustomerJpaRepository customerDataJpaRepository;
 
-	public CustomerRepositoryImpl(final CustomerDataJpaRepository customerDataJpaRepository) {
+	public CustomerRepositoryImpl(final CustomerJpaRepository customerDataJpaRepository) {
 		this.customerDataJpaRepository = customerDataJpaRepository;
 	}
 
