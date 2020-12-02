@@ -2,8 +2,6 @@ package fr.training.samples.spring.shop.customer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Optional;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +24,24 @@ public class CustomerRepositoryTest {
 		final String idCustomer = "123e4567-e89b-42d3-a456-556642440000";
 
 		// When
-		final Optional<Customer> customer = customerRepository.findById(idCustomer);
+		final Customer customer = customerRepository.findById(idCustomer);
 
 		// Then
-		assertThat(customer.isPresent()).isTrue();
-		assertThat(customer.get().getId()).isEqualTo("123e4567-e89b-42d3-a456-556642440000");
-		assertThat(customer.get().getName()).isEqualTo("NAME1");
+		assertThat(customer).isNotNull();
+		assertThat(customer.getId()).isEqualTo("123e4567-e89b-42d3-a456-556642440000");
+		assertThat(customer.getName()).isEqualTo("NAME1");
+	}
+
+	@Test
+	public void shouldCheckThisAndThat() {
+		// Given
+		final Customer customer = new Customer();
+		customer.setName("MICHEL DUPONT");
+		customer.setPassword("password");
+		// When
+		customerRepository.save(customer);
+		// Then
+		assertThat(customerRepository.findById(customer.getId())).isNotNull();
 	}
 
 }

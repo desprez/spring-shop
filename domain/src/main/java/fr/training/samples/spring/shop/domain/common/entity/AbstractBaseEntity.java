@@ -28,7 +28,6 @@ public abstract class AbstractBaseEntity {
 	 * @return
 	 */
 	public String getId() {
-
 		return id;
 	}
 

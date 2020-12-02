@@ -1,15 +1,11 @@
 package fr.training.samples.spring.shop.domain.customer;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity;
 
 @Entity
-public class Customer {
-
-	@Id
-	private String id;
-
-	private Integer version;
+public class Customer extends AbstractBaseEntity {
 
 	private String name;
 
@@ -18,6 +14,7 @@ public class Customer {
 	/**
 	 * @return the id
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -25,6 +22,7 @@ public class Customer {
 	/**
 	 * @param id the id to set
 	 */
+	@Override
 	public void setId(final String id) {
 		this.id = id;
 	}
@@ -32,6 +30,7 @@ public class Customer {
 	/**
 	 * @return the version
 	 */
+	@Override
 	public Integer getVersion() {
 		return version;
 	}
@@ -39,6 +38,7 @@ public class Customer {
 	/**
 	 * @param version the version to set
 	 */
+	@Override
 	public void setVersion(final Integer version) {
 		this.version = version;
 	}
