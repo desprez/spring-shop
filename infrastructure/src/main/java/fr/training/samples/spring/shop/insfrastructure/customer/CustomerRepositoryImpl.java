@@ -1,15 +1,17 @@
-package fr.training.samples.spring.shop.domain.customer;
+package fr.training.samples.spring.shop.insfrastructure.customer;
 
 import org.springframework.stereotype.Repository;
 
 import fr.training.samples.spring.shop.domain.common.exception.NotFoundException;
+import fr.training.samples.spring.shop.domain.customer.Customer;
+import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
 
-	private final CustomerDataJpaRepository customerDataJpaRepository;
+	private final CustomerJpaRepository customerDataJpaRepository;
 
-	public CustomerRepositoryImpl(final CustomerDataJpaRepository customerDataJpaRepository) {
+	public CustomerRepositoryImpl(final CustomerJpaRepository customerDataJpaRepository) {
 		this.customerDataJpaRepository = customerDataJpaRepository;
 	}
 

@@ -1,4 +1,4 @@
-package fr.training.samples.spring.shop.customer;
+package fr.training.samples.spring.shop.insfrastructure.customer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,19 +21,19 @@ public class CustomerRepositoryTest {
 	@Test
 	public void existing_customer_should_be_found() {
 		// Given existing customer in db
-		final String idCustomer = "123e4567-e89b-42d3-a456-556642440000";
+		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
 
 		// When
-		final Customer customer = customerRepository.findById(idCustomer);
+		final Customer customer = customerRepository.findById(customerId);
 
 		// Then
 		assertThat(customer).isNotNull();
-		assertThat(customer.getId()).isEqualTo("123e4567-e89b-42d3-a456-556642440000");
+		assertThat(customer.getId()).isEqualTo(customerId);
 		assertThat(customer.getName()).isEqualTo("NAME1");
 	}
 
 	@Test
-	public void shouldCheckThisAndThat() {
+	public void save_new_customer_should_success() {
 		// Given
 		final Customer customer = new Customer();
 		customer.setName("MICHEL DUPONT");
