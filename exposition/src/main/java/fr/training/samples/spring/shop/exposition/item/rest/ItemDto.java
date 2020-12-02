@@ -2,7 +2,6 @@ package fr.training.samples.spring.shop.exposition.item.rest;
 
 import java.io.Serializable;
 
-
 public class ItemDto implements Serializable {
 
 	/**
