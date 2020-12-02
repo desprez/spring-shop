@@ -1,8 +1,10 @@
-package fr.training.samples.spring.shop.domain.customer;
+package fr.training.samples.spring.shop.infrastructure.customer;
 
 import org.springframework.stereotype.Repository;
 
 import fr.training.samples.spring.shop.domain.common.exception.NotFoundException;
+import fr.training.samples.spring.shop.domain.customer.Customer;
+import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {

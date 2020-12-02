@@ -3,14 +3,12 @@ package fr.training.samples.spring.shop.exposition.order.rest;
 import java.io.Serializable;
 import java.util.Set;
 
-
-class OrderLightDto implements Serializable {
+public class OrderLightDto implements Serializable {
 
 	/**
 	 * serialVersionUID of type long
 	 */
 	private static final long serialVersionUID = 1L;
-
 
 	/**
 	 * customerID of type String
@@ -28,14 +26,12 @@ class OrderLightDto implements Serializable {
 	public OrderLightDto() {
 	}
 
-
 	/**
 	 * @return
 	 */
 	public String getCustomerID() {
 		return customerID;
 	}
-
 
 	public Set<String> getItems() {
 		return items;
@@ -44,7 +40,6 @@ class OrderLightDto implements Serializable {
 	public void setItems(final Set<String> items) {
 		this.items = items;
 	}
-
 
 	public void setCustomerID(final String customerID) {
 		this.customerID = customerID;

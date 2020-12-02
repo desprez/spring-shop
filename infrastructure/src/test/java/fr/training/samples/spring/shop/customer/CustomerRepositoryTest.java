@@ -30,10 +30,11 @@ public class CustomerRepositoryTest {
 		assertThat(customer).isNotNull();
 		assertThat(customer.getId()).isEqualTo("123e4567-e89b-42d3-a456-556642440000");
 		assertThat(customer.getName()).isEqualTo("NAME1");
+		assertThat(customer.getPassword()).isEqualTo("PASS1");
 	}
 
 	@Test
-	public void shouldCheckThisAndThat() {
+	public void save_new_customer_should_success() {
 		// Given
 		final Customer customer = new Customer();
 		customer.setName("MICHEL DUPONT");
