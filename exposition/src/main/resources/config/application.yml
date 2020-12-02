@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: '@project.name@'
+  profiles:
+    active: '@spring.profiles.active@'
+  jta:
+    enabled: false
+  jpa:
+    open-in-view: false
+    driver-class-name: org.postgresql.Driver
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+  cache:
+    jcache:
+      config: classpath:cache/ehcache.xml
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: INFO
+    fr.training.samples.spring.shop: INFO

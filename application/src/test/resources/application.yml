@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: test
+  main:
+   banner-mode: 'off'
+  jpa:
+    show-sql: false
+    open-in-view: false
+    orm: META-INF/orm.xml

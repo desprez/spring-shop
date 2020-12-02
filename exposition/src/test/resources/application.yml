@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: test
+  main:
+   banner-mode: 'off'
+  jpa:
+    show-sql: false
+    open-in-view: false
+    orm: META-INF/orm.xml
+#Kafka Connection  
+  kafka:
+    jaas:
+      enabled: "true"
+      login-module: org.apache.kafka.common.security.plain.PlainLoginModule
+      options:
+        username: rmgfRJ3NWw66Hps9
+        password: ne9ssRQd5sqIIXGAePWPG2yo5YwTAeou
+    bootstrap-servers: kafka03-prod02.messagehub.services.eu-gb.bluemix.net:9093
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: PLAIN
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: foo
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#Monitoring endpoints   
+management:
+   endpoints:
+      web:
+         exposure:
+            include: info, health, configprops, logfile, metrics, env, loggers
+#MQ Connection  
+ibm:
+  mq:
+    queueManager: QMDEVARCHILOGICIELLE
+    channel: CLOUD.ADMIN.SVRCONN
+    connName: qmdevarchilogicielle-02bc.qm.eu-gb.mq.appdomain.cloud(31643)
+    user: mouledsaber
+    password: Yn5IuPE-ktAXPrZXKOcw80qqgJq_2nFmY0PxO1zqcCfF
+    queue-input: DEV.QUEUE.1
+    queue-output: DEV.QUEUE.2
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
