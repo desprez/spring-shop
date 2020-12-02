@@ -2,11 +2,7 @@ package fr.training.samples.spring.shop.exposition.customer.rest;
 
 import java.io.Serializable;
 
-/**
- * @author Badr NASS
- *
- */
-class CustomerLightDto implements Serializable {
+public class CustomerLightDto implements Serializable {
 
 	/**
 	 * serialVersionUID of type long
@@ -24,7 +20,7 @@ class CustomerLightDto implements Serializable {
 	private String password;
 
 	/**
-	 * 
+	 *
 	 */
 	public CustomerLightDto() {
 		super();
