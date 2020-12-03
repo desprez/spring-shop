@@ -12,8 +12,8 @@ import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
+import fr.training.samples.spring.shop.domain.order.Order;
 import fr.training.samples.spring.shop.domain.order.OrderRepository;
-import fr.training.samples.spring.shop.domain.order.Orders;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -34,19 +34,19 @@ public class OrderRepositoryTest {
 		final String orderId = "123e4567-189b-42d3-a456-556642440000";
 
 		// When
-		final Orders orders = orderRepository.findById(orderId);
+		final Order order = orderRepository.findById(orderId);
 
 		// Then
-		assertThat(orders).isNotNull();
-		assertThat(orders.getId()).isEqualTo(orderId);
-		assertThat(orders.getCustomer().getName()).isEqualTo("NAME1");
-		assertThat(orders.getItems()).hasSize(2);
+		assertThat(order).isNotNull();
+		assertThat(order.getId()).isEqualTo(orderId);
+		assertThat(order.getCustomer().getName()).isEqualTo("NAME1");
+		assertThat(order.getItems()).hasSize(2);
 	}
 
 	@Test
 	public void save_new_order_should_success() {
 		// Given
-		final Orders order = new Orders();
+		final Order order = new Order();
 
 		final Customer customer = customerRepository.findById("123e4567-e89b-42d3-a456-556642440000");
 		order.setCustomer(customer);

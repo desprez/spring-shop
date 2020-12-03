@@ -8,13 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity;
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.item.Item;
 
 @Entity
-public class Orders extends AbstractBaseEntity {
+@Table(name="ORDERS")
+public class Order extends AbstractBaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "CUSTOMER_ID")
