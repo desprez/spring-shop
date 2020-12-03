@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import fr.training.samples.spring.shop.domain.common.exception.NotFoundException;
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 
@@ -43,6 +44,17 @@ public class CustomerRepositoryTest {
 		customerRepository.save(customer);
 		// Then
 		assertThat(customerRepository.findById(customer.getId())).isNotNull();
+	}
+
+	@Test(expected = NotFoundException.class)
+	public void find_unknown_customer_should_fail() {
+		// Given
+		final String idCustomer = "unknown";
+
+		// When
+		customerRepository.findById(idCustomer);
+
+		// Then
 	}
 
 }
