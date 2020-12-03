@@ -27,7 +27,7 @@ public class CustomerServiceTest {
 	private CustomerRepository customerRepositoryMock;
 
 	@Test
-	public void testCreate() {
+	public void create_should_call_save_repository_1_time() {
 		// Given
 		final Customer customer = new Customer();
 		customer.setName("Michel Dupont");
@@ -41,7 +41,7 @@ public class CustomerServiceTest {
 	}
 
 	@Test
-	public void testFindOne() {
+	public void findOne_should_call_findById_repository_1_time() {
 		// Given
 		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
 		final Customer customer = new Customer();
@@ -59,7 +59,7 @@ public class CustomerServiceTest {
 	}
 
 	@Test
-	public void testUpdate() {
+	public void update_should_call_save_repository_1_time() {
 		// Given
 		final Customer customer = new Customer();
 		customer.setName("Michel Dupont");
