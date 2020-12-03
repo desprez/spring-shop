@@ -2,7 +2,6 @@ package fr.training.samples.spring.shop.exposition.item.rest;
 
 import java.io.Serializable;
 
-
 public class ItemDto implements Serializable {
 
 	/**
@@ -11,9 +10,9 @@ public class ItemDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * itemID of type String
+	 * itemId of type String
 	 */
-	private String itemID;
+	private String itemId;
 
 	/**
 	 * description of type String
@@ -41,12 +40,12 @@ public class ItemDto implements Serializable {
 	}
 
 	/**
-	 * @param itemID      itemID
+	 * @param itemId      itemId
 	 * @param description description
 	 * @param price       price
 	 */
-	public ItemDto(final String itemID, final String description, final int price) {
-		this.itemID = itemID;
+	public ItemDto(final String itemId, final String description, final int price) {
+		this.itemId = itemId;
 		this.description = description;
 		this.price = price;
 	}
@@ -61,8 +60,8 @@ public class ItemDto implements Serializable {
 	/**
 	 * @return
 	 */
-	public String getItemID() {
-		return itemID;
+	public String getItemId() {
+		return itemId;
 	}
 
 	/**
@@ -80,10 +79,10 @@ public class ItemDto implements Serializable {
 	}
 
 	/**
-	 * @param itemID itemID
+	 * @param itemId itemId
 	 */
-	public void setItemID(final String itemID) {
-		this.itemID = itemID;
+	public void setItemId(final String itemId) {
+		this.itemId = itemId;
 	}
 
 	/**
