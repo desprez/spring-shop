@@ -1,4 +1,4 @@
-package fr.training.samples.spring.shop;
+package fr.training.samples.spring.shop.infrastructure;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
