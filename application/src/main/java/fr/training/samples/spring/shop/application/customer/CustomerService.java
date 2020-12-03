@@ -5,14 +5,18 @@ import fr.training.samples.spring.shop.domain.customer.Customer;
 public interface CustomerService {
 
 	/**
-	 * @param customer a Customer
-	 * @return a Customer
+	 * Create a new customer
+	 *
+	 * @param customer the Customer to create
+	 * @return the created Customer
 	 */
 	public Customer create(Customer customer);
 
 	/**
-	 * @param customerID a customer identifier
-	 * @return a Customer
+	 * Retrieve a customer according to the given identifier.
+	 *
+	 * @param customerId the customer identifier
+	 * @return the retrieved Customer
 	 */
 	public Customer findOne(String customerId);
 

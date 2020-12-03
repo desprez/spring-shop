@@ -10,8 +10,8 @@ public interface ItemService {
 	/**
 	 * Add Item to the catalog
 	 *
-	 * @param item
-	 * @return
+	 * @param item the item to add
+	 * @return the new added item
 	 */
 	public Item addItem(Item item);
 
