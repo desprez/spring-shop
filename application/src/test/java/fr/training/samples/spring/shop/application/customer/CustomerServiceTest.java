@@ -12,12 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import fr.training.samples.spring.shop.TestConfiguration;
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { TestConfiguration.class })
+@SpringBootTest(classes = { CustomerServiceImpl.class })
 public class CustomerServiceTest {
 
 	@Autowired
@@ -56,6 +55,7 @@ public class CustomerServiceTest {
 		assertThat(result).isNotNull();
 		assertThat(result.getName()).isEqualTo("Michel Dupont");
 		assertThat(result.getPassword()).isEqualTo("password");
+		verify(customerRepositoryMock, times(1)).findById(customerId);
 	}
 
 	@Test

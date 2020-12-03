@@ -15,7 +15,7 @@ import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.item.Item;
 
 @Entity
-@Table(name="ORDERS")
+@Table(name = "ORDERS")
 public class Order extends AbstractBaseEntity {
 
 	@ManyToOne
@@ -23,9 +23,9 @@ public class Order extends AbstractBaseEntity {
 	private Customer customer;
 
 	@ManyToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
-	private final List<Item> items = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 
-	private Integer total;
+	private Integer total = 0;
 
 	/**
 	 * @return the customer
@@ -46,6 +46,13 @@ public class Order extends AbstractBaseEntity {
 	 */
 	public List<Item> getItems() {
 		return items;
+	}
+
+	/**
+	 * @param items the items to set
+	 */
+	public void setItems(final List<Item> items) {
+		this.items = items;
 	}
 
 	/**

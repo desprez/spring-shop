@@ -23,6 +23,11 @@ public class ItemRepositoryImpl implements ItemRepository {
 	}
 
 	@Override
+	public List<Item> findById(final List<String> ids) {
+		return itemJpaRepository.findAllById(ids);
+	}
+
+	@Override
 	public void save(final Item item) {
 		itemJpaRepository.save(item);
 	}

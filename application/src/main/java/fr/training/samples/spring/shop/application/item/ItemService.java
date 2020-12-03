@@ -9,14 +9,17 @@ public interface ItemService {
 
 	/**
 	 * Add Item to the catalog
+	 *
 	 * @param item
 	 * @return
 	 */
-	Item addItem(Item item);
+	public Item addItem(Item item);
 
 	/**
+	 * Display items catalog
+	 *
 	 * @return a list of item entities
 	 */
-	List<Item> getAllItems(Item item);
+	public List<Item> getAllItems();
 
 }
