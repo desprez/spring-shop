@@ -2,6 +2,8 @@ package fr.training.samples.spring.shop.infrastructure.item;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,17 @@ public class ItemRepositoryTest {
 
 		// Then
 		assertThat(itemRepository.findById(item.getId())).isNotNull();
+	}
+
+	@Test
+	public void findall_should_return_all_items() {
+		// Given records from database
+
+		// When
+		final List<Item> result = itemRepository.findAll();
+
+		// Then
+		assertThat(result).hasSize(5);
 	}
 
 }

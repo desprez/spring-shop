@@ -1,5 +1,7 @@
 package fr.training.samples.spring.shop.infrastructure.item;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import fr.training.samples.spring.shop.domain.common.exception.NotFoundException;
@@ -23,6 +25,11 @@ public class ItemRepositoryImpl implements ItemRepository {
 	@Override
 	public void save(final Item item) {
 		itemJpaRepository.save(item);
+	}
+
+	@Override
+	public List<Item> findAll() {
+		return itemJpaRepository.findAll();
 	}
 
 }
