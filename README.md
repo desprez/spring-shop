@@ -64,11 +64,13 @@ Instructions:
      public List<Item> getAllItems();
 
     }
+
+> Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
     
 CustomerService
 ===============
 
-> Dans la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
+> Dans la couche **application**, implementer le service **OrderService** pour l'interface ci-dessous:
 
       public interface CustomerService {
 
@@ -87,6 +89,7 @@ CustomerService
        public Customer findOne(String customerId);
 
       }
+> Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
 OrderService
 ============
@@ -119,3 +122,5 @@ OrderService
        public List<Order> getOrdersForCustomer(String customerId);
 
       }
+
+> Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
