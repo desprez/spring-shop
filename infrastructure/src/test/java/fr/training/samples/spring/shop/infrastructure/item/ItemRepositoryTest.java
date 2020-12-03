@@ -50,7 +50,7 @@ public class ItemRepositoryTest {
 	}
 
 	@Test
-	public void shouldCheckThisAndThat() {
+	public void findall_should_return_all_items() {
 		// Given records from database
 
 		// When
