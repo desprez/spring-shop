@@ -4,6 +4,6 @@ public interface OrderRepository {
 
 	Order findById(String orderId);
 
-	void save(Order item);
+	void save(Order order);
 
 }

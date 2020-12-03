@@ -10,10 +10,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-
 import fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity;
 import fr.training.samples.spring.shop.domain.customer.Customer;
+import fr.training.samples.spring.shop.domain.item.Item;
 
 @Entity
 public class Order extends AbstractBaseEntity {
@@ -62,6 +61,10 @@ public class Order extends AbstractBaseEntity {
 	 */
 	public void setTotal(final Integer total) {
 		this.total = total;
+	}
+
+	public void addItem(final Item item) {
+		items.add(item);
 	}
 
 }
