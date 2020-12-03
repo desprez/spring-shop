@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -15,15 +14,13 @@ import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.item.Item;
 
 @Entity
-public class Order extends AbstractBaseEntity {
+public class Orders extends AbstractBaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
 
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "ITEM_ORDERS", joinColumns = { @JoinColumn(name = "ORDERS_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "ITEMS_ID") })
+	@ManyToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
 	private final List<Item> items = new ArrayList<>();
 
 	private Integer total;

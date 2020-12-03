@@ -2,8 +2,8 @@ package fr.training.samples.spring.shop.domain.order;
 
 public interface OrderRepository {
 
-	Order findById(String orderId);
+	Orders findById(String orderId);
 
-	void save(Order order);
+	void save(Orders order);
 
 }
