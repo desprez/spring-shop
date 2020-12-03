@@ -28,3 +28,5 @@ Faire de même avec la classe **Item** qui possèdera les 2 attrubuts :
 - price (Integer)
 
 Ajouter le test untaire avec les 2 mêmes méthodes FindById() et Save() ainsi qu'une méthode findAll().
+
+Décommenter les ordres SQL Inserts dans le fichier import.sql
