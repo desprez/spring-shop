@@ -39,3 +39,83 @@ Instructions:
 
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()**.
+
+ItemService
+===========
+
+Instructions:
+> Dans la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
+
+    public interface ItemService {
+
+     /**
+      * Add Item to the catalog
+      *
+      * @param item the item to add
+      * @return the new added item
+      */
+     public Item addItem(Item item);
+
+     /**
+      * Display items catalog
+      *
+      * @return a list of item entities
+      */
+     public List<Item> getAllItems();
+
+    }
+    
+CustomerService
+===============
+
+> Dans la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
+
+      public interface CustomerService {
+
+       /**
+        * Create a new customer
+        * @param customer the Customer to create
+        * @return the created Customer
+        */
+       public Customer create(Customer customer);
+
+       /**
+        * Retrieve a customer according to the given identifier.
+        * @param customerId the customer identifier
+        * @return the retrieved Customer
+        */
+       public Customer findOne(String customerId);
+
+      }
+
+OrderService
+============
+
+> Toujours la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
+
+      public interface OrderService {
+
+       /**
+        * Add new order according to the given customer id and items ids.
+        *
+        * @param CustomerId the cutomerId
+        * @param itemIds    list of items ids
+        * @return new order
+        */
+       public Order addOrder(String CustomerId, List<String> itemIds);
+
+       /**
+        * Get Order according to the given orderId
+        *
+        * @param orderId the order id
+        * @return an Order
+        */
+       public Order findOne(String orderId);
+
+       /**
+        * @param customerId
+        * @return a List of OrderEntity
+        */
+       public List<Order> getOrdersForCustomer(String customerId);
+
+      }
