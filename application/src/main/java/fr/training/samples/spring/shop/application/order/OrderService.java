@@ -1,28 +1,35 @@
 
 package fr.training.samples.spring.shop.application.order;
 
-import java.util.Set;
+import java.util.List;
 
 import fr.training.samples.spring.shop.domain.order.Order;
 
 public interface OrderService {
 
 	/**
-	 * @param order the order
-	 * @return an Order
+	 * Add new order according to the given customer id and items ids.
+	 *
+	 * @param CustomerId the customerId
+	 * @param itemIds    list of items ids
+	 * @return new order
 	 */
-	Order addOrder(Order order);
+	public Order addOrder(String CustomerId, List<String> itemIds);
 
 	/**
-	 * @param orderID the order id
+	 * Get Order according to the given orderId
+	 *
+	 * @param orderId the order id
 	 * @return an Order
 	 */
-	Order findOne(String orderID);
+	public Order findOne(String orderId);
 
 	/**
-	 * @param customerID
-	 * @return a Set of OrderEntity
+	 * Get customer orders according to the given customer id.
+	 *
+	 * @param customerId the customerId
+	 * @return a List of Orders
 	 */
-	Set<Order> getOrdersForCustomer(String customerID);
+	public List<Order> getOrdersForCustomer(String customerId);
 
 }
