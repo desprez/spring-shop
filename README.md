@@ -28,7 +28,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_custome
 
 Instructions:
 > Faire de même avec la classe **Item** qui possèdera les 2 attributs :
- - decription (String)
+ - description (String)
  - price (Integer)
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** ainsi qu'une méthode **findAll()** pour le repository adequat.
