@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Order> getOrdersForCustomer(final String customerId) {
-		return orderRepository.findByCustomerId(customerId);
+		return orderRepository.findAllByCustomerId(customerId);
 	}
 
 }

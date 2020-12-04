@@ -8,6 +8,6 @@ public interface OrderRepository {
 
 	void save(Order order);
 
-	List<Order> findByCustomerId(String customerId);
+	List<Order> findAllByCustomerId(String customerId);
 
 }

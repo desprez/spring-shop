@@ -2,6 +2,8 @@ package fr.training.samples.spring.shop.insfrastructure.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,16 +61,15 @@ public class OrderRepositoryTest {
 	}
 
 	@Test
-	public void existing_customer_should_be_found_by_his_name() {
-		// Given
-		final String name = "NAME3";
+	public void existing_orders_for_customer_should_be_found() {
+		// Given existing order in db
+		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
 
 		// When
-
-		final Customer result = customerRepository.findByCustomerName(name);
+		final List<Order> results = orderRepository.findAllByCustomerId(customerId);
 
 		// Then
-		assertThat(result).isNotNull();
-		assertThat(result.getId()).isEqualTo("323e4567-e89b-42d3-a456-556642440000");
+		assertThat(results).hasSize(2);
 	}
+
 }

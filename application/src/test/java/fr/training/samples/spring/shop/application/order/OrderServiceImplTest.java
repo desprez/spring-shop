@@ -112,7 +112,7 @@ public class OrderServiceImplTest {
 		final List<Order> orders = new ArrayList<>();
 		orders.add(getNewOrder());
 
-		when(orderRepositoryMock.findByCustomerId(customerId)).thenReturn(orders);
+		when(orderRepositoryMock.findAllByCustomerId(customerId)).thenReturn(orders);
 
 		// When
 		final List<Order> expected = orderService.getOrdersForCustomer(customerId);
