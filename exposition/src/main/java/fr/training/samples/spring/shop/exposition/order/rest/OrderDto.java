@@ -8,102 +8,85 @@ import fr.training.samples.spring.shop.exposition.item.rest.ItemDto;
 
 public class OrderDto implements Serializable {
 
-	/**
-	 * serialVersionUID of type long
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * orderID of type String
-	 */
-	private String orderID;
+	private String orderId;
 
-	/**
-	 * customerID of type String
-	 */
-	private String customerID;
+	private String customerId;
 
-	/**
-	 * items of type Set of ItemDTO
-	 */
 	private Set<ItemDto> items;
 
 	/**
-	 *
+	 * No-arg constructor for JavaBean tools
 	 */
 	public OrderDto() {
+
 	}
 
-	/**
-	 * @param orderID
-	 * @param customerID
-	 */
-	public OrderDto(final String orderID, final String customerID) {
-		this.orderID = orderID;
-		this.customerID = customerID;
+	public OrderDto(final String orderId, final String customerId) {
+		this.orderId = orderId;
+		this.customerId = customerId;
 		items = new HashSet<>();
 	}
 
-	/**
-	 * @param itemDTO
-	 */
 	public void addItem(final ItemDto itemDto) {
 		items.add(itemDto);
 	}
 
 	/**
-	 * @return
+	 * @return the orderId
 	 */
-	public String getCustomerID() {
-		return customerID;
+	public String getOrderId() {
+		return orderId;
 	}
 
 	/**
-	 * @return
+	 * @param orderId the orderId to set
+	 */
+	public void setOrderId(final String orderId) {
+		this.orderId = orderId;
+	}
+
+	/**
+	 * @return the customerId
+	 */
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	/**
+	 * @param customerId the customerId to set
+	 */
+	public void setCustomerId(final String customerId) {
+		this.customerId = customerId;
+	}
+
+	/**
+	 * @return the items
 	 */
 	public Set<ItemDto> getItems() {
 		return items;
 	}
 
 	/**
-	 * @return
-	 */
-	public String getOrderID() {
-		return orderID;
-	}
-
-	/**
-	 * @param customerID
-	 */
-	public void setCustomerID(final String customerID) {
-		this.customerID = customerID;
-	}
-
-	/**
-	 * @param items
+	 * @param items the items to set
 	 */
 	public void setItems(final Set<ItemDto> items) {
 		this.items = items;
 	}
 
-	/**
-	 * @param orderID
-	 */
-	public void setOrderID(final String orderID) {
-		this.orderID = orderID;
-	}
-
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		final StringBuilder builder = new StringBuilder();
-		builder.append("OrderDTO [orderID=");
-		builder.append(orderID);
-		builder.append(", customerID=");
-		builder.append(customerID);
+		builder.append("OrderDTO [orderId=");
+		builder.append(orderId);
+		builder.append(", customerId=");
+		builder.append(customerId);
 		builder.append(", items=");
 		builder.append(items);
 		builder.append("]");

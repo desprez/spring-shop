@@ -2,32 +2,19 @@ package fr.training.samples.spring.shop.exposition.customer.rest;
 
 import java.io.Serializable;
 
-/**
- * @author Badr NASS
- *
- */
-class CustomerLightDto implements Serializable {
+public class CustomerLightDto implements Serializable {
 
-	/**
-	 * serialVersionUID of type long
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * name of type String
-	 */
 	private String name;
 
-	/**
-	 * password of type String
-	 */
 	private String password;
 
 	/**
-	 * 
+	 * No-arg constructor for JavaBean tools
 	 */
 	public CustomerLightDto() {
-		super();
+
 	}
 
 	/**
@@ -41,14 +28,14 @@ class CustomerLightDto implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * @return name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @return
+	 * @return password
 	 */
 	public String getPassword() {
 		return password;

@@ -4,28 +4,20 @@ import java.io.Serializable;
 
 public class ItemDto implements Serializable {
 
-	/**
-	 * serialVersionUID of type long
-	 */
+
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * itemId of type String
-	 */
+
 	private String itemId;
 
-	/**
-	 * description of type String
-	 */
+
 	private String description;
 
-	/**
-	 * price of type int
-	 */
+
 	private int price;
 
 	/**
-	 *
+	 * No-arg constructor for JavaBean tools
 	 */
 	public ItemDto() {
 	}

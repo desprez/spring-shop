@@ -1,53 +1,48 @@
 package fr.training.samples.spring.shop.exposition.order.rest;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
+public class OrderLightDto implements Serializable {
 
-class OrderLightDto implements Serializable {
-
-	/**
-	 * serialVersionUID of type long
-	 */
 	private static final long serialVersionUID = 1L;
 
+	private String customerId;
+
+	private List<String> itemIds;
 
 	/**
-	 * customerID of type String
-	 */
-	private String customerID;
-
-	/**
-	 * items of type Set of ItemDTO
-	 */
-	private Set<String> items;
-
-	/**
-	 *
+	 * No-arg constructor for JavaBean tools
 	 */
 	public OrderLightDto() {
 	}
 
+	/**
+	 * @return the customerId
+	 */
+	public String getCustomerId() {
+		return customerId;
+	}
 
 	/**
-	 * @return
+	 * @param customerId the customerId to set
 	 */
-	public String getCustomerID() {
-		return customerID;
+	public void setCustomerId(final String customerId) {
+		this.customerId = customerId;
 	}
 
-
-	public Set<String> getItems() {
-		return items;
+	/**
+	 * @return the itemIds
+	 */
+	public List<String> getItemIds() {
+		return itemIds;
 	}
 
-	public void setItems(final Set<String> items) {
-		this.items = items;
-	}
-
-
-	public void setCustomerID(final String customerID) {
-		this.customerID = customerID;
+	/**
+	 * @param itemIds the itemIds to set
+	 */
+	public void setItemIds(final List<String> itemIds) {
+		this.itemIds = itemIds;
 	}
 
 }
