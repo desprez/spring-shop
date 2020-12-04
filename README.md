@@ -134,7 +134,7 @@ OrderService (couche application)
        public Order findOne(String orderId);
 
        /**
-        * Retreive all orders for a customer according to the customer id.
+        * Retrieve all orders for a customer according to the customer id.
         * @param customerId the customer id
         * @return a List of Orders
         */
