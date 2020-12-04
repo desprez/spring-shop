@@ -101,9 +101,9 @@ OrderService
        /**
         * Add new order according to the given customer id and items ids.
         *
-        * @param CustomerId the cutomerId
+        * @param CustomerId the customerId
         * @param itemIds    list of items ids
-        * @return new order
+        * @return new order filled with the order SUM
         */
        public Order addOrder(String CustomerId, List<String> itemIds);
 
