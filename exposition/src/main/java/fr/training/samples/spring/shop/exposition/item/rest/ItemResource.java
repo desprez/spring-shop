@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +19,6 @@ import fr.training.samples.spring.shop.domain.item.Item;
 @RestController
 @RequestMapping("/api")
 public class ItemResource {
-
-	private static final Logger logger = LoggerFactory.getLogger(ItemResource.class);
 
 	private final ItemService itemService;
 
@@ -40,7 +36,6 @@ public class ItemResource {
 	public List<ItemDto> getAllItemsUsingGet() {
 
 		final List<Item> items = itemService.getAllItems();
-		logger.info("Number of items returned: {}", items.size());
 		return itemMapper.mapToDtoList(items);
 
 	}

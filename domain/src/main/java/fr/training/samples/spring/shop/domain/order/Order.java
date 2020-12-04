@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -22,7 +23,7 @@ public class Order extends AbstractBaseEntity {
 	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
 
-	@ManyToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Item> items = new ArrayList<>();
 
 	private Integer total = 0;

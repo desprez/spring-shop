@@ -6,7 +6,7 @@ import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.exposition.common.AbstractMapper;
 
 /**
- * Mapper for the entity Item and its DTO ItemDto.
+ * Mapper for the Item Entity and its DTO ItemDto.
  */
 @Component
 public class ItemMapper extends AbstractMapper<ItemDto, Item> {

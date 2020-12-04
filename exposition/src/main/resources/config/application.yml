@@ -1,6 +1,6 @@
 spring:
   application:
-    name: '@project.name@'
+    name: Spring-shop
   profiles:
     active: '@spring.profiles.active@'
   jta:

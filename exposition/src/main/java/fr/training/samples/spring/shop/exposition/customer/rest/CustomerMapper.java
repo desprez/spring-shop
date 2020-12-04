@@ -16,7 +16,7 @@ public class CustomerMapper extends AbstractMapper<CustomerDto, Customer> {
 	@Override
 	public CustomerDto mapToDto(final Customer entity) {
 		final CustomerDto dto = new CustomerDto();
-		dto.setCustomerID(entity.getId());
+		dto.setId(entity.getId());
 		dto.setName(entity.getName());
 		dto.setPassword(entity.getPassword());
 		return dto;
@@ -27,7 +27,7 @@ public class CustomerMapper extends AbstractMapper<CustomerDto, Customer> {
 		final Customer customer = new Customer();
 		customer.setName(dto.getName());
 		customer.setPassword(dto.getPassword());
-		customer.setId(dto.getCustomerID());
+		customer.setId(dto.getId());
 		return customer;
 	}
 
