@@ -6,39 +6,39 @@ Installation
     Cloner le projet : https://github.com/desprez/spring-shop.git
     Lancer un mvn package
 
-Customer
-========
+Customer (couche Domain & Infrastructure)
+=========================================
 
 Instructions:
 > Dans la couche domain, créer une classe **Customer** comprenant 2 attributs :
  - name (String)
  - password (String)
 
-> Créer l'interface **CustomerRepository** dans la couche domain.
+> Créer l'interface **CustomerRepository** dans la couche **domain** puis l'implémentation dans la couche **infrastructure**.
 
-> Créer le test unitaire permettant de récupérer un **Customer** depuis la base de données.
+> Créer le test unitaire correspondant permettant de récupérer un **Customer** depuis la base de données.
 (utiliser un identifiant trouvé dans le fichier import.sql) ainsi qu'un test unitaire permettant de stocker le Customer dans la base de Données.
 
 > Créer l'implémentation du repository en utilisant une interface qui étend **JpaRepository<Customer, String>** à l'aide de 2 méthodes **findById()** et **save()**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_feature
 
-Item
-====
+Item (couche Domain & Infrastructure)
+=====================================
 
 Instructions:
 > Faire de même avec la classe **Item** qui possèdera les 2 attributs :
  - decription (String)
  - price (Integer)
 
-> Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** ainsi qu'une méthode **findAll()**.
+> Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** ainsi qu'une méthode **findAll()** pour le repository adequat.
 
 > Décommenter les ordres SQL Inserts **ITEM** dans le fichier import.sql
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_feature
 
-Order
-=====
+Order (couche Domain & Infrastructure)
+======================================
 
 Instructions:
 > Faire de même avec la classe **Order** qui possèdera les 2 attributs :
@@ -46,14 +46,14 @@ Instructions:
  - items (List<Item>)
 
 
-> Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()**.
+> Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** pour le repository adequat.
 
 > Décommenter les ordres SQL Inserts **ORDERS** et **ITEMS_ORDERS** dans le fichier import.sql
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_feature
 
-ItemService
-===========
+ItemService (couche application)
+================================
 
 Instructions:
 > Dans la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
@@ -81,8 +81,8 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_feature
     
-CustomerService
-===============
+CustomerService (couche application)
+====================================
 
 > Dans la couche **application**, implementer le service **OrderService** pour l'interface ci-dessous:
 
@@ -108,8 +108,8 @@ CustomerService
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
 
-OrderService
-============
+OrderService (couche application)
+=================================
 
 > Toujours la couche **application**, implementer les méthodes **getOrdersForCustomer()** et **addOrder()** pour le service **OrderService** tel que l'interface ci-dessous:
 
