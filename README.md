@@ -42,8 +42,8 @@ Order (couche Domain & Infrastructure)
 
 Instructions:
 > Faire de même avec la classe **Order** qui possèdera les 2 attributs :
- - customer (customer)
- - items (List<Item>)
+ - customer (Customer)
+ - items (List<<Item>>)
 
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** pour le repository adequat.
