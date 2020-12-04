@@ -26,7 +26,7 @@ import fr.training.samples.spring.shop.domain.order.OrderRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { OrderServiceImpl.class })
-public class OrderServiceImplTest {
+public class OrderServiceTest {
 
 	@Autowired
 	private OrderService orderService;
