@@ -7,7 +7,7 @@ Installation
     Lancer un mvn package
 
 ------------
-## Customer (couche Domain & Infrastructure)
+## Customer (couches Domain & Infrastructure)
 
 
 Instructions:
@@ -24,7 +24,7 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_feature
 
-## Item (couche Domain & Infrastructure)
+## Item (couches Domain & Infrastructure)
 
 Instructions:
 > Faire de même avec la classe **Item** qui possèdera les 2 attributs :
@@ -37,7 +37,7 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_feature
 
-## Order (couche Domain & Infrastructure)
+## Order (couches Domain & Infrastructure)
 
 Instructions:
 > Faire de même avec la classe **Order** qui possèdera les 2 attributs :
