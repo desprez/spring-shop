@@ -156,7 +156,9 @@ implémenter les 2 dto :
 - ItemLightDto pour les données en entrée (sans id)
 - ItemDto pour les données en sortie (avec id)
 
-Ainsi que le **ItemMapper** qui devra étendre **AbstractMapper** pour mapper les entités vers ces dto et inversement.
+> Ainsi que le **ItemMapper** qui devra étendre **AbstractMapper** pour mapper les entités vers ces dto et inversement.
+
+> Lancer l'application à l'aide de la classe **SpringBootApp**
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_controller
 
