@@ -154,17 +154,23 @@ ItemResource (couche Exposition)
 Instructions:
 > Maintenant nous allons exposer les méthodes du service **ItemService** sous forme de API Rest :
 
+voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_controller
+
 CustomerResource (couche Exposition)
 ====================================
 
 Instructions:
 > Exposer les méthodes du service **CustomerService** sous forme de API Rest :
 
+voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_controller
+
 OrderResource (couche Exposition)
 =================================
 
 Instructions:
 > Exposer les méthodes du service **OrderService** sous forme de API Rest :
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_controller
 
 Documentation de l'API avec Swagger
 ===================================
