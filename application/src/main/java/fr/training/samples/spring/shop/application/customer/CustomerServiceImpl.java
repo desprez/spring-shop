@@ -1,8 +1,7 @@
 package fr.training.samples.spring.shop.application.customer;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
@@ -23,11 +22,13 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public Customer findOne(final String customerId) {
 		return customerRepository.findById(customerId);
 	}
 
+	@Transactional
 	@Override
 	public void update(final Customer customer) {
 		customerRepository.save(customer);
