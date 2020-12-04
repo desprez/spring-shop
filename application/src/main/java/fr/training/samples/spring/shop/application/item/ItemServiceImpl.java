@@ -13,10 +13,19 @@ public class ItemServiceImpl implements ItemService {
 
 	private final ItemRepository itemRepository;
 
+	/**
+	 * Constructor for Bean injection
+	 */
 	public ItemServiceImpl(final ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.training.samples.spring.shop.application.item.ItemService#addItem(fr.
+	 * training.samples.spring.shop.domain.item.Item)
+	 */
 	@Transactional
 	@Override
 	public Item addItem(final Item item) {
@@ -24,6 +33,12 @@ public class ItemServiceImpl implements ItemService {
 		return item;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.item.ItemService#getAllItems()
+	 */
 	@Transactional(readOnly = true)
 	@Override
 	public List<Item> getAllItems() {

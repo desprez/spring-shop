@@ -10,23 +10,25 @@ public interface OrderService {
 	/**
 	 * Add new order according to the given customer id and items ids.
 	 *
-	 * @param CustomerId the cutomerId
+	 * @param customerId the customer identifier
 	 * @param itemIds    list of items ids
-	 * @return new order
+	 * @return then created order
 	 */
-	public Order addOrder(String CustomerId, List<String> itemIds);
+	public Order addOrder(String customerId, List<String> itemIds);
 
 	/**
 	 * Get Order according to the given orderId
 	 *
-	 * @param orderId the order id
-	 * @return an Order
+	 * @param orderId the order identifier
+	 * @return the Order found
 	 */
 	public Order findOne(String orderId);
 
 	/**
-	 * @param customerId
-	 * @return a List of OrderEntity
+	 * Retreive all orders for a customer according to the customer id.
+	 *
+	 * @param customerId the customer identifier
+	 * @return the list of Orders submited by the customer
 	 */
 	public List<Order> getOrdersForCustomer(String customerId);
 

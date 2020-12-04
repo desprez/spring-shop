@@ -18,7 +18,7 @@ public interface ItemService {
 	/**
 	 * Display items catalog
 	 *
-	 * @return a list of item entities
+	 * @return a list of items
 	 */
 	public List<Item> getAllItems();
 
