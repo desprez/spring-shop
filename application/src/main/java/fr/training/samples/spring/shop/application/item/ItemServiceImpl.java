@@ -13,6 +13,9 @@ public class ItemServiceImpl implements ItemService {
 
 	private final ItemRepository itemRepository;
 
+	/**
+	 * Constructor for Bean injection
+	 */
 	public ItemServiceImpl(final ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 	}

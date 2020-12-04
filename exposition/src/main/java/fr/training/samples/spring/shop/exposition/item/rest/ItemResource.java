@@ -28,6 +28,9 @@ public class ItemResource {
 
 	private final ItemMapper itemMapper;
 
+	/**
+	 * Constructor for Bean injection
+	 */
 	public ItemResource(final ItemService itemService, final ItemMapper itemMapper) {
 		this.itemService = itemService;
 		this.itemMapper = itemMapper;

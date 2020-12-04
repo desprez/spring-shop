@@ -12,10 +12,20 @@ public class CustomerServiceImpl implements CustomerService {
 
 	private final CustomerRepository customerRepository;
 
+	/**
+	 * Constructor for Bean injection
+	 */
 	public CustomerServiceImpl(final CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.customer.CustomerService#create(
+	 * fr.training.samples.spring.shop.domain.customer.Customer)
+	 */
 	@Transactional
 	@Override
 	public Customer create(final Customer customer) {
@@ -29,11 +39,26 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.customer.CustomerService#findOne(
+	 * java.lang.String)
+	 */
 	@Transactional(readOnly = true)
 	@Override
 	public Customer findOne(final String customerId) {
 		return customerRepository.findById(customerId);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.customer.CustomerService#update(
+	 * fr.training.samples.spring.shop.domain.customer.Customer)
+	 */
 
 	@Transactional
 	@Override

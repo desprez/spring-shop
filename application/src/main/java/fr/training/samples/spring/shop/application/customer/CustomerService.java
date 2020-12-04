@@ -21,8 +21,9 @@ public interface CustomerService {
 	public Customer findOne(String customerId);
 
 	/**
-	 * @param customerEntity a Customer
-	 * @return a Customer
+	 * Update an existing customer
+	 *
+	 * @param customer the customer to update
 	 */
 	public void update(Customer customer);
 

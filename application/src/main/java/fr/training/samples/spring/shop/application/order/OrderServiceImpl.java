@@ -21,6 +21,9 @@ public class OrderServiceImpl implements OrderService {
 
 	private final ItemRepository itemRepository;
 
+	/**
+	 * Constructor for Bean injection
+	 */
 	public OrderServiceImpl(final OrderRepository orderRepository, final CustomerRepository customerRepository,
 			final ItemRepository itemRepository) {
 		this.orderRepository = orderRepository;
@@ -28,6 +31,13 @@ public class OrderServiceImpl implements OrderService {
 		this.itemRepository = itemRepository;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.order.OrderService#addOrder(java.
+	 * lang.String, java.util.List)
+	 */
 	@Transactional
 	@Override
 	public Order addOrder(final String CustomerId, final List<String> itemIds) {
@@ -45,12 +55,23 @@ public class OrderServiceImpl implements OrderService {
 		return order;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.order.OrderService#findOne(java.
+	 * lang.String)
+	 */
 	@Transactional(readOnly = true)
 	@Override
 	public Order findOne(final String orderId) {
 		return orderRepository.findById(orderId);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.training.samples.spring.shop.application.order.OrderService#getOrdersForCustomer(java.lang.String)
+	 */
 	@Transactional(readOnly = true)
 	@Override
 	public List<Order> getOrdersForCustomer(final String customerId) {
