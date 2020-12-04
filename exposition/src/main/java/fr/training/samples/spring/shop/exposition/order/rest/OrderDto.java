@@ -4,16 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import fr.training.samples.spring.shop.exposition.item.rest.ItemDto;
 
 public class OrderDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonProperty("id")
 	private String id;
 
+	@JsonProperty("customerId")
 	private String customerId;
 
+	@JsonProperty("items")
 	private List<ItemDto> items;
 
 	private int total;

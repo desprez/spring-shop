@@ -16,6 +16,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import fr.training.samples.spring.shop.application.order.OrderService;
 import fr.training.samples.spring.shop.domain.order.Order;
+import fr.training.samples.spring.shop.exposition.common.ErrorModel;
+import fr.training.samples.spring.shop.exposition.item.rest.ItemDto;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api")
@@ -33,6 +38,11 @@ public class OrderResource {
 		this.orderMapper = orderMapper;
 	}
 
+	@ApiOperation(value = "This operation allow to add a new order", nickname = "addOrder", notes = "Please give order infos")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Item was added"),
+			@ApiResponse(code = 403, message = "Forbidden"),
+			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PostMapping(value = "/orders", consumes = { "application/json" })
 	public ResponseEntity<URI> addOrder(@Valid @RequestBody final OrderLightDto orderDto) {
 
@@ -44,6 +54,12 @@ public class OrderResource {
 		return ResponseEntity.created(location).build();
 	}
 
+	@ApiOperation(value = "This operation allow to retrieve all customer orders", nickname = "getOrders", notes = "Return customer orders according to the customer number")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK", response = ItemDto.class, responseContainer = "List"),
+			@ApiResponse(code = 403, message = "Forbidden"),
+			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/orders", produces = { "application/json" })
 	public List<OrderDto> getOrders(@RequestParam final String customerId) {
 

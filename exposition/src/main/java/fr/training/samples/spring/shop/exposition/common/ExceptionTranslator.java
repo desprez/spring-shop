@@ -76,7 +76,7 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 		final ErrorModel apiError = ErrorModel.builder() //
 				.code("err.internal") //
 				.message(ex.getLocalizedMessage()) //
-				.description("internal error occurred")//
+				.description("internal error occurred, please contact your administrator")//
 				.build();
 
 		LOG.error(ex.getMessage(), ex);

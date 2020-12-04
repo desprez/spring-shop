@@ -2,14 +2,23 @@ package fr.training.samples.spring.shop.exposition.customer.rest;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
+
 public class CustomerDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonProperty("id")
 	private String id;
 
+	@JsonProperty("name")
 	private String name;
 
+	@JsonProperty("password")
 	private String password;
 
 	/**
@@ -39,44 +48,28 @@ public class CustomerDto implements Serializable {
 		this.password = password;
 	}
 
-	/**
-	 * @return the id
-	 */
 	public String getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(final String id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(final String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the password
-	 */
+	@ApiModelProperty(example = "password", required = true, value = "Customer password")
+	@NotNull
 	public String getPassword() {
 		return password;
 	}
 
-	/**
-	 * @param password the password to set
-	 */
 	public void setPassword(final String password) {
 		this.password = password;
 	}
