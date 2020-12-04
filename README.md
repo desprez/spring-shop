@@ -17,6 +17,8 @@ Instructions:
 
 > Créer l'implémentation du repository en utilisant une interface qui étend **JpaRepository<Customer, String>** à l'aide de 2 méthodes **findById()** et **save()**.
 
+voir **correction* dans https://github.com/desprez/spring-shop/tree/add_customer_feature
+
 Item
 ====
 
@@ -27,7 +29,9 @@ Instructions:
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** ainsi qu'une méthode **findAll()**.
 
-> Décommenter les ordres SQL Inserts dans le fichier import.sql
+> Décommenter les ordres SQL Inserts **ITEM** dans le fichier import.sql
+
+voir **correction* dans https://github.com/desprez/spring-shop/tree/add_item_feature
 
 Order
 =====
@@ -39,6 +43,10 @@ Instructions:
 
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()**.
+
+> Décommenter les ordres SQL Inserts **ORDERS** et **ITEMS_ORDERS** dans le fichier import.sql
+
+voir **correction* dans https://github.com/desprez/spring-shop/tree/add_order_feature
 
 ItemService
 ===========
@@ -66,6 +74,8 @@ Instructions:
     }
 
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
+
+voir **correction* dans https://github.com/desprez/spring-shop/tree/add_order_feature
     
 CustomerService
 ===============
@@ -90,6 +100,8 @@ CustomerService
 
       }
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
+
+voir **correction* dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
 
 OrderService
 ============
@@ -125,3 +137,6 @@ OrderService
       }
 
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
+
+voir **correction* dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
+
