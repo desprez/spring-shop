@@ -94,7 +94,7 @@ CustomerService
 OrderService
 ============
 
-> Toujours la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
+> Toujours la couche **application**, implementer les méthodes **getOrdersForCustomer()** et **addOrder()** pour le service **OrderService** tel que l'interface ci-dessous:
 
       public interface OrderService {
 
