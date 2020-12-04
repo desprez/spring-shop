@@ -1,6 +1,7 @@
 package fr.training.samples.spring.shop.application.customer;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import fr.training.samples.spring.shop.application.TestConfiguration;
+import fr.training.samples.spring.shop.domain.common.exception.AlreadyExistingException;
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 
@@ -27,10 +29,12 @@ public class CustomerServiceTest {
 	private CustomerRepository customerRepositoryMock;
 
 	@Test
-	public void create_should_call_save_repository_1_time() {
+	public void createCustomer_should_success_when_not_already_exist() {
 		// Given
 		final Customer customer = new Customer();
-		customer.setName("Michel Dupont");
+		customer.setName("name");
+		customer.setPassword("password");
+		when(customerRepositoryMock.findByCustomerName("name")).thenReturn(null);
 
 		// When
 		final Customer result = customerService.create(customer);
@@ -38,6 +42,26 @@ public class CustomerServiceTest {
 		// Then
 		assertThat(result).isNotNull();
 		verify(customerRepositoryMock, times(1)).save(customer);
+	}
+
+	@Test
+	public void createCustomer_should_fail_when_already_exist() {
+		// Given
+		final Customer customer = new Customer();
+		customer.setName("name");
+		customer.setPassword("password");
+		when(customerRepositoryMock.findByCustomerName("name")).thenReturn(customer);
+
+		// When
+		Customer result;
+		try {
+			result = customerService.create(customer);
+		} catch (final Exception e) {
+			assertThat(e).isInstanceOf(AlreadyExistingException.class);
+		}
+
+		// Then
+		verify(customerRepositoryMock, never()).save(customer);
 	}
 
 	@Test
