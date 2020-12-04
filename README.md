@@ -156,7 +156,7 @@ implémenter les 2 dto :
 - ItemLightDto pour les données en entrée (sans id)
 - ItemDto pour les données en sortie (avec id)
 
-Ainsi que le **ItemMapper** qui devra étendre **AbstractMapper**.
+Ainsi que le **ItemMapper** qui devra étendre **AbstractMapper** pour mapper les entités vers ces dto et inversement.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_controller
 
@@ -173,7 +173,7 @@ implémenter les 2 dto :
 - CustomerLightDto pour les données en entrée (sans id)
 - CustomerDto pour les données en sortie (avec id)
 
-Ainsi que le **CustomerMapper** qui devra étendre **AbstractMapper**.
+Ainsi que le **CustomerMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_controller
 
@@ -186,10 +186,10 @@ Instructions:
 - getOrders(String)
     
 implémenter les 2 dto :
-- OrderLightDto pour les données en entrée (sans id)
+- OrderLightDto pour les données en entrée contenant un identifiant de customer (customerId) et une liste d'identifiants d'Item (itemIds).
 - CustomerDto pour les données en sortie (avec id)
 
-Ainsi que le **OrderMapper** qui devra étendre **AbstractMapper**.
+Ainsi que le **OrderMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_controller
 
