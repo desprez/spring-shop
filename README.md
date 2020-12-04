@@ -152,7 +152,16 @@ ItemResource (couche Exposition)
 ================================
 
 Instructions:
-> Maintenant nous allons exposer les méthodes du service **ItemService** sous forme de API Rest :
+> Maintenant nous allons exposer les méthodes du service **ItemService** sous forme de API Rest dans la classe **ItemResource** :
+
+- List<ItemDto> getAllItemsUsingGet()
+- addItemUsingPost(ItemLightDto)
+    
+implémenter les 2 dto :
+- ItemLightDto pour les données en entrée (sans id)
+- ItemDto pour les données en sortie (avec id)
+
+Ainsi que le **ItemMapper** qui devra étendre **AbstractMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_controller
 
@@ -160,7 +169,17 @@ CustomerResource (couche Exposition)
 ====================================
 
 Instructions:
-> Exposer les méthodes du service **CustomerService** sous forme de API Rest :
+> Exposer les méthodes du service **CustomerService** sous forme de API Rest dans la classe **CustomerResource** :
+
+- getCustomer(String)
+- addCustomerUsingPost(CustomerLightDto)
+- updateCustomerUsingPut(CustomerDto)
+    
+implémenter les 2 dto :
+- CustomerLightDto pour les données en entrée (sans id)
+- CustomerDto pour les données en sortie (avec id)
+
+Ainsi que le **CustomerMapper** qui devra étendre **AbstractMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_controller
 
@@ -168,7 +187,16 @@ OrderResource (couche Exposition)
 =================================
 
 Instructions:
-> Exposer les méthodes du service **OrderService** sous forme de API Rest :
+> Exposer les méthodes du service **OrderService** sous forme de API Rest dans la classe **OrderResource** :
+
+- addOrder(OrderLightDto)
+- getOrders(String)
+    
+implémenter les 2 dto :
+- OrderLightDto pour les données en entrée (sans id)
+- CustomerDto pour les données en sortie (avec id)
+
+Ainsi que le **OrderMapper** qui devra étendre **AbstractMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_controller
 
