@@ -58,4 +58,17 @@ public class OrderRepositoryTest {
 		assertThat(orderRepository.findById(order.getId())).isNotNull();
 	}
 
+	@Test
+	public void existing_customer_should_be_found_by_his_name() {
+		// Given
+		final String name = "NAME3";
+
+		// When
+
+		final Customer result = customerRepository.findByCustomerName(name);
+
+		// Then
+		assertThat(result).isNotNull();
+		assertThat(result.getId()).isEqualTo("323e4567-e89b-42d3-a456-556642440000");
+	}
 }
