@@ -177,3 +177,5 @@ Documentation de l'API avec Swagger
 
 Instructions:
 > Documenter les API de fournir une interface swagger-ui.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/add_swagger_documentation
