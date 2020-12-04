@@ -1,13 +1,14 @@
 # Spring-Shop
 Formation spring : shop application exemple
-
+------------
 Installation
 
     Cloner le projet : https://github.com/desprez/spring-shop.git
     Lancer un mvn package
 
-Customer (couche Domain & Infrastructure)
-=========================================
+------------
+## Customer (couche Domain & Infrastructure)
+
 
 Instructions:
 > Dans la couche domain, créer une classe **Customer** comprenant 2 attributs :
@@ -23,8 +24,7 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_feature
 
-Item (couche Domain & Infrastructure)
-=====================================
+## Item (couche Domain & Infrastructure)
 
 Instructions:
 > Faire de même avec la classe **Item** qui possèdera les 2 attributs :
@@ -37,8 +37,7 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_feature
 
-Order (couche Domain & Infrastructure)
-======================================
+## Order (couche Domain & Infrastructure)
 
 Instructions:
 > Faire de même avec la classe **Order** qui possèdera les 2 attributs :
@@ -52,8 +51,7 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_feature
 
-ItemService (couche application)
-================================
+## ItemService (couche application)
 
 Instructions:
 > Dans la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
@@ -81,8 +79,7 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_feature
     
-CustomerService (couche application)
-====================================
+## CustomerService (couche application)
 
 Instructions:
 > Dans la couche **application**, implementer le service **OrderService** pour l'interface ci-dessous:
@@ -109,8 +106,7 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
 
-OrderService (couche application)
-=================================
+## OrderService (couche application)
 
 > Toujours la couche **application**, implementer les méthodes **getOrdersForCustomer()** et **addOrder()** pour le service **OrderService** tel que l'interface ci-dessous:
 
@@ -148,8 +144,7 @@ OrderService (couche application)
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
 
-ItemResource (couche Exposition)
-================================
+## ItemResource (couche Exposition)
 
 Instructions:
 > Maintenant nous allons exposer les méthodes du service **ItemService** sous forme de API Rest dans la classe **ItemResource** :
@@ -165,8 +160,7 @@ Ainsi que le **ItemMapper** qui devra étendre **AbstractMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_controller
 
-CustomerResource (couche Exposition)
-====================================
+## CustomerResource (couche Exposition)
 
 Instructions:
 > Exposer les méthodes du service **CustomerService** sous forme de API Rest dans la classe **CustomerResource** :
@@ -183,8 +177,7 @@ Ainsi que le **CustomerMapper** qui devra étendre **AbstractMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_controller
 
-OrderResource (couche Exposition)
-=================================
+## OrderResource (couche Exposition)
 
 Instructions:
 > Exposer les méthodes du service **OrderService** sous forme de API Rest dans la classe **OrderResource** :
@@ -200,8 +193,7 @@ Ainsi que le **OrderMapper** qui devra étendre **AbstractMapper**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_controller
 
-Documentation de l'API avec Swagger
-===================================
+## Documentation de l'API avec Swagger
 
 Instructions:
 > Documenter les API de fournir une interface swagger-ui.
