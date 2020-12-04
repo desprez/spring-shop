@@ -3,6 +3,7 @@ package fr.training.samples.spring.shop.application.order;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
@@ -27,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
 		this.itemRepository = itemRepository;
 	}
 
+	@Transactional
 	@Override
 	public Order addOrder(final String CustomerId, final List<String> itemIds) {
 		final Customer customer = customerRepository.findById(CustomerId);
@@ -43,11 +45,13 @@ public class OrderServiceImpl implements OrderService {
 		return order;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public Order findOne(final String orderId) {
 		return orderRepository.findById(orderId);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Order> getOrdersForCustomer(final String customerId) {
 		return orderRepository.findByCustomerId(customerId);

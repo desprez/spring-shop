@@ -6,4 +6,6 @@ public interface CustomerRepository {
 
 	public void save(Customer customer);
 
+	public Customer findByCustomerName(String name);
+
 }
