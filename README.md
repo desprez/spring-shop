@@ -196,6 +196,38 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_c
 ## Documentation de l'API avec Swagger
 
 Instructions:
+> Ajouter les 2 dépendanceS **Springfox** dans dependency managment du pom.xml parent :
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox-version}</version>
+			</dependency>
+            
+> Ajouter les 2 dépendanceS **Springfox** dan les dependences du pom.xml du module **exposition**
+
+		<!-- springfox-swagger2 dependencies -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+		</dependency>
+        
 > Documenter les API de fournir une interface swagger-ui.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_swagger_documentation
+
+## Exception management
+
+Instructions:
+> Dans la classe **ExceptionTranslator** du module exposition rajouter la gestion de l'exception **AlreadyExistingException** et retourner un code erreor HTTP 409 lors de la levée de cette exception.
+
+voir **correction** 
