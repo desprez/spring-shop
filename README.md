@@ -116,8 +116,9 @@ OrderService
        public Order findOne(String orderId);
 
        /**
-        * @param customerId
-        * @return a List of OrderEntity
+        * Retreive all orders for a customer according to the customer id.
+        * @param customerId the customer id
+        * @return a List of Orders
         */
        public List<Order> getOrdersForCustomer(String customerId);
 
