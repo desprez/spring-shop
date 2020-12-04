@@ -196,7 +196,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_c
 ## Documentation de l'API avec Swagger
 
 Instructions:
-> Ajouter les 2 dépendanceS **Springfox** dans dependency managment du pom.xml parent :
+> Ajouter les 2 dépendences **Springfox** dans dependency managment du pom.xml parent :
 
 			<dependency>
 				<groupId>io.springfox</groupId>
@@ -228,6 +228,13 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_swagger
 ## Exception management
 
 Instructions:
-> Dans la classe **ExceptionTranslator** du module exposition rajouter la gestion de l'exception **AlreadyExistingException** et retourner un code erreor HTTP 409 lors de la levée de cette exception.
+> Dans la classe **ExceptionTranslator** du module exposition, rajouter la gestion de l'exception **AlreadyExistingException** et retourner un code erreor HTTP **409** lors de la levée de cette exception.
+
+voir **correction** 
+
+## Validation
+
+Instructions:
+>
 
 voir **correction** 
