@@ -84,6 +84,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_f
 CustomerService (couche application)
 ====================================
 
+Instructions:
 > Dans la couche **application**, implementer le service **OrderService** pour l'interface ci-dessous:
 
       public interface CustomerService {
@@ -147,3 +148,26 @@ OrderService (couche application)
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
 
+ItemResource (couche Exposition)
+================================
+
+Instructions:
+> Maintenant nous allons exposer les méthodes du service **ItemService** sous forme de API Rest :
+
+CustomerResource (couche Exposition)
+====================================
+
+Instructions:
+> Exposer les méthodes du service **CustomerService** sous forme de API Rest :
+
+OrderResource (couche Exposition)
+=================================
+
+Instructions:
+> Exposer les méthodes du service **OrderService** sous forme de API Rest :
+
+Documentation de l'API avec Swagger
+===================================
+
+Instructions:
+> Documenter les API de fournir une interface swagger-ui.
