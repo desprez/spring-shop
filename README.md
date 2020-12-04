@@ -103,7 +103,7 @@ CustomerService
        public Customer findOne(String customerId);
 
       }
-> La méthode create() devra vérifier qu'un **Custommer** portant le même nom (name) n'existe pas déjà dans la base de données à l'aide d'une méthode findByName(name) de **CustomerJpaRepository**.  
+> La méthode **create()** devra vérifier qu'un **Customer** portant le même nom (name) n'existe pas déjà dans la base de données à l'aide d'une méthode findByName(name) de **CustomerJpaRepository**.  
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
@@ -141,7 +141,7 @@ OrderService
 
       }
 
-> La méthode getOrdersForCustomer() devra utiliser une méthode findByCustomerId(customerId) de **OrderJpaRepository**. 
+> La méthode **getOrdersForCustomer()** devra utiliser une méthode findByCustomerId(customerId) de **OrderJpaRepository**. 
 
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
