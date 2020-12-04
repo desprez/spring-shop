@@ -3,6 +3,7 @@ package fr.training.samples.spring.shop.application.item;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
@@ -16,12 +17,14 @@ public class ItemServiceImpl implements ItemService {
 		this.itemRepository = itemRepository;
 	}
 
+	@Transactional
 	@Override
 	public Item addItem(final Item item) {
 		itemRepository.save(item);
 		return item;
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Item> getAllItems() {
 		return itemRepository.findAll();
