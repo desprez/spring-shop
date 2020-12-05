@@ -55,6 +55,33 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_feature
 
+## CustomerService (couche application)
+
+Instructions:
+> Dans la couche **application**, implementer le service **OrderService** pour l'interface ci-dessous:
+
+      public interface CustomerService {
+
+       /**
+        * Create a new customer
+        * @param customer the Customer to create
+        * @return the created Customer
+        */
+       public Customer create(Customer customer);
+
+       /**
+        * Retrieve a customer according to the given identifier.
+        * @param customerId the customer identifier
+        * @return the retrieved Customer
+        */
+       public Customer findOne(String customerId);
+
+      }
+> La méthode **create()** devra vérifier qu'un **Customer** portant le même nom (name) n'existe pas déjà dans la base de données à l'aide d'une méthode findByName(name) de **CustomerJpaRepository**.  
+> Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_customer_service
+
 ## ItemService (couche application)
 
 Instructions:
@@ -80,33 +107,6 @@ Instructions:
     }
 
 
-> Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
-
-voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_feature
-    
-## CustomerService (couche application)
-
-Instructions:
-> Dans la couche **application**, implementer le service **OrderService** pour l'interface ci-dessous:
-
-      public interface CustomerService {
-
-       /**
-        * Create a new customer
-        * @param customer the Customer to create
-        * @return the created Customer
-        */
-       public Customer create(Customer customer);
-
-       /**
-        * Retrieve a customer according to the given identifier.
-        * @param customerId the customer identifier
-        * @return the retrieved Customer
-        */
-       public Customer findOne(String customerId);
-
-      }
-> La méthode **create()** devra vérifier qu'un **Customer** portant le même nom (name) n'existe pas déjà dans la base de données à l'aide d'une méthode findByName(name) de **CustomerJpaRepository**.  
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_remaining_services
