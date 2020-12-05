@@ -21,7 +21,7 @@ Instructions:
 
 > Créer l'implémentation du repository en utilisant une interface qui étend **JpaRepository<Customer, String>** à l'aide de 2 méthodes **findById()** et **save()**.
 
-![](https://github.com/desprez/spring-shop/master/images/CustomerRepository.png)
+![CustomerRepository](./images/CustomerRepository.png)
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_feature
 
@@ -34,7 +34,7 @@ Instructions:
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** ainsi qu'une méthode **findAll()** pour le repository adequat.
 
-![](https://github.com/desprez/spring-shop/edit/master/images/ItemRepository.png)
+![ItemRepository](./images/ItemRepository.png)
 
 > Décommenter les ordres SQL Inserts **ITEM** dans le fichier import.sql
 
@@ -49,7 +49,7 @@ Instructions:
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** pour le repository adequat.
 
-![](https://github.com/desprez/spring-shop/master/images/OrderRepository.png)
+![OrderRepository](./images/OrderRepository.png)
 
 > Décommenter les ordres SQL Inserts **ORDERS** et **ITEMS_ORDERS** dans le fichier import.sql
 
