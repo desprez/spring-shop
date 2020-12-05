@@ -236,8 +236,9 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_swagger
 
 Instructions:
 > Dans la classe **ExceptionTranslator** du module exposition, rajouter la gestion de l'exception **AlreadyExistingException** et retourner un code erreor HTTP **409** lors de la levée de cette exception.
+> Documenter cette erreur dans la méthode de création de classe **CustomerResource**.
 
-voir **correction** 
+voir **correction** dans https://github.com/desprez/spring-shop/tree/exception_management
 
 ## Validation
 
@@ -245,3 +246,17 @@ Instructions:
 >
 
 voir **correction** 
+
+## MVC
+
+Instructions:
+>
+
+voir **correction** 
+
+## Sécurité
+
+Instructions:
+>
+
+voir **correction**
