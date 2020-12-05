@@ -47,4 +47,12 @@ public class OrderLightDto implements Serializable {
 		this.itemIds = itemIds;
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("OrderLightDto [customerId=").append(customerId).append(", itemIds=").append(itemIds)
+		.append("]");
+		return builder.toString();
+	}
+
 }

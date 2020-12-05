@@ -52,4 +52,11 @@ public class ItemLightDto implements Serializable {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("ItemLightDto [description=").append(description).append(", price=").append(price).append("]");
+		return builder.toString();
+	}
+
 }

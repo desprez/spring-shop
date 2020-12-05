@@ -56,4 +56,11 @@ public class CustomerLightDto implements Serializable {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("CustomerLightDto [name=").append(name).append(", password=").append(password).append("]");
+		return builder.toString();
+	}
+
 }
