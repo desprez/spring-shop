@@ -6,12 +6,16 @@ Installation
     Cloner le projet : https://github.com/desprez/spring-shop.git
     Lancer un mvn package
 
+<div hidden>
+```
 @startuml firstDiagram
 
 Alice -> Bob: Hello
 Bob -> Alice: Hi!
-
+		
 @enduml
+```
+</div>
 
 ------------
 ## Customer (couches Domain & Infrastructure)
