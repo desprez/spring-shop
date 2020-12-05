@@ -235,7 +235,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_swagger
 ## Exception management
 
 Instructions:
-> Dans la classe **ExceptionTranslator** du module exposition, rajouter la gestion de l'exception **AlreadyExistingException** et retourner un code erreor HTTP **409** lors de la levée de cette exception.
+> Dans la classe **ExceptionTranslator** du module **exposition**, rajouter la gestion de l'exception **AlreadyExistingException** et retourner un code erreur HTTP **409** lors de la levée de cette exception.
 > Documenter cette erreur dans la méthode de création de classe **CustomerResource**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/exception_management
@@ -243,9 +243,18 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/exception_m
 ## Validation
 
 Instructions:
->
+> Ajouter les contrôles de surfaces sur l'object permettant la création d'un **Item** :
+- Le prix (price) doit être positif > 0.
+- La description doit au moins contenir un caractère.
 
-voir **correction** 
+> Ajouter les contrôles de surfaces sur l'object permettant la création d'un **Customer** :
+- Le nom (name) et le mot de passe (password) doivent au moins contenir un caractère. 
+
+> Ajouter les contrôles de surfaces sur l'object permettant la création d'un **Order** :
+- L'identifiant du customer doit être présent.
+- La liste des identifiants doit au moins contenir un élément.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/input_validation
 
 ## MVC
 
