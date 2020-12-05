@@ -1,4 +1,4 @@
-package fr.training.samples.spring.shop.insfrastructure.order;
+package fr.training.samples.spring.shop.infrastructure.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
