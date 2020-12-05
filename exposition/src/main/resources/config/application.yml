@@ -2,7 +2,7 @@ spring:
   application:
     name: Spring-shop
   profiles:
-    active: '@spring.profiles.active@'
+    active: local
   jta:
     enabled: false
   jpa:
@@ -10,8 +10,8 @@ spring:
     driver-class-name: org.postgresql.Driver
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create-drop
-  cache:
+      ddl-auto: update
+  cache: 
     jcache:
       config: classpath:cache/ehcache.xml
 logging:
