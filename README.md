@@ -22,6 +22,8 @@ Instructions:
 
 > Créer l'implémentation du repository en utilisant une interface qui étend **JpaRepository<Customer, String>** à l'aide de 2 méthodes **findById()** et **save()**.
 
+![](https://github.com/desprez/spring-shop/edit/master/images/CustomerRepository.png)
+
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_feature
 
 ## Item (couches Domain & Infrastructure)
@@ -32,6 +34,8 @@ Instructions:
  - price (Integer)
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** ainsi qu'une méthode **findAll()** pour le repository adequat.
+
+![](https://github.com/desprez/spring-shop/edit/master/images/ItemRepository.png)
 
 > Décommenter les ordres SQL Inserts **ITEM** dans le fichier import.sql
 
@@ -44,8 +48,9 @@ Instructions:
  - customer (Customer)
  - items (List<<Item>>)
 
-
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** pour le repository adequat.
+
+![](https://github.com/desprez/spring-shop/edit/master/images/OrderRepository.png)
 
 > Décommenter les ordres SQL Inserts **ORDERS** et **ITEMS_ORDERS** dans le fichier import.sql
 
@@ -74,6 +79,7 @@ Instructions:
      public List<Item> getAllItems();
 
     }
+
 
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
