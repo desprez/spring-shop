@@ -6,17 +6,6 @@ Installation
     Cloner le projet : https://github.com/desprez/spring-shop.git
     Lancer un mvn package
 
-<div hidden>
-```
-@startuml firstDiagram
-
-Alice -> Bob: Hello
-Bob -> Alice: Hi!
-		
-@enduml
-```
-</div>
-
 ------------
 ## Customer (couches Domain & Infrastructure)
 
@@ -32,7 +21,7 @@ Instructions:
 
 > Créer l'implémentation du repository en utilisant une interface qui étend **JpaRepository<Customer, String>** à l'aide de 2 méthodes **findById()** et **save()**.
 
-![CustomerRepository](./images/CustomerRepository.png)
+![CustomerRepository](./images/CustomerRepository.svg)
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_customer_feature
 
@@ -45,7 +34,7 @@ Instructions:
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** ainsi qu'une méthode **findAll()** pour le repository adequat.
 
-![ItemRepository](./images/ItemRepository.png)
+![ItemRepository](./images/ItemRepository.svg)
 
 > Décommenter les ordres SQL Inserts **ITEM** dans le fichier import.sql
 
@@ -60,7 +49,7 @@ Instructions:
 
 > Ajouter le test unitaire avec les 2 mêmes méthodes **findById()** et **save()** pour le repository adequat.
 
-![OrderRepository](./images/OrderRepository.png)
+![OrderRepository](./images/OrderRepository.svg)
 
 > Décommenter les ordres SQL Inserts **ORDERS** et **ITEMS_ORDERS** dans le fichier import.sql
 
