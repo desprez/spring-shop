@@ -2,7 +2,6 @@ package fr.training.samples.spring.shop.exposition.common;
 
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 
 import org.slf4j.Logger;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import fr.training.samples.spring.shop.domain.common.exception.AlreadyExistingException;
 import fr.training.samples.spring.shop.domain.common.exception.NotFoundException;
 
 @ControllerAdvice
@@ -58,7 +58,7 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(value = { NotFoundException.class })
 	@ResponseBody
-	public ResponseEntity<Object> handleNotFoundException(final NotFoundException ex, final HttpServletRequest req) {
+	public ResponseEntity<Object> handleNotFoundException(final NotFoundException ex ) {
 
 		final ErrorModel apiError = ErrorModel.builder() //
 				.message(ex.getLocalizedMessage()) //
@@ -67,6 +67,19 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 
 		LOG.info(ex.getMessage());
 		return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.NOT_FOUND);
+	}
+
+
+	@ExceptionHandler(value = { AlreadyExistingException.class })
+	@ResponseBody
+	public ResponseEntity<Object> handleAlreadyExistingException(final AlreadyExistingException ex ) {
+
+		final ErrorModel apiError = ErrorModel.builder() //
+				.message(ex.getLocalizedMessage()) //
+				.build();
+
+		LOG.info(ex.getMessage());
+		return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler({ Exception.class })

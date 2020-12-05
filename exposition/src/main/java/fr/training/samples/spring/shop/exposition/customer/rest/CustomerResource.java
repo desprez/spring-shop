@@ -39,7 +39,7 @@ public class CustomerResource {
 
 	@ApiOperation(value = "This operation allow to find customer by his number", nickname = "getCustomer", notes = "Please give customer number")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/customers/{id}", produces = { "application/json" })
 	public CustomerDto getCustomer(@PathVariable final String customerId) {
@@ -52,7 +52,8 @@ public class CustomerResource {
 	@ApiOperation(value = "This operation allow to add a new customer", nickname = "addCustomer", notes = "Please give customer infos")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Customer was added"),
 			@ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
+			@ApiResponse(code = 409, message = "Conflict", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PostMapping(value = "/customers", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<?> addCustomerUsingPost(@Valid @RequestBody final CustomerLightDto customerLightDto) {
