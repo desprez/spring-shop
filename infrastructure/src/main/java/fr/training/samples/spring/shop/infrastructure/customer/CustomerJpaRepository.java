@@ -1,4 +1,4 @@
-package fr.training.samples.spring.shop.insfrastructure.customer;
+package fr.training.samples.spring.shop.infrastructure.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
