@@ -30,8 +30,8 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 
 		final String errors = ex.getBindingResult() //
 				.getFieldErrors().stream() //
-				.map(x -> x.getDefaultMessage()) //
-				.collect(Collectors.joining(","));
+				.map(x -> x.getField() + ": " + x.getDefaultMessage()) //
+				.collect(Collectors.joining(", "));
 
 		final ErrorModel apiError = ErrorModel.builder() //
 				.code("") //

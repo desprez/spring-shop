@@ -3,12 +3,16 @@ package fr.training.samples.spring.shop.exposition.order.rest;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Order", description = "Order informations")
+@Validated
 public class OrderLightDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -34,7 +38,7 @@ public class OrderLightDto implements Serializable {
 	}
 
 	@ApiModelProperty(required = true, value = "itemIds")
-	@NotNull
+	@NotEmpty
 	public List<String> getItemIds() {
 		return itemIds;
 	}

@@ -2,11 +2,18 @@ package fr.training.samples.spring.shop.exposition.item.rest;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import org.springframework.validation.annotation.Validated;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Item", description = "Item informations")
+@Validated
 public class ItemLightDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,9 +24,6 @@ public class ItemLightDto implements Serializable {
 	@JsonProperty("price")
 	private int price;
 
-	/**
-	 *
-	 */
 	public ItemLightDto() {
 	}
 
@@ -37,6 +41,9 @@ public class ItemLightDto implements Serializable {
 		this.description = description;
 	}
 
+	@ApiModelProperty(example = "10", required = true, value = "Price")
+	@NotNull
+	@Positive
 	public int getPrice() {
 		return price;
 	}
