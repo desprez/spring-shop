@@ -1,8 +1,7 @@
 package fr.training.samples.spring.shop.exposition.customer.rest;
 
 import java.net.URI;
-
-import javax.validation.Valid;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import fr.training.samples.spring.shop.application.customer.CustomerService;
+import fr.training.samples.spring.shop.application.order.OrderService;
 import fr.training.samples.spring.shop.domain.customer.Customer;
-import fr.training.samples.spring.shop.exposition.common.ErrorModel;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import fr.training.samples.spring.shop.domain.order.Order;
+import fr.training.samples.spring.shop.exposition.order.rest.OrderDto;
+import fr.training.samples.spring.shop.exposition.order.rest.OrderMapper;
 
 @RestController
 @RequestMapping("/api")
@@ -27,51 +27,66 @@ public class CustomerResource {
 
 	private final CustomerService customerService;
 
-	private final CustomerMapper customeEntityMapper;
+	private final OrderService orderService;
+
+	private final CustomerMapper customerMapper;
+
+	private final OrderMapper orderMapper;
 
 	/**
 	 * Constructor for Bean injection
 	 */
-	public CustomerResource(final CustomerService customerService, final CustomerMapper customeEntityMapper) {
+	public CustomerResource(final CustomerService customerService, final CustomerMapper customerMapper,
+			final OrderService orderService, final OrderMapper orderMapper) {
 		this.customerService = customerService;
-		this.customeEntityMapper = customeEntityMapper;
+		this.customerMapper = customerMapper;
+		this.orderService = orderService;
+
+		this.orderMapper = orderMapper;
 	}
 
 	@GetMapping(value = "/customers/{id}", produces = { "application/json" })
-	public CustomerDto getCustomer(@PathVariable final String id) {
+	public CustomerDto getCustomerById(@PathVariable final String id) {
 
 		final Customer customer = customerService.findOne(id);
-		return customeEntityMapper.mapToDto(customer);
 
+		return customerMapper.mapToDto(customer);
 	}
 
-	@PostMapping(value = "/customers", produces = { "application/json" }, consumes = { "application/json" })
-	public ResponseEntity<?> addCustomerUsingPost(@Valid @RequestBody final CustomerLightDto customerLightDto) {
+	@PostMapping(value = "/customers", consumes = { "application/json" })
+	public ResponseEntity<URI> addCustomerUsingPost(@RequestBody final CustomerLightDto customerLightDto) {
 
-		final Customer customer = customeEntityMapper.mapToEntity(customerLightDto);
+		final Customer customer = customerMapper.mapToEntity(customerLightDto);
 
 		customerService.create(customer);
 
 		final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(customer.getId()).toUri();
-
 		return ResponseEntity.created(location).build();
 	}
 
-	@ApiOperation(value = "This operation allow to update an existing customer", nickname = "updateCustomer", notes = "Please give customer infos to update")
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "Customer was updated"),
-			@ApiResponse(code = 403, message = "Forbidden", response = ErrorModel.class),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
-			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
-	@PutMapping(value = "/customers", produces = { "application/json" }, consumes = { "application/json" })
-	public ResponseEntity<URI> updateCustomerUsingPut(@Valid @RequestBody final CustomerDto CustomerDto) {
-
-		final Customer customer = customeEntityMapper.mapToEntity(CustomerDto);
+	@PutMapping(value = "/customer/{id}", consumes = { "application/json" })
+	public void updateCustomerUSingPut(@PathVariable final String id, @RequestBody final CustomerDto customerDto) {
+		customerDto.setId(id);
+		final Customer customer = customerMapper.mapToEntity(customerDto);
 		customerService.update(customer);
-		final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(customer.getId()).toUri();
+	}
 
-		return ResponseEntity.created(location).build();
+	@GetMapping(value = "/customers", produces = { "application/json" })
+	public CustomerDto getCustomerByName(@RequestParam final String name) {
+
+		final Customer customer = customerService.findByName(name);
+		return customerMapper.mapToDto(customer);
+	}
+
+	/**
+	 * En doublon avec la méthode OrderResource.getOrders(String)
+	 */
+	@GetMapping(value = "/customers/{id}/orders", produces = { "application/json" })
+	public List<OrderDto> getOrders(@PathVariable final String id) {
+
+		final List<Order> orders = orderService.getOrdersForCustomer(id);
+		return orderMapper.mapToDtoList(orders);
 	}
 
 }

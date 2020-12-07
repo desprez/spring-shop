@@ -10,7 +10,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
   cache:
     jcache:
       config: classpath:cache/ehcache.xml

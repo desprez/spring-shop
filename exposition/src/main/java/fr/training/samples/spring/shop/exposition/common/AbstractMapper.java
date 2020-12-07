@@ -1,5 +1,6 @@
 package fr.training.samples.spring.shop.exposition.common;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,7 +36,13 @@ public abstract class AbstractMapper<T, S> {
 	 * @return a List of the mapped entity
 	 */
 	public List<T> mapToDtoList(final List<S> entityList) {
-		return entityList.stream().filter(Objects::nonNull).map(this::mapToDto).collect(Collectors.toList());
+		final List<T> dtos = new ArrayList<>();
+		for (final S s : entityList) {
+			if (s != null) {
+				dtos.add(mapToDto(s));
+			}
+		}
+		return dtos;
 	}
 
 	/**

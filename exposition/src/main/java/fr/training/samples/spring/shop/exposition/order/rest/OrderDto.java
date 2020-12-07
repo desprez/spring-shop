@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.training.samples.spring.shop.exposition.customer.rest.CustomerDto;
 import fr.training.samples.spring.shop.exposition.item.rest.ItemDto;
 
 public class OrderDto implements Serializable {
@@ -12,7 +13,7 @@ public class OrderDto implements Serializable {
 
 	private String id;
 
-	private String customerId;
+	private CustomerDto customer;
 
 	private List<ItemDto> items;
 
@@ -25,9 +26,9 @@ public class OrderDto implements Serializable {
 
 	}
 
-	public OrderDto(final String id, final String customerId) {
+	public OrderDto(final String id, final CustomerDto customer ) {
 		this.id = id;
-		this.customerId = customerId;
+		this.customer = customer;
 		items = new ArrayList<>();
 	}
 
@@ -43,12 +44,12 @@ public class OrderDto implements Serializable {
 		this.id = id;
 	}
 
-	public String getCustomerId() {
-		return customerId;
+	public CustomerDto getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerId(final String customerId) {
-		this.customerId = customerId;
+	public void setCustomer(final CustomerDto customer) {
+		this.customer = customer;
 	}
 
 	public List<ItemDto> getItems() {
@@ -78,7 +79,7 @@ public class OrderDto implements Serializable {
 		builder.append("OrderDTO [orderId=");
 		builder.append(id);
 		builder.append(", customerId=");
-		builder.append(customerId);
+		builder.append(customer);
 		builder.append(", items=");
 		builder.append(items);
 		builder.append("]");

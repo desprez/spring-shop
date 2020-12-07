@@ -3,8 +3,6 @@ package fr.training.samples.spring.shop.exposition.order.rest;
 import java.net.URI;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,31 +23,29 @@ public class OrderResource {
 
 	private final OrderMapper orderMapper;
 
-	/**
-	 * Constructor for Bean injection
-	 */
 	public OrderResource(final OrderService orderService, final OrderMapper orderMapper) {
 		this.orderService = orderService;
 		this.orderMapper = orderMapper;
 	}
 
 	@PostMapping(value = "/orders", consumes = { "application/json" })
-	public ResponseEntity<URI> addOrder(@Valid @RequestBody final OrderLightDto orderDto) {
+	public ResponseEntity<URI> addOrderUsingPost(@RequestBody final OrderLightDto orderLightDto) {
 
-		final Order order = orderService.addOrder(orderDto.getCustomerId(), orderDto.getItemIds());
+		final Order order = orderService.addOrder(orderLightDto.getCustomerId(), orderLightDto.getItemIds());
 
 		final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(order.getId()).toUri();
-
 		return ResponseEntity.created(location).build();
 	}
 
+	/**
+	 * En doublon avec la méthode CustomerResource.getOrders(String)
+	 */
 	@GetMapping(value = "/orders", produces = { "application/json" })
 	public List<OrderDto> getOrders(@RequestParam final String customerId) {
+		final List<Order> orders = orderService.getOrdersForCustomer(customerId);
 
-		final List<Order> order = orderService.getOrdersForCustomer(customerId);
-
-		return orderMapper.mapToDtoList(order);
+		return orderMapper.mapToDtoList(orders);
 	}
 
 }

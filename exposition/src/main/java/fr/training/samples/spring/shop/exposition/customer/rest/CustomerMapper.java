@@ -1,7 +1,5 @@
 package fr.training.samples.spring.shop.exposition.customer.rest;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Component;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
@@ -24,17 +22,17 @@ public class CustomerMapper extends AbstractMapper<CustomerDto, Customer> {
 
 	@Override
 	public Customer mapToEntity(final CustomerDto dto) {
-		final Customer customer = new Customer();
-		customer.setName(dto.getName());
-		customer.setPassword(dto.getPassword());
-		customer.setId(dto.getId());
-		return customer;
+		final Customer entity = new Customer();
+		entity.setName(dto.getName());
+		entity.setPassword(dto.getPassword());
+		return entity;
 	}
 
-	public Customer mapToEntity(@Valid final CustomerLightDto dto) {
-		final Customer customer = new Customer();
-		customer.setName(dto.getName());
-		customer.setPassword(dto.getPassword());
-		return customer;
+	public Customer mapToEntity(final CustomerLightDto dto) {
+		final Customer entity = new Customer();
+		entity.setName(dto.getName());
+		entity.setPassword(dto.getPassword());
+		return entity;
 	}
+
 }
