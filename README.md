@@ -256,16 +256,24 @@ Instructions:
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/input_validation
 
-## MVC
+## Spring MVC DEMO (optionnel)
 
 Instructions:
->
 
-voir **correction** 
+> Faire un checkout de la branche  https://github.com/desprez/spring-shop/tree/spring_mvc_demo
+
+> Dans une fenêtre de commande ou un terminal depuis l'IDE, lancer l'application **Back-end**, via la commande suivante dans le repertoire **exposition** :
+
+	mvn springboot:run
+	
+> Dans l'IDE lancer l'application **Front-End** via la classe **SpringBootApp** du module **presentation-mvc**.
+
+> Se connecter avec le compte utililsateur (user, password) ou le coimpte adminsitrateur (admin, admin)> 
+
 
 ## Sécurité
 
 Instructions:
->
+> 
 
 voir **correction**
