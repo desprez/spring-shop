@@ -41,7 +41,7 @@ public class OrderResource {
 	@ApiOperation(value = "This operation allow to add a new order", nickname = "addOrder", notes = "Please give order infos")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Item was added"),
 			@ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PostMapping(value = "/orders", consumes = { "application/json" })
 	public ResponseEntity<URI> addOrder(@Valid @RequestBody final OrderLightDto orderDto) {
@@ -61,7 +61,7 @@ public class OrderResource {
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK", response = ItemDto.class, responseContainer = "List"),
 			@ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/orders", produces = { "application/json" })
 	public List<OrderDto> retrieveOrdersByCustomer(@RequestParam final String customerId) {
