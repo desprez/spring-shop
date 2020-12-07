@@ -23,7 +23,7 @@ public interface ItemService {
 	public List<Item> getAllItems();
 
 	/**
-	 * REstriven an item by his identifer
+	 * Retrieve an item by his identifer
 	 *
 	 * @param id the item identifier
 	 * @return the found item
