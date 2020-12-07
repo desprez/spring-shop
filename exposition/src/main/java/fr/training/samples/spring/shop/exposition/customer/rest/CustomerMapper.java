@@ -15,6 +15,9 @@ public class CustomerMapper extends AbstractMapper<CustomerDto, Customer> {
 
 	@Override
 	public CustomerDto mapToDto(final Customer entity) {
+		if (entity == null) {
+			return null;
+		}
 		final CustomerDto dto = new CustomerDto();
 		dto.setId(entity.getId());
 		dto.setName(entity.getName());

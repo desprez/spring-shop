@@ -54,6 +54,9 @@ public class OrderResource {
 		return ResponseEntity.created(location).build();
 	}
 
+	/**
+	 * En doublon avec la méthode CustomerResource.getOrders(String)
+	 */
 	@ApiOperation(value = "This operation allow to retrieve all customer orders", nickname = "getOrders", notes = "Return customer orders according to the customer number")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK", response = ItemDto.class, responseContainer = "List"),

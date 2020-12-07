@@ -32,7 +32,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 */
 	@Override
 	public Item findById(final String itemId) {
-		return itemJpaRepository.findById(itemId).orElseThrow(() -> new NotFoundException());
+		return itemJpaRepository.findById(itemId).orElseThrow(() -> new NotFoundException("Item " + itemId + " Not found"));
 	}
 
 	/*
