@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layouts/default}">
+<head>
+<title>Add order page</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+
+		<h1>Add an order</h1>
+		<form method="post" th:object="${orderModel}" th:action="@{/addOrder}">
+
+			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+				<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+			</div>
+			<table>
+				<tr>
+					<td>Customer ID:</td>
+					<td><input path="customerId" th:field="*{customerId}" /></td>
+				</tr>
+				<tr>
+					<td>Items:</td>
+					<td>
+						<table>
+							<th:block th:each="item : ${orderModel.items}">
+								<tr>
+									<td>
+										<input th:text="${item.description}" type="checkbox"
+										th:field="*{itemIds}" th:value="${item.itemId}" />
+									<td>
+								</tr>
+							</th:block>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="submit" />
+		</form>
+	</div>
+</body>
+</html>
+

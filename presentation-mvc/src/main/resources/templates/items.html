@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layouts/default}">
+<head>
+<title>Item list page</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+	<h1>Items:</h1>
+	<table>
+		<th:block th:each="item : ${items}">
+			<tr>
+				<td th:text="${item.description}">...</td>
+				<td th:text="${item.price}">...</td>
+			</tr>
+		</th:block>
+	</table>
+	</div>
+</body>
+</html>

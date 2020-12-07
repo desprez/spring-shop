@@ -13,6 +13,7 @@
 		<module>infrastructure</module>
 		<module>application</module>
 		<module>exposition</module>
+		<module>presentation-mvc</module>
 	</modules>
 
 	<properties>

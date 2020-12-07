@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layouts/default}">
+<head>
+<title>Welcome to Spring Security Thymeleaf tutorial</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<h2>Welcome</h2>
+		<p>Spring Security Thymeleaf tutorial</p>
+
+		<div sec:authorize="isAnonymous()">
+			<a href="/login">Login</a>
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			You can visit the following pages: Authenticated username:
+			<div sec:authentication="name"></div>
+			Authenticated user roles:
+			<div sec:authentication="principal.authorities"></div>
+
+			<ul>
+				<li><a href="items">See the item list</a></li>
+				<div sec:authorize="hasRole('ROLE_NORMAL_USER')">
+					<li><a href="addOrder">Add an order</a></li>
+				</div>
+				<div sec:authorize="hasRole('ADMIN')">
+					<li><a href="createItemFlow">Create an item</a></li>
+				</div>
+			</ul>
+		</div>
+
+		<div class="button-group" sec:authorize="isFullyAuthenticated()">
+			<a href="#" th:href="@{/logout}">Log Out</a>
+		</div>
+
+	</div>
+</body>
+</html>

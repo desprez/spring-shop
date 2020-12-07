@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layouts/default}">
+<head>
+<title>Custom Login Page</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<h2>Custom Login Page</h2>
+		<form th:action="@{/login}" method="post">
+			<label for="username">Username</label>: <input type="text"
+				id="username" name="username" autofocus="autofocus" /> <label
+				for="password">Password</label>: <input type="password"
+				id="password" name="password" /><input type="submit" value="Log in" />
+		</form>
+	</div>
+</body>
+</html>
+
