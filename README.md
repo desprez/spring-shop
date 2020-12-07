@@ -203,7 +203,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_c
 ## Documentation de l'API avec Swagger
 
 Instructions:
-> Ajouter les 2 dépendences **Springfox** dans dependency managment du pom.xml parent :
+> Ajouter les 2 dépendences **Springfox** ci-dessous dans dependency managment du pom.xml parent :
 
 			<dependency>
 				<groupId>io.springfox</groupId>
@@ -216,7 +216,7 @@ Instructions:
 				<version>${springfox-version}</version>
 			</dependency>
             
-> Ajouter les 2 dépendanceS **Springfox** dan les dependences du pom.xml du module **exposition**
+> Ajouter les 2 dépendances **Springfox** ci-dessous dans le pom.xml du module **exposition**
 
 		<!-- springfox-swagger2 dependencies -->
 		<dependency>
@@ -260,7 +260,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/input_valid
 
 Instructions:
 
-> Faire un checkout de la branche  https://github.com/desprez/spring-shop/tree/spring_mvc_demo
+> Faire un checkout de la branche https://github.com/desprez/spring-shop/tree/spring_mvc_demo
 
 > Dans une fenêtre de commande ou un terminal depuis l'IDE, lancer l'application **Back-end**, via la commande suivante dans le module **exposition** :
 
@@ -272,9 +272,179 @@ Instructions:
 > Se connecter avec le compte **utilisateur** (user, password) ou le compte **administrateur** (admin, admin)> 
 
 
-## Sécurité
+## Sécurité avec Json Web Stoken (JWT)
 
 Instructions:
-> 
+> Ajouter la dépendence **Spring security** dans le pom.xml du module **application** :
 
-voir **correction**
+        	<!-- Spring security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+> Ajouter les dépendences **jjwt** et **spring-security-test** dans le pom.xml du module **exposition** :
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+		<!-- spring-security-test dependencies -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+> ajouter la propriété suivante dans le fichier application.yml
+
+		# used to verify this hash if you have the secret key.
+		jwt:
+		  secret: spring-shop
+
+> Dans le package fr.training.samples.spring.shop.domain.customer ajouter l'énumaration suivante :
+
+	public enum RoleTypeEnum {
+		ROLE_USER, ROLE_ADMIN
+	}
+
+> Dans la classe **Customer** rajouter une proprieté **roles**  de type Set<RoleTypeEnum> annotée @ElementCollection et @Enumerated (ajouter aussi le getter et le setter).
+
+	@ElementCollection
+	@Enumerated(EnumType.STRING)
+	Set<RoleTypeEnum> roles = new HashSet<>();
+
+> Rajouter la classe **UserDetailsServiceImpl** dans le package fr.training.samples.spring.shop.application.security :
+
+	import java.util.Collection;
+
+	import org.slf4j.Logger;
+	import org.slf4j.LoggerFactory;
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.security.core.GrantedAuthority;
+	import org.springframework.security.core.authority.AuthorityUtils;
+	import org.springframework.security.core.userdetails.User;
+	import org.springframework.security.core.userdetails.UserDetails;
+	import org.springframework.security.core.userdetails.UserDetailsService;
+	import org.springframework.security.core.userdetails.UsernameNotFoundException;
+	import org.springframework.stereotype.Service;
+	import org.springframework.transaction.annotation.Transactional;
+
+	import fr.training.samples.spring.shop.domain.customer.Customer;
+	import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
+
+	@Service
+	@Transactional
+	public class  UserDetailsServiceImpl implements UserDetailsService {
+
+		private static Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+
+		@Autowired
+		private CustomerRepository customerRepository;
+
+		// ici je transforme mes objets du domain en objets internes de Spring Security
+		@Override
+		public UserDetails loadUserByUsername(final String customerName) throws UsernameNotFoundException {
+
+			final Customer customer = customerRepository.findByCustomerName(customerName);
+			if (customer == null) {
+				throw new UsernameNotFoundException("Email " + customerName + " not found");
+			}
+			logger.debug("Customer found with name {}", customerName);
+			return new User(customer.getName(), customer.getPassword(), getAuthorities(customer));
+		}
+
+		private static Collection<? extends GrantedAuthority> getAuthorities(final Customer customer) {
+			final String[] userRoles = customer.getRoles().stream().map((role) -> role.name()).toArray(String[]::new);
+			logger.debug("With User Roles {}", userRoles);
+			final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
+			return authorities;
+		}
+	}
+> Ajouter la classe **SecurityConfig** dans le package fr.training.samples.spring.shop.config.security
+
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.context.annotation.Bean;
+	import org.springframework.context.annotation.Configuration;
+	import org.springframework.security.authentication.AuthenticationManager;
+	import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+	import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+	import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+	import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+	import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+	import org.springframework.security.config.http.SessionCreationPolicy;
+	import org.springframework.security.core.userdetails.UserDetailsService;
+	import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+	import org.springframework.security.crypto.password.PasswordEncoder;
+	import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+	import fr.training.samples.spring.shop.config.security.jwt.JwtAuthenticationEntryPoint;
+	import fr.training.samples.spring.shop.config.security.jwt.JwtRequestFilter;
+
+	@Configuration
+	@EnableWebSecurity
+	@EnableGlobalMethodSecurity(prePostEnabled = true)
+	public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+		@Autowired
+		private UserDetailsService userDetailsService;
+
+		@Autowired
+		private JwtRequestFilter jwtRequestFilter;
+
+		@Autowired
+		private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+		@Override
+		public void configure(final AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		}
+
+		@Bean
+		public PasswordEncoder passwordEncoder() {
+			return new BCryptPasswordEncoder();
+		}
+
+		@Bean
+		@Override
+		public AuthenticationManager authenticationManagerBean() throws Exception {
+			return super.authenticationManagerBean();
+		}
+
+		@Override
+		protected void configure(final HttpSecurity httpSecurity) throws Exception {
+			// Add a filter to validate the tokens with every request
+			httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+			httpSecurity.csrf().disable()
+			// dont authenticate this authentication request
+			.authorizeRequests().antMatchers("/authenticate").permitAll()
+			// and authorize swagger-ui
+			.antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
+			// all other requests need to be authenticated
+			.anyRequest().authenticated().and().
+			// make sure we use stateless session; session won't be used to
+			// store user's state.
+			exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint) //
+			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		}
+	}
+> Ajouter les classes JwtAuthenticationController, JwtAuthenticationEntryPoint, JwtRequest.java, JwtRequestFilter, JwtResponse, JwtTokenManager pour lagestion du JWT. (voir branche)
+
+> Ajouter les annotations **@Secured("ROLE_USER")** et **@Secured("ROLE_ADMIN")** pour que :
+- Seul un administrateur puisse créer un nouvel item.
+- Seuls les customers peuvent créer des commandes et modifier leur compte.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/spring_security_jwt
+
+## Spring Actuator
+Instructions:
+
+voir **correction** dans
+
+## Spring AOP
+Instructions:
+
+voir **correction** dans
