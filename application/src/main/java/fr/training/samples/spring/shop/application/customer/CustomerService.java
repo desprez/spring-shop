@@ -27,4 +27,11 @@ public interface CustomerService {
 	 */
 	public void update(Customer customer);
 
+	/**
+	 * Find a custome by his name
+	 *
+	 * @param customer the found customer
+	 */
+	public Customer findByName(String name);
+
 }

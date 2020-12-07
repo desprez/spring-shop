@@ -65,4 +65,16 @@ public class CustomerServiceImpl implements CustomerService {
 		customerRepository.save(customer);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.training.samples.spring.shop.application.customer.CustomerService#
+	 * findByName(java.lang.String)
+	 */
+	@Transactional(readOnly = true)
+	@Override
+	public Customer findByName(final String name) {
+		return customerRepository.findByCustomerName(name);
+	}
+
 }
