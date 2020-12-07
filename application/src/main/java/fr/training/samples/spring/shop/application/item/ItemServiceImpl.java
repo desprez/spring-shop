@@ -45,4 +45,17 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.findAll();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.item.ItemService#getItem(java.
+	 * lang.String)
+	 */
+	@Transactional(readOnly = true)
+	@Override
+	public Item getItem(final String itemId) {
+		return itemRepository.findById(itemId);
+	}
+
 }
