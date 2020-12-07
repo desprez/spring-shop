@@ -57,14 +57,14 @@ public class OrderResource {
 	/**
 	 * En doublon avec la méthode CustomerResource.getOrders(String)
 	 */
-	@ApiOperation(value = "This operation allow to retrieve all customer orders", nickname = "getOrders", notes = "Return customer orders according to the customer number")
+	@ApiOperation(value = "This operation allow to retrieve all customer orders", nickname = "retrieveOrdersByCustomer", notes = "Return customer orders according to the customer number")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK", response = ItemDto.class, responseContainer = "List"),
 			@ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/orders", produces = { "application/json" })
-	public List<OrderDto> getOrders(@RequestParam final String customerId) {
+	public List<OrderDto> retrieveOrdersByCustomer(@RequestParam final String customerId) {
 
 		final List<Order> order = orderService.getOrdersForCustomer(customerId);
 

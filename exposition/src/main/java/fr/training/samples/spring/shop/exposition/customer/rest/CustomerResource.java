@@ -97,12 +97,12 @@ public class CustomerResource {
 		return ResponseEntity.created(location).build();
 	}
 
-	@ApiOperation(value = "This operation allow to find customer by his name", nickname = "getCustomer", notes = "Please give customer name")
+	@ApiOperation(value = "This operation allow to find customer by his name", nickname = "retrieveCustomerByName", notes = "Please give customer name")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/customers", produces = { "application/json" })
-	public CustomerDto getCustomerByName(@RequestParam final String name) {
+	public CustomerDto retrieveCustomerByName(@RequestParam final String name) {
 
 		final Customer customer = customerService.findByName(name);
 		return customerMapper.mapToDto(customer);
