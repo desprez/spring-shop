@@ -5,7 +5,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: admin
-    
+#force data.sql script execution
+    initialization-mode: always
+
 #Monitoring endpoints   
 management:
    endpoints:
