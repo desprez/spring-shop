@@ -42,7 +42,7 @@ public class OrderResource {
 	 * En doublon avec la méthode CustomerResource.getOrders(String)
 	 */
 	@GetMapping(value = "/orders", produces = { "application/json" })
-	public List<OrderDto> getOrders(@RequestParam final String customerId) {
+	public List<OrderDto> retrieveOrdersByCustomer(@RequestParam final String customerId) {
 		final List<Order> orders = orderService.getOrdersForCustomer(customerId);
 
 		return orderMapper.mapToDtoList(orders);

@@ -73,7 +73,7 @@ public class CustomerResource {
 	}
 
 	@GetMapping(value = "/customers", produces = { "application/json" })
-	public CustomerDto getCustomerByName(@RequestParam final String name) {
+	public CustomerDto retrieveCustomerByName(@RequestParam final String name) {
 
 		final Customer customer = customerService.findByName(name);
 		return customerMapper.mapToDto(customer);
