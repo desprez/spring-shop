@@ -2,6 +2,7 @@ package fr.training.samples.spring.shop.application.item;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ public class ItemServiceImpl implements ItemService {
 	 * @see fr.training.samples.spring.shop.application.item.ItemService#addItem(fr.
 	 * training.samples.spring.shop.domain.item.Item)
 	 */
+	@Secured("ROLE_ADMIN")
 	@Transactional
 	@Override
 	public Item addItem(final Item item) {

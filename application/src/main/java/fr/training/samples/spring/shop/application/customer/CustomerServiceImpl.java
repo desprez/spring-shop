@@ -1,5 +1,6 @@
 package fr.training.samples.spring.shop.application.customer;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 * fr.training.samples.spring.shop.application.customer.CustomerService#create(
 	 * fr.training.samples.spring.shop.domain.customer.Customer)
 	 */
+
 	@Transactional
 	@Override
 	public Customer create(final Customer customer) {
@@ -59,6 +61,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 * fr.training.samples.spring.shop.application.customer.CustomerService#update(
 	 * fr.training.samples.spring.shop.domain.customer.Customer)
 	 */
+	@Secured("ROLE_USER")
 	@Transactional
 	@Override
 	public void update(final Customer customer) {
