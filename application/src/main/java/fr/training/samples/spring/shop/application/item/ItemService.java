@@ -22,4 +22,12 @@ public interface ItemService {
 	 */
 	public List<Item> getAllItems();
 
+	/**
+	 * Retrieve an item by his identifer
+	 *
+	 * @param id the item identifier
+	 * @return the found item
+	 */
+	public Item getItem(String itemId);
+
 }
