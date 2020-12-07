@@ -85,7 +85,7 @@ public class CustomerResource {
 	@ApiOperation(value = "This operation allow to update an existing customer", nickname = "updateCustomer", notes = "Please give customer infos to update")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Customer was updated"),
 			@ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PutMapping(value = "/customers", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<URI> updateCustomerUsingPut(@Valid @RequestBody final CustomerDto CustomerDto) {
@@ -100,7 +100,7 @@ public class CustomerResource {
 
 	@ApiOperation(value = "This operation allow to find customer by his name", nickname = "retrieveCustomerByName", notes = "Please give a customer name")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/customers", produces = { "application/json" })
 	public CustomerDto retrieveCustomerByName(@RequestParam final String name) {
@@ -111,7 +111,7 @@ public class CustomerResource {
 
 	@ApiOperation(value = "This operation allow to retrieve Customer's orders", nickname = "getOrders", notes = "Please give customer number")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 403, message = "Forbidden"),
-			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
+			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	/**
 	 * En doublon avec la méthode OrderResource.getOrders(String)
