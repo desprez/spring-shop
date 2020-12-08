@@ -302,6 +302,7 @@ Instructions:
 		}
 
 	}
+> Lancer l'application et afficher la page http://localhost:8080/swagger-ui.html
 
 > Documenter les API de fournir une interface swagger-ui.
 
