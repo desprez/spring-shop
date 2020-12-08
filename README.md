@@ -553,7 +553,7 @@ Instructions:
 
 > Repartir de la branche https://github.com/desprez/spring-shop/tree/input_validation
 
-> Vérifier la présence spring-boot-actuator au module **Expostion** :
+> Vérifier la présence de la dépendence **spring-boot-actuator** dans le module **Exposition** :
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
