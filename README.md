@@ -551,7 +551,29 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/spring_secu
 ## Spring Actuator
 Instructions:
 
-voir **correction** dans
+> Repartir de la branche https://github.com/desprez/spring-shop/tree/input_validation
+
+> Vérifier la présence spring-boot-actuator au module **Expostion** :
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+> Ajouter les endpoints **actuator** dans le fichier application.yml :
+
+	#Monitoring endpoints   
+	management:
+	  endpoints:
+	    web:
+	      exposure:
+		include: info, health, configprops, logfile, metrics, env, loggers
+
+> Exposer les métriques de chaque contrôleur REST à l’aide de l’annotation @Timed
+
+> Accéder au différentes urls d’actuator
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/springboot_actuator
 
 ## Spring AOP
 Instructions:
