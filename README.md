@@ -521,6 +521,27 @@ Instructions:
 	}
 > Ajouter les classes JwtAuthenticationController, JwtAuthenticationEntryPoint, JwtRequest.java, JwtRequestFilter, JwtResponse, JwtTokenManager pour lagestion du JWT. (voir branche)
 
+> Insérer l'utilisateur **Admin** dans la base de données avec son rôle dans les tables **CUSTOMER** et **CUSTOMER_ROLES**  :
+
+	INSERT INTO CUSTOMER (ID, NAME, PASSWORD,VERSION) VALUES ('bd20a450-dee7-4253-bf48-7fee4d0cebc6', 'Admin', '$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS',0);
+	INSERT INTO CUSTOMER_ROLES(CUSTOMER_ID, ROLES) VALUES ('bd20a450-dee7-4253-bf48-7fee4d0cebc6','ROLE_ADMIN');
+
+> Ajouter dans la classe **ExceptionTranslator**, la prise en compte de l'exception **AccessDeniedException** :
+
+	@ExceptionHandler(AccessDeniedException.class)
+	@ResponseBody
+	public ResponseEntity<Object> accessDeniedExceptionHandler(final AccessDeniedException ex) {
+
+		final ErrorModel apiError = ErrorModel.builder() //
+				.message(ex.getLocalizedMessage()) //
+				.description("You have'nt access privilege to this operation")//
+				.build();
+
+		LOG.debug(ex.getMessage());
+
+		return new ResponseEntity<>(apiError, HttpStatus.FORBIDDEN);
+	}
+
 > Ajouter les annotations **@Secured("ROLE_USER")** et **@Secured("ROLE_ADMIN")** pour que :
 - Seul un administrateur puisse créer un nouvel item.
 - Seuls les customers peuvent créer des commandes et modifier leur compte.
