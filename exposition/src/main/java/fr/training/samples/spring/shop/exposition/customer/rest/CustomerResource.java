@@ -59,6 +59,7 @@ public class CustomerResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/customers/{id}", produces = { "application/json" })
+	@Timed
 	public CustomerDto getCustomer(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
 
 		final Customer customer = customerService.findOne(customerId);
@@ -73,6 +74,7 @@ public class CustomerResource {
 			@ApiResponse(code = 409, message = "Conflict", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PostMapping(value = "/customers", produces = { "application/json" }, consumes = { "application/json" })
+	@Timed
 	public ResponseEntity<?> addCustomerUsingPost(@Valid @RequestBody final CustomerLightDto customerLightDto) {
 
 		final Customer customer = customerMapper.mapToEntity(customerLightDto);
@@ -122,6 +124,7 @@ public class CustomerResource {
 	 * En doublon avec la méthode OrderResource.getOrders(String)
 	 */
 	@GetMapping(value = "/customers/{id}/orders", produces = { "application/json" })
+	@Timed
 	public List<OrderDto> getOrders(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
 
 		final List<Order> orders = orderService.getOrdersForCustomer(customerId);

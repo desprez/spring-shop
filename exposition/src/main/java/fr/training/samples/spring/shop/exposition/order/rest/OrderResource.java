@@ -20,6 +20,7 @@ import fr.training.samples.spring.shop.application.order.OrderService;
 import fr.training.samples.spring.shop.domain.order.Order;
 import fr.training.samples.spring.shop.exposition.common.ErrorModel;
 import fr.training.samples.spring.shop.exposition.item.rest.ItemDto;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -47,6 +48,7 @@ public class OrderResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PostMapping(value = "/orders", consumes = { "application/json" })
+	@Timed
 	public ResponseEntity<URI> addOrder(@Valid @RequestBody final OrderLightDto orderDto) {
 
 		final Order order = orderService.addOrder(orderDto.getCustomerId(), orderDto.getItemIds());
@@ -67,6 +69,7 @@ public class OrderResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/orders", produces = { "application/json" })
+	@Timed
 	public List<OrderDto> retrieveOrdersByCustomer(@NotNull @RequestParam final String customerId) {
 
 		final List<Order> order = orderService.getOrdersForCustomer(customerId);
