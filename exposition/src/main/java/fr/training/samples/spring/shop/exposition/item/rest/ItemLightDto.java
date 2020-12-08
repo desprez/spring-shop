@@ -2,6 +2,7 @@ package fr.training.samples.spring.shop.exposition.item.rest;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -33,6 +34,7 @@ public class ItemLightDto implements Serializable {
 		this.price = price;
 	}
 
+	@NotBlank
 	public String getDescription() {
 		return description;
 	}

@@ -2,7 +2,7 @@ package fr.training.samples.spring.shop.exposition.customer.rest;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -37,7 +37,7 @@ public class CustomerLightDto implements Serializable {
 	}
 
 	@ApiModelProperty(example = "John Doe", required = true, value = "Customer name")
-	@NotBlank
+	@Size(min = 5)
 	public String getName() {
 		return name;
 	}
@@ -47,7 +47,7 @@ public class CustomerLightDto implements Serializable {
 	}
 
 	@ApiModelProperty(example = "password", required = true, value = "Customer password")
-	@NotBlank
+	@Size(min = 5)
 	public String getPassword() {
 		return password;
 	}
