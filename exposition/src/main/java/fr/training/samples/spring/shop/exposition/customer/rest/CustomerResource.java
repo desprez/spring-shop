@@ -24,6 +24,7 @@ import fr.training.samples.spring.shop.domain.order.Order;
 import fr.training.samples.spring.shop.exposition.common.ErrorModel;
 import fr.training.samples.spring.shop.exposition.order.rest.OrderDto;
 import fr.training.samples.spring.shop.exposition.order.rest.OrderMapper;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -90,6 +91,7 @@ public class CustomerResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PutMapping(value = "/customers", produces = { "application/json" }, consumes = { "application/json" })
+	@Timed
 	public ResponseEntity<URI> updateCustomerUsingPut(@Valid @RequestBody final CustomerDto CustomerDto) {
 
 		final Customer customer = customerMapper.mapToEntity(CustomerDto);
@@ -105,6 +107,7 @@ public class CustomerResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/customers", produces = { "application/json" })
+	@Timed
 	public CustomerDto retrieveCustomerByName(@RequestParam final String name) {
 
 		final Customer customer = customerService.findByName(name);

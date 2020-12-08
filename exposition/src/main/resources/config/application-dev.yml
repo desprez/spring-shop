@@ -3,9 +3,4 @@ spring:
     jndi-name: jdbc/postgres
   hibernate:
     ddl-auto: validate
-#Monitoring endpoints   
-management:
-   endpoints:
-      web:
-         exposure:
-            include: info, health, configprops, logfile, metrics, env, loggers
+ 

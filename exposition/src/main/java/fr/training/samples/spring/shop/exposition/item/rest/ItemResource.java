@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import fr.training.samples.spring.shop.application.item.ItemService;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.exposition.common.ErrorModel;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -49,6 +50,7 @@ public class ItemResource {
 			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/items", produces = { "application/json" })
+	@Timed
 	public List<ItemDto> getAllItemsUsingGet() {
 
 		final List<Item> items = itemService.getAllItems();
@@ -63,6 +65,7 @@ public class ItemResource {
 			@ApiResponse(code = 404, message = "Not Found ", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@PostMapping(value = "/items", produces = { "application/json" })
+	@Timed
 	public ResponseEntity<URI> addItemUsingPost(@Valid @RequestBody final ItemLightDto itemDto) {
 
 		final Item item = itemMapper.mapToEntity(itemDto);
