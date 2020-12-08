@@ -340,8 +340,9 @@ Instructions:
 
 > Dans une fenêtre de commande ou un terminal depuis l'IDE, lancer l'application **Back-end**, via la commande suivante dans le module **exposition** :
 
+	mvn clean install
 	cd exposition
-	mvn springboot:run
+	mvn spring-boot:run
 	
 > Dans l'IDE lancer l'application **Front-End** via la classe **SpringBootApp** du module **presentation-mvc**.
 
