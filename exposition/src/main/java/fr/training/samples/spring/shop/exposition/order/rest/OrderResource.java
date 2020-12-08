@@ -4,8 +4,10 @@ import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +26,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api")
+@Validated
 public class OrderResource {
 
 	private final OrderService orderService;
@@ -64,7 +67,7 @@ public class OrderResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/orders", produces = { "application/json" })
-	public List<OrderDto> retrieveOrdersByCustomer(@RequestParam final String customerId) {
+	public List<OrderDto> retrieveOrdersByCustomer(@NotNull @RequestParam final String customerId) {
 
 		final List<Order> order = orderService.getOrdersForCustomer(customerId);
 
