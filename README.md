@@ -230,7 +230,7 @@ Instructions:
 			<artifactId>springfox-swagger-ui</artifactId>
 		</dependency>
 
-> Ajouter les 2 classes **SwaggerConfig** et **** dans le package fr.training.samples.spring.shop.config.swagger :
+> Ajouter les 2 classes **SwaggerConfig** et **SwaggerResource** dans le package **fr.training.samples.spring.shop.config.swagger** :
 
 	import java.time.LocalDate;
 	import java.time.ZonedDateTime;
