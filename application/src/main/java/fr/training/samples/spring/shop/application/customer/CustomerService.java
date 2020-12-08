@@ -23,9 +23,10 @@ public interface CustomerService {
 	/**
 	 * Update an existing customer
 	 *
-	 * @param customer the customer to update
+	 * @param customerId the customer identifier
+	 * @param customer   the customer datas to update
 	 */
-	public void update(Customer customer);
+	public void update(String customerId, Customer customer);
 
 	/**
 	 * Find a custome by his name

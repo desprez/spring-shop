@@ -3,6 +3,7 @@ package fr.training.samples.spring.shop.config.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -20,8 +21,11 @@ import fr.training.samples.spring.shop.config.security.jwt.JwtRequestFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	private static final String UNAUTHENTICATED_WHITE_LIST[] = { "/authenticate" };
 
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -55,7 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		httpSecurity.csrf().disable()
 		// dont authenticate this authentication request
-		.authorizeRequests().antMatchers("/authenticate").permitAll()
+		.authorizeRequests().antMatchers(UNAUTHENTICATED_WHITE_LIST).permitAll()
+		// and authorize everybody create a customer
+		.antMatchers(HttpMethod.POST, "/customers").permitAll()
 		// and authorize swagger-ui
 		.antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
 		// all other requests need to be authenticated

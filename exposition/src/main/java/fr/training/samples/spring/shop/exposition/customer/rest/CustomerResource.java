@@ -87,11 +87,11 @@ public class CustomerResource {
 			@ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
-	@PutMapping(value = "/customers", produces = { "application/json" }, consumes = { "application/json" })
-	public ResponseEntity<URI> updateCustomerUsingPut(@Valid @RequestBody final CustomerDto CustomerDto) {
+	@PutMapping(value = "/customers/{id}", produces = { "application/json" }, consumes = { "application/json" })
+	public ResponseEntity<URI> updateCustomerUsingPut(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId, @Valid @RequestBody final CustomerLightDto customerLightDto) {
 
-		final Customer customer = customerMapper.mapToEntity(CustomerDto);
-		customerService.update(customer);
+		final Customer customer = customerMapper.mapToEntity(customerLightDto);
+		customerService.update(customerId, customer);
 		final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(customer.getId()).toUri();
 

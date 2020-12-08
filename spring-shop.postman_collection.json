@@ -194,6 +194,18 @@
 				"description": "This operation allow to retrieve all customer orders"
 			},
 			"response": []
+		},
+		{
+			"name": "authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "authenticate to get JWT"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

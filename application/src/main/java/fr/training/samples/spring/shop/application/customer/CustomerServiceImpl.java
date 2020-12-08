@@ -32,7 +32,6 @@ public class CustomerServiceImpl implements CustomerService {
 	 * fr.training.samples.spring.shop.application.customer.CustomerService#create(
 	 * fr.training.samples.spring.shop.domain.customer.Customer)
 	 */
-
 	@Transactional
 	@Override
 	public Customer create(final Customer customer) {
@@ -42,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new AlreadyExistingException("A customer with this name already exist");
 		}
 		// Encode given password
-		passwordEncoder.encode(customer.getPassword());
+		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		// New customer has user role by default
 		customer.addRole(RoleTypeEnum.ROLE_USER);
 
@@ -74,7 +73,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Secured("ROLE_USER")
 	@Transactional
 	@Override
-	public void update(final Customer customer) {
+	public void update(final String customerId, final Customer customer) {
+		final Customer customerToUpdate = customerRepository.findById(customerId);
+		customerToUpdate.setName(customer.getName());
+		customerToUpdate.setPassword(passwordEncoder.encode(customer.getPassword()));
 		customerRepository.save(customer);
 	}
 
