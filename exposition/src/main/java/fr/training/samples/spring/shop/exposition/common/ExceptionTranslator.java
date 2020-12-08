@@ -58,21 +58,20 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(value = { NotFoundException.class })
 	@ResponseBody
-	public ResponseEntity<Object> handleNotFoundException(final NotFoundException ex ) {
+	public ResponseEntity<Object> handleNotFoundException(final NotFoundException ex) {
 
 		final ErrorModel apiError = ErrorModel.builder() //
 				.message(ex.getLocalizedMessage()) //
-				.description("The given identifier is unknown by the system.")//
+				.description("")//
 				.build();
 
 		LOG.info(ex.getMessage());
 		return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.NOT_FOUND);
 	}
 
-
 	@ExceptionHandler(value = { AlreadyExistingException.class })
 	@ResponseBody
-	public ResponseEntity<Object> handleAlreadyExistingException(final AlreadyExistingException ex ) {
+	public ResponseEntity<Object> handleAlreadyExistingException(final AlreadyExistingException ex) {
 
 		final ErrorModel apiError = ErrorModel.builder() //
 				.message(ex.getLocalizedMessage()) //
@@ -84,7 +83,7 @@ public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler({ Exception.class })
 	@ResponseBody
-	public ResponseEntity<Object> handleOthers(final Exception ex, final WebRequest request) {
+	public ResponseEntity<Object> handleOthers(final Exception ex) {
 
 		final ErrorModel apiError = ErrorModel.builder() //
 				.code("err.internal") //

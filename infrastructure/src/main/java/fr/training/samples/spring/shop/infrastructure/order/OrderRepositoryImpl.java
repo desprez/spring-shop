@@ -32,7 +32,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 	 */
 	@Override
 	public Order findById(final String orderId) {
-		return orderJpaRepository.findById(orderId).orElseThrow(() -> new NotFoundException());
+		return orderJpaRepository.findById(orderId)
+				.orElseThrow(() -> new NotFoundException("order with id:" + orderId + ", not found"));
 	}
 
 	/*
