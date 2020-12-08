@@ -3,7 +3,10 @@ package fr.training.samples.spring.shop.domain.customer;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity;
 
@@ -14,6 +17,8 @@ public class Customer extends AbstractBaseEntity {
 
 	private String password;
 
+	@ElementCollection
+	@Enumerated(EnumType.STRING)
 	private final Set<RoleTypeEnum> roles = new HashSet<>();
 
 	public String getName() {
