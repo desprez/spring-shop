@@ -203,7 +203,9 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_c
 ## Documentation de l'API avec Swagger
 
 Instructions:
-> Ajouter les 2 dépendences **Springfox** ci-dessous dans dependency managment du pom.xml parent :
+> Sans les fichiers pom.xml, supprimer les dépendences à **org.springdoc** s'il y en a.
+
+> Ajouter les 2 dépendences **Springfox** ci-dessous dans **dependency managment** du pom.xml parent :
 
 			<dependency>
 				<groupId>io.springfox</groupId>
@@ -268,6 +270,8 @@ Instructions:
 	mvn springboot:run
 	
 > Dans l'IDE lancer l'application **Front-End** via la classe **SpringBootApp** du module **presentation-mvc**.
+
+> Accèder à l'url : http://localhost:8081
 
 > Se connecter avec le compte **utilisateur** (user, password) ou le compte **administrateur** (admin, admin)> 
 
