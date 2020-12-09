@@ -39,4 +39,11 @@ public class Customer extends AbstractBaseEntity {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("Customer [name=").append(name).append(", password=").append(password).append("]");
+		return builder.toString();
+	}
+
 }
