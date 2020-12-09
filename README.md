@@ -391,12 +391,13 @@ Instructions:
 > Dans la classe **CustomerServiceImpl** injecter un **org.springframework.security.crypto.password.PasswordEncoder**
 
 > Toujours dans cette classe, dans la méthode **create()**, utiliser ce **Passwordencoder** pour encoder le password et ajouter le Role **ROLE_USER** par défaut avant de sauvegarder le Customer:
-
 		// Encode given password
-		passwordEncoder.encode(customer.getPassword());
+		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		
 		// New customer has user role by default
 		customer.addRole(RoleTypeEnum.ROLE_USER);
+
+> Encoder aussi le password dans la méthode update().
 
 > Dans la classe **Customer** rajouter une proprieté **roles**  de type Set<RoleTypeEnum> annotée @ElementCollection et @Enumerated (ajouter aussi le getter et le setter correspondant).
 
@@ -519,7 +520,7 @@ Instructions:
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		}
 	}
-> Ajouter les classes JwtAuthenticationController, JwtAuthenticationEntryPoint, JwtRequest.java, JwtRequestFilter, JwtResponse, JwtTokenManager pour lagestion du JWT. (voir branche)
+> Ajouter les classes JwtAuthenticationController, JwtAuthenticationEntryPoint, JwtRequest, JwtRequestFilter, JwtResponse, JwtTokenManager pour la gestion du JWT. (voir branche)
 
 > Insérer l'utilisateur **Admin** dans la base de données avec son rôle dans les tables **CUSTOMER** et **CUSTOMER_ROLES**  :
 
@@ -541,6 +542,28 @@ Instructions:
 
 		return new ResponseEntity<>(apiError, HttpStatus.FORBIDDEN);
 	}
+
+> Dans la classe SwaggerConfig, rajouter les mécanismes permettant de saisir le token :
+
+				.securityContexts(Arrays.asList(securityContext())) //
+				.securitySchemes(Arrays.asList(apiKey()));
+				
+
+        private ApiKey apiKey() {
+		return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
+	}
+
+	private SecurityContext securityContext() {
+		return SecurityContext.builder().securityReferences(defaultAuth()).build();
+	}
+
+	List<SecurityReference> defaultAuth() {
+		final AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+		final AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+		authorizationScopes[0] = authorizationScope;
+		return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
+	}
+				
 
 > Ajouter les annotations **@Secured("ROLE_USER")** et **@Secured("ROLE_ADMIN")** pour que :
 - Seul un administrateur puisse créer un nouvel item.
