@@ -578,4 +578,23 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/springboot_
 ## Spring AOP
 Instructions:
 
-voir **correction** dans
+> Vérifier la présence de la dépendence **spring-boot-aop** dans le module **Exposition** :
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		
+> Ajouter la classe de configuration de AOP
+
+	import org.springframework.context.annotation.Configuration;
+	import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+	@Configuration
+	@EnableAspectJAutoProxy
+	public class AOPConfiguration {
+	}
+
+> Ajouter un aspect
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/add_aspect
