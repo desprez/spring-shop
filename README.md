@@ -484,7 +484,7 @@ Instructions:
 
 	@Configuration
 	@EnableWebSecurity
-	@EnableGlobalMethodSecurity(prePostEnabled = true)
+	@EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 	public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		@Autowired
@@ -553,11 +553,14 @@ Instructions:
 		return new ResponseEntity<>(apiError, HttpStatus.FORBIDDEN);
 	}
 
-> Dans la classe SwaggerConfig, rajouter les mécanismes permettant de saisir le token :
+> Dans la classe **SwaggerConfig**, rajouter les mécanismes permettant de saisir le token :
+
+Dans la méthode customImplementation, rajouter les **securityContexts** et **securitySchemes** :
 
 				.securityContexts(Arrays.asList(securityContext())) //
 				.securitySchemes(Arrays.asList(apiKey()));
 				
+puis les méthodes suivantes :
 
         private ApiKey apiKey() {
 		return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
@@ -628,6 +631,8 @@ Instructions:
 	public class AOPConfiguration {
 	}
 
-> Ajouter un aspect
+> Ajouter un 1er aspect qui va permettre de tracer les appels de méthodes publiques de tous les sous packages de **fr.training.samples.spring.shop.application**.
+
+> Ajouter un 2nd aspect qui va permettre de tracer le temps passé lors des appels de méthodes publiques de tous les sous package de **fr.training.samples.spring.shop.application**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_aspect
