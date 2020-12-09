@@ -391,6 +391,7 @@ Instructions:
 > Dans la classe **CustomerServiceImpl** injecter un **org.springframework.security.crypto.password.PasswordEncoder**
 
 > Toujours dans cette classe, dans la méthode **create()**, utiliser ce **Passwordencoder** pour encoder le password et ajouter le Role **ROLE_USER** par défaut avant de sauvegarder le Customer:
+
 		// Encode given password
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		
