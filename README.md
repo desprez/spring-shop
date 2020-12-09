@@ -411,7 +411,9 @@ Instructions:
 		// New customer has user role by default
 		customer.addRole(RoleTypeEnum.ROLE_USER);
 
-> Encoder aussi le password dans la méthode update().
+> Encoder aussi le password dans la méthode **update()**.
+
+> Corriger le test **CustomerServiceTest** en injectant un Mock de PasswordEncoder.
 
 > Rajouter la classe **UserDetailsServiceImpl** ci-dessous dans le package fr.training.samples.spring.shop.application.security :
 
