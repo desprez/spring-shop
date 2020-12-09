@@ -24,4 +24,4 @@ logging:
     
 # used to verify this hash if you have the secret key.
 jwt: 
-  secret: spring-shop    
+  secret: spring-shop
