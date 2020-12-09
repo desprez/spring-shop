@@ -388,6 +388,19 @@ Instructions:
 	public enum RoleTypeEnum {
 		ROLE_USER, ROLE_ADMIN
 	}
+
+> Dans la classe **Customer** rajouter une proprieté **roles**  de type Set<RoleTypeEnum> annotée @ElementCollection et @Enumerated.
+
+	@ElementCollection
+	@Enumerated(EnumType.STRING)
+	Set<RoleTypeEnum> roles = new HashSet<>();
+	
+> Ajouter aussi le getter et la méthode addRole() :
+
+	public void addRole(final RoleTypeEnum role) {
+		roles.add(role);
+	}
+	
 > Dans la classe **CustomerServiceImpl** injecter un **org.springframework.security.crypto.password.PasswordEncoder**
 
 > Toujours dans cette classe, dans la méthode **create()**, utiliser ce **Passwordencoder** pour encoder le password et ajouter le Role **ROLE_USER** par défaut avant de sauvegarder le Customer:
@@ -400,13 +413,7 @@ Instructions:
 
 > Encoder aussi le password dans la méthode update().
 
-> Dans la classe **Customer** rajouter une proprieté **roles**  de type Set<RoleTypeEnum> annotée @ElementCollection et @Enumerated (ajouter aussi le getter et le setter correspondant).
-
-	@ElementCollection
-	@Enumerated(EnumType.STRING)
-	Set<RoleTypeEnum> roles = new HashSet<>();
-
-> Rajouter la classe **UserDetailsServiceImpl** dans le package fr.training.samples.spring.shop.application.security :
+> Rajouter la classe **UserDetailsServiceImpl** ci-dessous dans le package fr.training.samples.spring.shop.application.security :
 
 	import java.util.Collection;
 
