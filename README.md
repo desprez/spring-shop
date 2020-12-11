@@ -9,9 +9,9 @@ Installation
 ------------
 ## Customer (couches Domain & Infrastructure)
 
-**User Story # 1: Enregitrer un client (customer)**
+**User Story # 1: Enregistrer un client (customer)**
  **En tant que** client
- **Je veux** pouvoir m'enroler sur le système
+ **Je veux** pouvoir m'enrôler sur le système
  **Afin** de pouvoir passer des commandes
 
 Instructions:
