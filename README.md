@@ -33,7 +33,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_custome
 ## Item (couches Domain & Infrastructure)
 
 **User Story # 2: Ajouter des marchandises (items)**
- **En tant** qu'adminstrateur
+ **En tant** qu'administrateur
  **Je veux** pouvoir ajouter des marchandises
  **Afin** qu'un client puisse les acheter
 
