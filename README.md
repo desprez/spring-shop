@@ -729,7 +729,7 @@ customer.orm.hbm.xml
 
 	</entity-mappings>
 	
-> Ajouter les références à ces 2 fichiers dans la rubrique JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** et **Exposition** :
+> Ajouter les références à ces 2 fichiers dans la rubrique JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** (test) et **Exposition** :
 
 		...
 		  jpa:
@@ -740,6 +740,6 @@ customer.orm.hbm.xml
 		    open-in-view: false
 		 ...   
 
-> Supprimer les annotations dans les entités.
+> Supprimer les annotations dans les entités de la couche **Domaine** .
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_use_xml_mappings
