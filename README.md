@@ -656,7 +656,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_aspect
 
 ## Remplacement des annotations JPA par des mappings xml
 
-Afin de garder une couche **Domain** la plus pure possible nous aLlons remplacer les annotations JPA présentes dans les entités par un mapping XML dans la couche **Infrastructure**. 
+Afin de garder une couche **Domain** la plus pure possible nous allons remplacer les annotations JPA présentes dans les entités par un mapping XML dans la couche **Infrastructure**. 
 
 > Dans la couche **Infrastructure** créer les 2 fichiers **common.orm.hbm.xml** et **customer.orm.hbm.xml** dans le répertoire META_INF de src/main/resources :
 
@@ -709,7 +709,8 @@ customer.orm.hbm.xml
 					<join-column name="CUSTOMER_ID" />
 				</many-to-one>
 				<many-to-many name="items"
-					target-entity="fr.training.samples.spring.shop.domain.item.Item">
+					target-entity="fr.training.samples.spring.shop.domain.item.Item"
+					fetch="EAGER">
 					<cascade>
 						<cascade-all />
 					</cascade>
@@ -728,7 +729,7 @@ customer.orm.hbm.xml
 
 	</entity-mappings>
 	
-> Ajouter les références à ces 2 fichiers dans la rubrique JPA des 2 fichiers de proprietés **application.yml** (dans les couches **Infractucture** et **Exposition** :
+> Ajouter les références à ces 2 fichiers dans la rubrique JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** et **Exposition** :
 	...
 	  jpa:
 	    mapping-resources: 
@@ -738,6 +739,6 @@ customer.orm.hbm.xml
 	    open-in-view: false
 	 ...   
 
-> Supprimer les annoations dans les entités.
+> Supprimer les annotations dans les entités.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_use_xml_mappings
