@@ -9,6 +9,11 @@ Installation
 ------------
 ## Customer (couches Domain & Infrastructure)
 
+**User Story # 2: Ajouter des marchandises (items)**
+**En tant que** client
+**Je veux** pouvoir m'enroler sur le système
+**Afin** de pouvoir passer des commandes
+
 Instructions:
 > Dans la couche domain, créer une classe **Customer** comprenant 2 attributs :
  - name (String)
@@ -27,6 +32,11 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_custome
 
 ## Item (couches Domain & Infrastructure)
 
+**User Story # 2: Ajouter des marchandises (items)**
+**En tant** qu'adminstrateur
+**Je veux** pouvoir ajouter des marchandises
+**Afin** qu'un client puisse les acheter
+
 Instructions:
 > Faire de même avec la classe **Item** qui possèdera les 2 attributs :
  - description (String)
@@ -41,6 +51,11 @@ Instructions:
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_feature
 
 ## Order (couches Domain & Infrastructure)
+
+**User Story # 3: Passer une commande**
+**En tant que** client
+**Je veux** pouvoir passer une commande
+**Afin** d'acheter des marchandises
 
 Instructions:
 > Faire de même avec la classe **Order** qui possèdera les 2 attributs :
