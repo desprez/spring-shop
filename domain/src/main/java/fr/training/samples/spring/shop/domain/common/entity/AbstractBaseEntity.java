@@ -2,26 +2,20 @@ package fr.training.samples.spring.shop.domain.common.entity;
 
 import java.util.UUID;
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
-@MappedSuperclass
 public abstract class AbstractBaseEntity {
 
 	/**
 	 * Entity Id
 	 */
 	@NotNull
-	@Id
 	protected String id = UUID.randomUUID().toString();
 
 	/**
 	 * Entity Version
 	 */
 	@NotNull
-	@Version
 	protected Integer version = 0;
 
 	/**
@@ -35,7 +29,6 @@ public abstract class AbstractBaseEntity {
 	 * @param id
 	 */
 	public void setId(final String id) {
-
 		this.id = id;
 	}
 

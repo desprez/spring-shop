@@ -1,12 +1,8 @@
 package fr.training.samples.spring.shop.domain.item;
 
-import javax.persistence.Entity;
-
 import fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity;
 
-@Entity
 public class Item extends AbstractBaseEntity {
-
 
 	private String description;
 

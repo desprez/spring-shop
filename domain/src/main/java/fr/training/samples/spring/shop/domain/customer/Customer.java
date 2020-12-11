@@ -1,10 +1,7 @@
 package fr.training.samples.spring.shop.domain.customer;
 
-import javax.persistence.Entity;
-
 import fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity;
 
-@Entity
 public class Customer extends AbstractBaseEntity {
 
 	private String name;
