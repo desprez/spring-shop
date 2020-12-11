@@ -651,3 +651,93 @@ Instructions:
 > Ajouter un 2nd aspect qui va permettre de tracer le temps passé lors des appels de méthodes publiques de tous les sous package de **fr.training.samples.spring.shop.application**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_aspect
+
+# Domain Driven Design
+
+## Remplacement des annotations JPA par des mappings xml
+
+Afin de garder une couche **Domain** la plus pure possible nous aLlons remplacer les annotations JPA présentes dans les entités par un mapping XML dans la couche **Infrastructure**. 
+
+> Dans la couche **Infrastructure** créer les 2 fichiers **common.orm.hbm.xml** et **customer.orm.hbm.xml** dans le répertoire META_INF de src/main/resources :
+
+common.orm.hbm.xml
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<entity-mappings version="2.1"
+		xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+
+		<package>entity</package>
+
+		<mapped-superclass
+			class="fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity">
+			<attributes>
+				<id name="id" />
+				<version name="version" />
+			</attributes>
+		</mapped-superclass>
+
+	</entity-mappings>
+
+customer.orm.hbm.xml
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<entity-mappings version="2.1"
+		xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+
+		<description>Customer domain module</description>
+
+		<entity
+			class="fr.training.samples.spring.shop.domain.customer.Customer"
+			access="FIELD">
+			<table name="CUSTOMER" />
+			<attributes>
+				<basic name="name" />
+				<basic name="password" />
+			</attributes>
+		</entity>
+
+		<entity
+			class="fr.training.samples.spring.shop.domain.order.Order"
+			access="FIELD">
+			<table name="ORDERS" />
+			<attributes>
+				<many-to-one name="customer" fetch="LAZY">
+					<join-column name="CUSTOMER_ID" />
+				</many-to-one>
+				<many-to-many name="items"
+					target-entity="fr.training.samples.spring.shop.domain.item.Item">
+					<cascade>
+						<cascade-all />
+					</cascade>
+				</many-to-many>
+			</attributes>
+		</entity>
+
+		<entity class="fr.training.samples.spring.shop.domain.item.Item"
+			access="FIELD">
+			<table name="ITEM" />
+			<attributes>
+				<basic name="description" />
+				<basic name="price" />
+			</attributes>
+		</entity>
+
+	</entity-mappings>
+	
+> Ajouter les références à ces 2 fichiers dans la rubrique JPA des 2 fichiers de proprietés **application.yml** (dans les couches **Infractucture** et **Exposition** :
+	...
+	  jpa:
+	    mapping-resources: 
+	      - META-INF/common.orm.hbm.xml
+	      - META-INF/customer.orm.hbm.xml
+	    show-sql: true
+	    open-in-view: false
+	 ...   
+
+> Supprimer les annoations dans les entités.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_use_xml_mappings
