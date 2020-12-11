@@ -742,4 +742,6 @@ customer.orm.hbm.xml
 
 > Supprimer les annotations dans les entités de la couche **Domaine** .
 
+> Supprimer la dépendence à **spring-boot-starter-data-jpa** dans le fichier pom.xml de la couche **Domaine** .
+
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_use_xml_mappings
