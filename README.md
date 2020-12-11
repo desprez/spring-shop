@@ -9,7 +9,7 @@ Installation
 ------------
 ## Customer (couches Domain & Infrastructure)
 
-**User Story # 2: Ajouter des marchandises (items)**
+**User Story # 1: Enregitrer un client (customer)**
  **En tant que** client
  **Je veux** pouvoir m'enroler sur le système
  **Afin** de pouvoir passer des commandes
