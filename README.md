@@ -730,6 +730,7 @@ customer.orm.hbm.xml
 	</entity-mappings>
 	
 > Ajouter les références à ces 2 fichiers dans la rubrique JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** et **Exposition** :
+
 		...
 		  jpa:
 		    mapping-resources: 
