@@ -677,7 +677,7 @@ common.orm.hbm.xml
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
 
-		<package>entity</package>
+		<access>FIELD</access>
 
 		<mapped-superclass
 			class="fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity">
@@ -697,11 +697,10 @@ customer.orm.hbm.xml
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
 
-		<description>Customer domain module</description>
+		<access>FIELD</access>
 
 		<entity
-			class="fr.training.samples.spring.shop.domain.customer.Customer"
-			access="FIELD">
+			class="fr.training.samples.spring.shop.domain.customer.Customer">
 			<table name="CUSTOMER" />
 			<attributes>
 				<basic name="name" />
@@ -710,8 +709,7 @@ customer.orm.hbm.xml
 		</entity>
 
 		<entity
-			class="fr.training.samples.spring.shop.domain.order.Order"
-			access="FIELD">
+			class="fr.training.samples.spring.shop.domain.order.Order">
 			<table name="ORDERS" />
 			<attributes>
 				<many-to-one name="customer" fetch="LAZY">
@@ -727,8 +725,7 @@ customer.orm.hbm.xml
 			</attributes>
 		</entity>
 
-		<entity class="fr.training.samples.spring.shop.domain.item.Item"
-			access="FIELD">
+		<entity class="fr.training.samples.spring.shop.domain.item.Item">
 			<table name="ITEM" />
 			<attributes>
 				<basic name="description" />
@@ -736,9 +733,10 @@ customer.orm.hbm.xml
 			</attributes>
 		</entity>
 
+
 	</entity-mappings>
 	
-> Ajouter les références à ces 2 fichiers dans la rubrique JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** (test) et **Exposition** :
+> Ajouter les références à ces 2 fichiers dans les propriétés JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** (test) et **Exposition** :
 
 		...
 		  jpa:
@@ -749,7 +747,7 @@ customer.orm.hbm.xml
 		    open-in-view: false
 		 ...   
 
-> Supprimer les annotations dans les entités de la couche **Domaine** .
+> Supprimer toutes les annotations **javax.persistance** dans les entités de la couche **Domaine** .
 
 > Déplacer la dépendence **spring-boot-starter-data-jpa** du le fichier pom.xml de la couche **Domaine** dans la couche **Infrastructure** .
 
