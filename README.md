@@ -10,8 +10,11 @@ Installation
 ## Customer (couches Domain & Infrastructure)
 
 **User Story # 1: Enregistrer un client (customer)**
+
  **En tant que** client
+
  **Je veux** pouvoir m'enrôler sur le système
+
  **Afin** de pouvoir passer des commandes
 
 Instructions:
@@ -33,8 +36,11 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_custome
 ## Item (couches Domain & Infrastructure)
 
 **User Story # 2: Ajouter des marchandises (items)**
+
  **En tant** qu'administrateur
+
  **Je veux** pouvoir ajouter des marchandises
+
  **Afin** qu'un client puisse les acheter
 
 Instructions:
@@ -53,8 +59,11 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_fe
 ## Order (couches Domain & Infrastructure)
 
 **User Story # 3: Passer une commande**
+
  **En tant que** client
+
  **Je veux** pouvoir passer une commande
+ 
  **Afin** d'acheter des marchandises
 
 Instructions:
