@@ -19,6 +19,7 @@
 		class="fr.training.samples.spring.shop.domain.order.Order">
 		<table name="ORDERS" />
 		<attributes>
+			<basic name="total" />
 			<many-to-one name="customer" fetch="LAZY">
 				<join-column name="CUSTOMER_ID" />
 			</many-to-one>
