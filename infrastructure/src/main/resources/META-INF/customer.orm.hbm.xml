@@ -4,11 +4,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
 
-	<description>Customer domain module</description>
+	<access>FIELD</access>
 
 	<entity
-		class="fr.training.samples.spring.shop.domain.customer.Customer"
-		access="FIELD">
+		class="fr.training.samples.spring.shop.domain.customer.Customer">
 		<table name="CUSTOMER" />
 		<attributes>
 			<basic name="name" />
@@ -17,8 +16,7 @@
 	</entity>
 
 	<entity
-		class="fr.training.samples.spring.shop.domain.order.Order"
-		access="FIELD">
+		class="fr.training.samples.spring.shop.domain.order.Order">
 		<table name="ORDERS" />
 		<attributes>
 			<many-to-one name="customer" fetch="LAZY">
@@ -34,8 +32,7 @@
 		</attributes>
 	</entity>
 
-	<entity class="fr.training.samples.spring.shop.domain.item.Item"
-		access="FIELD">
+	<entity class="fr.training.samples.spring.shop.domain.item.Item">
 		<table name="ITEM" />
 		<attributes>
 			<basic name="description" />
