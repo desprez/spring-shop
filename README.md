@@ -113,7 +113,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_
 
 Instructions:
 > Dans la couche **application**, implementer le service **ItemService** pour l'interface ci-dessous:
-
+```java
     public interface ItemService {
 
      /**
@@ -132,7 +132,7 @@ Instructions:
      public List<Item> getAllItems();
 
     }
-
+```
 
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
@@ -142,6 +142,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_
 
 > Toujours la couche **application**, implementer les méthodes **getOrdersForCustomer()** et **addOrder()** pour le service **OrderService** tel que l'interface ci-dessous:
 
+```java
       public interface OrderService {
 
        /**
@@ -169,7 +170,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_
        public List<Order> getOrdersForCustomer(String customerId);
 
       }
-
+```
 > La méthode **getOrdersForCustomer()** devra utiliser une méthode findByCustomerId(customerId) de **OrderJpaRepository**. 
 
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
@@ -233,7 +234,7 @@ Instructions:
 > Sans les fichiers pom.xml, supprimer les dépendences à **org.springdoc** s'il y en a.
 
 > Ajouter les 2 dépendences **Springfox** ci-dessous dans **dependency managment** du pom.xml parent :
-
+```xml
 			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger2</artifactId>
@@ -244,9 +245,9 @@ Instructions:
 				<artifactId>springfox-swagger-ui</artifactId>
 				<version>${springfox-version}</version>
 			</dependency>
-            
+```
 > Ajouter les 2 dépendances **Springfox** ci-dessous dans le pom.xml du module **exposition**
-
+```xml
 		<!-- springfox-swagger2 dependencies -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -256,9 +257,9 @@ Instructions:
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 		</dependency>
-
+```
 > Ajouter les 2 classes **SwaggerConfig** et **SwaggerResource** dans le package **fr.training.samples.spring.shop.config.swagger** :
-
+```java
 	import java.time.LocalDate;
 	import java.time.ZonedDateTime;
 
@@ -299,9 +300,9 @@ Instructions:
 					.build();
 		}
 	}
+```
 
-
-
+```java
 	import org.slf4j.Logger;
 	import org.slf4j.LoggerFactory;
 	import org.springframework.stereotype.Controller;
@@ -329,6 +330,7 @@ Instructions:
 		}
 
 	}
+```
 > Lancer l'application et afficher la page http://localhost:8080/swagger-ui.html
 
 > Documenter les API de fournir une interface swagger-ui.
@@ -382,15 +384,15 @@ Instructions:
 
 Instructions:
 > Ajouter la dépendence **Spring security** dans le pom.xml du module **application** :
-
+```xml
         	<!-- Spring security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
+```
 > Ajouter les dépendences **jjwt** et **spring-security-test** dans le pom.xml du module **exposition** :
-
+```xml
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
@@ -403,47 +405,47 @@ Instructions:
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+```
 > ajouter la propriété suivante dans le fichier application.yml
-
+```yaml
 		# used to verify this hash if you have the secret key.
 		jwt:
 		  secret: spring-shop
-
+```
 > Dans le package fr.training.samples.spring.shop.domain.customer ajouter l'énumaration suivante :
-
+```java
 	public enum RoleTypeEnum {
 		ROLE_USER, ROLE_ADMIN
 	}
-
+```
 > Dans la classe **Customer** rajouter une proprieté **roles**  de type Set<RoleTypeEnum> annotée @ElementCollection et @Enumerated.
-
+```java
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	Set<RoleTypeEnum> roles = new HashSet<>();
-	
+```
 > Ajouter aussi le getter et la méthode addRole() :
-
+```java
 	public void addRole(final RoleTypeEnum role) {
 		roles.add(role);
 	}
-	
+```
 > Dans la classe **CustomerServiceImpl** injecter un **org.springframework.security.crypto.password.PasswordEncoder**
 
 > Toujours dans cette classe, dans la méthode **create()**, utiliser ce **Passwordencoder** pour encoder le password et ajouter le Role **ROLE_USER** par défaut avant de sauvegarder le Customer:
-
+```java
 		// Encode given password
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		
 		// New customer has user role by default
 		customer.addRole(RoleTypeEnum.ROLE_USER);
-
+```
 > Encoder aussi le password dans la méthode **update()**.
 
 > Corriger le test **CustomerServiceTest** en injectant un Mock de PasswordEncoder.
 
 > Rajouter la classe **UserDetailsServiceImpl** ci-dessous dans le package fr.training.samples.spring.shop.application.security :
-
+```java
 	import java.util.Collection;
 
 	import org.slf4j.Logger;
@@ -489,8 +491,9 @@ Instructions:
 			return authorities;
 		}
 	}
+```
 > Ajouter la classe **SecurityConfig** dans le package fr.training.samples.spring.shop.config.security
-
+```java
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.context.annotation.Bean;
 	import org.springframework.context.annotation.Configuration;
@@ -557,15 +560,16 @@ Instructions:
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		}
 	}
+```
 > Ajouter les classes JwtAuthenticationController, JwtAuthenticationEntryPoint, JwtRequest, JwtRequestFilter, JwtResponse, JwtTokenManager pour la gestion du JWT. (voir branche)
 
 > Insérer l'utilisateur **Admin** dans la base de données avec son rôle dans les tables **CUSTOMER** et **CUSTOMER_ROLES**  :
-
+```sql
 	INSERT INTO CUSTOMER (ID, NAME, PASSWORD,VERSION) VALUES ('bd20a450-dee7-4253-bf48-7fee4d0cebc6', 'Admin', '$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS',0);
 	INSERT INTO CUSTOMER_ROLES(CUSTOMER_ID, ROLES) VALUES ('bd20a450-dee7-4253-bf48-7fee4d0cebc6','ROLE_ADMIN');
-
+```
 > Ajouter dans la classe **ExceptionTranslator**, la prise en compte de l'exception **AccessDeniedException** :
-
+```java
 	@ExceptionHandler(AccessDeniedException.class)
 	@ResponseBody
 	public ResponseEntity<Object> accessDeniedExceptionHandler(final AccessDeniedException ex) {
@@ -579,16 +583,16 @@ Instructions:
 
 		return new ResponseEntity<>(apiError, HttpStatus.FORBIDDEN);
 	}
-
+```
 > Dans la classe **SwaggerConfig**, rajouter les mécanismes permettant de saisir le token :
 
 Dans la méthode customImplementation, rajouter les **securityContexts** et **securitySchemes** :
-
+```java
 				.securityContexts(Arrays.asList(securityContext())) //
 				.securitySchemes(Arrays.asList(apiKey()));
-				
+```	
 puis les méthodes suivantes :
-
+```java
         private ApiKey apiKey() {
 		return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
 	}
@@ -603,7 +607,7 @@ puis les méthodes suivantes :
 		authorizationScopes[0] = authorizationScope;
 		return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
 	}
-				
+```			
 
 > Ajouter les annotations **@Secured("ROLE_USER")** et **@Secured("ROLE_ADMIN")** pour que :
 - Seul un administrateur puisse créer un nouvel item.
@@ -617,21 +621,21 @@ Instructions:
 > Repartir de la branche https://github.com/desprez/spring-shop/tree/input_validation
 
 > Vérifier la présence de la dépendence **spring-boot-actuator** dans le module **Exposition** :
-
+```xml
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
+```	
 > Ajouter les endpoints **actuator** dans le fichier application.yml :
-
+```yaml
 	#Monitoring endpoints   
 	management:
 	  endpoints:
 	    web:
 	      exposure:
 		include: info, health, configprops, logfile, metrics, env, loggers
-
+```
 > Exposer les métriques de chaque contrôleur REST à l’aide de l’annotation @Timed
 
 > Accéder au différentes urls d’actuator
@@ -642,14 +646,14 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/springboot_
 Instructions:
 
 > Vérifier la présence de la dépendence **spring-boot-aop** dans le module **Exposition** :
-		
+```xml
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		
+```
 > Ajouter la classe de configuration de AOP
-
+```java
 	import org.springframework.context.annotation.Configuration;
 	import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
@@ -657,7 +661,7 @@ Instructions:
 	@EnableAspectJAutoProxy
 	public class AOPConfiguration {
 	}
-
+```
 > Ajouter un 1er aspect qui va permettre de tracer les appels de méthodes publiques de tous les sous packages de **fr.training.samples.spring.shop.application**.
 
 > Ajouter un 2nd aspect qui va permettre de tracer le temps passé lors des appels de méthodes publiques de tous les sous package de **fr.training.samples.spring.shop.application**.
@@ -673,7 +677,7 @@ Afin de garder une couche **Domain** la plus pure possible nous allons remplacer
 > Dans la couche **Infrastructure** créer les 2 fichiers **common.orm.hbm.xml** et **customer.orm.hbm.xml** dans le répertoire META_INF de src/main/resources :
 
 common.orm.hbm.xml
-
+```xml
 	<?xml version="1.0" encoding="UTF-8"?>
 	<entity-mappings version="2.1"
 		xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
@@ -691,9 +695,9 @@ common.orm.hbm.xml
 		</mapped-superclass>
 
 	</entity-mappings>
-
+```
 customer.orm.hbm.xml
-
+```xml
 	<?xml version="1.0" encoding="UTF-8"?>
 	<entity-mappings version="2.1"
 		xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
@@ -738,9 +742,9 @@ customer.orm.hbm.xml
 
 
 	</entity-mappings>
-	
+```
 > Ajouter les références à ces 2 fichiers dans les propriétés JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** (test) et **Exposition** :
-
+```yaml
 		...
 		  jpa:
 		    mapping-resources: 
@@ -749,7 +753,7 @@ customer.orm.hbm.xml
 		    show-sql: true
 		    open-in-view: false
 		 ...   
-
+```
 > Supprimer toutes les annotations **javax.persistance** dans les entités de la couche **Domaine** .
 
 > Déplacer la dépendence **spring-boot-starter-data-jpa** du le fichier pom.xml de la couche **Domaine** dans la couche **Infrastructure** .
