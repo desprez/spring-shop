@@ -1,7 +1,6 @@
 # Spring-Shop
 Formation spring : shop application exemple
-------------
-[[_TOC_]]
+
 ------------
 ## Installation
 
@@ -86,6 +85,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_order_f
 Instructions:
 > Dans la couche **application**, implementer le service **OrderService** pour l'interface ci-dessous:
 
+```java
       public interface CustomerService {
 
        /**
@@ -103,6 +103,7 @@ Instructions:
        public Customer findOne(String customerId);
 
       }
+```
 > La méthode **create()** devra vérifier qu'un **Customer** portant le même nom (name) n'existe pas déjà dans la base de données à l'aide d'une méthode findByName(name) de **CustomerJpaRepository**.  
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
