@@ -634,7 +634,7 @@ management:
   endpoints:
     web:
       exposure:
-	include: info, health, configprops, logfile, metrics, env, loggers
+        include: info, health, configprops, logfile, metrics, env, loggers
 ```
 > Exposer les métriques de chaque contrôleur REST à l’aide de l’annotation @Timed
 
