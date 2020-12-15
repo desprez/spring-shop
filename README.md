@@ -588,8 +588,16 @@ jwt:
 
 Dans la méthode customImplementation, rajouter les **securityContexts** et **securitySchemes** :
 ```java
+	@Bean
+	public Docket customImplementation() {
+		return new Docket(DocumentationType.SWAGGER_2).select()
+				.apis(RequestHandlerSelectors.basePackage("fr.training.samples.spring.shop.exposition")).build()
+				.directModelSubstitute(LocalDate.class, java.sql.Date.class)//
+				.directModelSubstitute(ZonedDateTime.class, java.util.Date.class) //
+				.apiInfo(apiInfo()) //
 				.securityContexts(Arrays.asList(securityContext())) //
 				.securitySchemes(Arrays.asList(apiKey()));
+	}
 ```	
 puis les méthodes suivantes :
 ```java
@@ -652,7 +660,7 @@ Instructions:
 		<artifactId>spring-boot-starter-aop</artifactId>
 	</dependency>
 ```
-> Ajouter la classe de configuration de AOP
+> Ajouter la classe **AOPConfiguration** pour la configuration de AOP :
 ```java
 	import org.springframework.context.annotation.Configuration;
 	import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -743,7 +751,7 @@ customer.orm.hbm.xml
 
 	</entity-mappings>
 ```
-> Ajouter les références à ces 2 fichiers dans les propriétés JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** (test) et **Exposition** :
+> Ajouter les références à ces 2 fichiers dans les propriétés JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infrastructure** (test) et **Exposition** :
 ```yaml
 ...
   jpa:
