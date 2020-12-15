@@ -408,9 +408,9 @@ Instructions:
 ```
 > ajouter la propriété suivante dans le fichier application.yml
 ```yaml
-		# used to verify this hash if you have the secret key.
-		jwt:
-		  secret: spring-shop
+# used to verify this hash if you have the secret key.
+jwt:
+  secret: spring-shop
 ```
 > Dans le package fr.training.samples.spring.shop.domain.customer ajouter l'énumaration suivante :
 ```java
@@ -629,12 +629,12 @@ Instructions:
 ```	
 > Ajouter les endpoints **actuator** dans le fichier application.yml :
 ```yaml
-	#Monitoring endpoints   
-	management:
-	  endpoints:
-	    web:
-	      exposure:
-		include: info, health, configprops, logfile, metrics, env, loggers
+#Monitoring endpoints   
+management:
+  endpoints:
+    web:
+      exposure:
+	include: info, health, configprops, logfile, metrics, env, loggers
 ```
 > Exposer les métriques de chaque contrôleur REST à l’aide de l’annotation @Timed
 
@@ -647,10 +647,10 @@ Instructions:
 
 > Vérifier la présence de la dépendence **spring-boot-aop** dans le module **Exposition** :
 ```xml
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-aop</artifactId>
+	</dependency>
 ```
 > Ajouter la classe de configuration de AOP
 ```java
@@ -745,14 +745,14 @@ customer.orm.hbm.xml
 ```
 > Ajouter les références à ces 2 fichiers dans les propriétés JPA des 2 fichiers de propriétés **application.yml** (dans les couches **Infractucture** (test) et **Exposition** :
 ```yaml
-		...
-		  jpa:
-		    mapping-resources: 
-		      - META-INF/common.orm.hbm.xml
-		      - META-INF/customer.orm.hbm.xml
-		    show-sql: true
-		    open-in-view: false
-		 ...   
+...
+  jpa:
+    mapping-resources: 
+      - META-INF/common.orm.hbm.xml
+      - META-INF/customer.orm.hbm.xml
+    show-sql: true
+    open-in-view: false
+...   
 ```
 > Supprimer toutes les annotations **javax.persistance** dans les entités de la couche **Domaine** .
 
