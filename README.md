@@ -767,3 +767,25 @@ customer.orm.hbm.xml
 > Déplacer la dépendence **spring-boot-starter-data-jpa** du le fichier pom.xml de la couche **Domaine** dans la couche **Infrastructure** .
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_use_xml_mappings
+
+## Ubiquitous language
+
+Notre Business analyste, nous demande de rajouter un contrôle sur le nombre de lignes de commande (OrderItems) qui doit être supérieur à zéro.
+
+Allo, Houston, on a un problème...
+...l'objet **lignes de commande** (OrderItem) n'existe pas dans notre modèle, il va falloir l'ajouter.
+
+Instructions:
+> Ajouter une classe **OrderItem**
+> Ajouter le contrôle dans la classe **Order** permettant de valider que l'on ne peut pas créer une commande (Order) sans lignes (OrderItem).
+
+
+## Aggrégats
+
+Instructions:
+> Identifier les aggrégats de l'application.
+
+
+
+
+
