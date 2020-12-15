@@ -1,7 +1,9 @@
 # Spring-Shop
 Formation spring : shop application exemple
 ------------
-Installation
+[[_TOC_]]
+------------
+## Installation
 
     Cloner le projet : https://github.com/desprez/spring-shop.git
     Lancer un mvn package
