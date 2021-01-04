@@ -569,6 +569,7 @@ jwt:
 	INSERT INTO CUSTOMER_ROLES(CUSTOMER_ID, ROLES) VALUES ('bd20a450-dee7-4253-bf48-7fee4d0cebc6','ROLE_ADMIN');
 ```
 > Ajouter dans la classe **ExceptionTranslator**, la prise en compte de l'exception **AccessDeniedException** :
+
 ```java
 	@ExceptionHandler(AccessDeniedException.class)
 	@ResponseBody
@@ -770,7 +771,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_use_xml
 
 ## Ubiquitous language
 
-Notre Business analyste, nous demande de rajouter un contrôle sur le nombre de lignes de commande (OrderItems) qui doit être supérieur à zéro.
+Notre "Business Analyst", nous demande de rajouter un contrôle sur le nombre de lignes de commande (OrderItems) qui doit être supérieur à zéro.
 
 Allo, Houston, on a un problème...
 
@@ -787,13 +788,28 @@ Nous allons en profilter pour rendre les entités du Domaine imutable, afin de r
 
 > Faire de même avec les entités **OrderItem**, **Item** et **Customer**.
 
-voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_orderitem
+voir **correction** dans ./tree/ddd_add_orderitem
 
 ## Aggrégats
 
 Instructions:
 > Identifier les aggrégats de l'application.
 
+## Value Objects
+
+Notre "Business Analyst", nous demande de rajouter une serie d'attributs permettant au Client de renseigner :
+- son adresse mail 
+- son adresse postale.
+	- email
+	- street
+	- city
+	- country
+	- postalCode
+
+Instructions:
+>  
+
+voir **correction** dans  
 
 
 
