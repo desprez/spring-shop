@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Component;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
+import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 import fr.training.samples.spring.shop.exposition.common.AbstractMapper;
 
 /**
@@ -31,6 +33,11 @@ public class CustomerMapper extends AbstractMapper<CustomerDto, Customer> {
 	}
 
 	public Customer mapToEntity(@Valid final CustomerLightDto dto) {
-		return Customer.builder().name(dto.getName()).password(dto.getPassword()).build();
+		return Customer.builder() //
+				.name(dto.getName()) //
+				.password(dto.getPassword()) //
+				.email(EmailAdress.of(dto.getEmail()))
+				.address(new PostalAddress(dto.getStreet(), dto.getCity(), dto.getCountry(), dto.getPostalCode()))
+				.build();
 	}
 }

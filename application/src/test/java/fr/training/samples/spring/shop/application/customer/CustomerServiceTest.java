@@ -16,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import fr.training.samples.spring.shop.domain.common.exception.AlreadyExistingException;
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
+import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { CustomerServiceImpl.class })
@@ -30,7 +32,12 @@ public class CustomerServiceTest {
 	@Test
 	public void createCustomer_should_success_when_not_already_exist() {
 		// Given
-		final Customer customer = Customer.builder().name("name").password("password").build();
+		final Customer customer = Customer.builder() //
+				.name("Michel Dupont") //
+				.password("password")
+				.email(EmailAdress.of("michel.dupont@gmail.com")) //
+				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
+				.build();
 		when(customerRepositoryMock.findByCustomerName("name")).thenReturn(null);
 
 		// When
@@ -44,7 +51,12 @@ public class CustomerServiceTest {
 	@Test
 	public void createCustomer_should_fail_when_already_exist() {
 		// Given
-		final Customer customer = Customer.builder().name("name").password("password").build();
+		final Customer customer = Customer.builder() //
+				.name("name") //
+				.password("password")
+				.email(EmailAdress.of("michel.dupont@gmail.com")) //
+				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
+				.build();
 		when(customerRepositoryMock.findByCustomerName("name")).thenReturn(customer);
 
 		// When
@@ -63,7 +75,12 @@ public class CustomerServiceTest {
 	public void findOne_should_call_findById_repository_1_time() {
 		// Given
 		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
-		final Customer customer = Customer.builder().name("Michel Dupont").password("password").build();
+		final Customer customer = Customer.builder() //
+				.name("Michel Dupont") //
+				.password("password")
+				.email(EmailAdress.of("michel.dupont@gmail.com")) //
+				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
+				.build();
 		when(customerRepositoryMock.findById(customerId)).thenReturn(customer);
 
 		// When
@@ -79,7 +96,12 @@ public class CustomerServiceTest {
 	@Test
 	public void update_should_call_save_repository_1_time() {
 		// Given
-		final Customer customer = Customer.builder().name("Michel Dupont").password("password").build();
+		final Customer customer = Customer.builder() //
+				.name("Michel Dupont") //
+				.password("password")
+				.email(EmailAdress.of("michel.dupont@gmail.com")) //
+				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
+				.build();
 
 		// When
 		final Customer result = customerService.create(customer);

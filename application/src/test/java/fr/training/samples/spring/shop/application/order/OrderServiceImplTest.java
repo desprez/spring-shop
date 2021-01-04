@@ -20,6 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
+import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
 import fr.training.samples.spring.shop.domain.order.Order;
@@ -57,7 +59,12 @@ public class OrderServiceImplTest {
 	}
 
 	private Customer getCustomer() {
-		return Customer.builder().name("Michel Dupont").password("password").build();
+		return Customer.builder() //
+				.name("Michel Dupont") //
+				.password("password") //
+				.email(EmailAdress.of("michel.dupont@gmail.com")) //
+				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")) //
+				.build();
 	}
 
 	@Test

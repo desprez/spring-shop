@@ -2,11 +2,7 @@ package fr.training.samples.spring.shop.exposition.customer.rest;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.swagger.annotations.ApiModelProperty;
 
 public class CustomerDto implements Serializable {
 
@@ -64,8 +60,6 @@ public class CustomerDto implements Serializable {
 		this.name = name;
 	}
 
-	@ApiModelProperty(example = "password", required = true, value = "Customer password")
-	@NotNull
 	public String getPassword() {
 		return password;
 	}

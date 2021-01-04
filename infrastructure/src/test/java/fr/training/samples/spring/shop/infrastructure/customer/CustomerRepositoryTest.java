@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
+import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -30,17 +32,29 @@ public class CustomerRepositoryTest {
 		assertThat(customer).isNotNull();
 		assertThat(customer.getId()).isEqualTo(customerId);
 		assertThat(customer.getName()).isEqualTo("NAME1");
+		assertThat(customer.getEmail().getValue()).isEqualTo("name1@gmail.com");
 	}
 
 	@Test
 	public void save_new_customer_should_success() {
 		// Given
-		final Customer customer = Customer.builder().name("MICHEL DUPONT").password("password").build();
+		final Customer customer = Customer.builder() //
+				.name("MICHEL DUPONT")//
+				.password("password") //
+				.email(EmailAdress.of("michel.dupont@gmail.com")) //
+				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")) //
+				.build();
 
 		// When
 		customerRepository.save(customer);
 		// Then
-		assertThat(customerRepository.findById(customer.getId())).isNotNull();
+		final Customer found = customerRepository.findById(customer.getId());
+		assertThat(found).isNotNull();
+		assertThat(found.getEmail().getValue()).isEqualTo("michel.dupont@gmail.com");
+		assertThat(found.getAddress().getStreet()).isEqualTo("10 main street");
+		assertThat(found.getAddress().getCity()).isEqualTo("Las Vegas");
+		assertThat(found.getAddress().getCountry()).isEqualTo("Eldorado");
+		assertThat(found.getAddress().getPostalCode()).isEqualTo("123456");
 	}
 
 	@Test

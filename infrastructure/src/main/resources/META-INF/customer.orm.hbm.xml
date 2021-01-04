@@ -12,6 +12,27 @@
 		<attributes>
 			<basic name="name" />
 			<basic name="password" />
+
+			<embedded name="email">
+				<attribute-override name="value">
+					<column name="EMAIL" />
+				</attribute-override>
+			</embedded>
+
+			<embedded name="address">
+				<attribute-override name="street">
+					<column name="STREET" />
+				</attribute-override>
+				<attribute-override name="city">
+					<column name="CITY" />
+				</attribute-override>
+				<attribute-override name="country">
+					<column name="COUNTRY" />
+				</attribute-override>
+				<attribute-override name="postalCode">
+					<column name="POSTAL_CODE" />
+				</attribute-override>
+			</embedded>
 		</attributes>
 	</entity>
 
@@ -26,8 +47,8 @@
 
 			<one-to-many name="orderItems" fetch="LAZY"
 				orphan-removal="true">
-				<join-column name="ORDER_ID"
-					referenced-column-name="ID" nullable="false" updatable="false" />
+				<join-column name="ORDER_ID" referenced-column-name="ID"
+					nullable="false" updatable="false" />
 				<cascade>
 					<cascade-all />
 				</cascade>
