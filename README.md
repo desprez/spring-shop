@@ -788,7 +788,7 @@ Nous allons en profilter pour rendre les entités du Domaine imutable, afin de r
 
 > Faire de même avec les entités **OrderItem**, **Item** et **Customer**.
 
-voir **correction** dans ./tree/ddd_add_orderitem
+voir **correction** dans [ddd add orderitem](ddd_add_orderitem) 
 
 ## Aggrégats
 
@@ -799,8 +799,8 @@ Instructions:
 
 Notre "Business Analyst", nous demande de rajouter une serie d'attributs permettant au Client de renseigner :
 - son adresse mail 
-- son adresse postale.
 	- email
+- son adresse postale.
 	- street
 	- city
 	- country
