@@ -691,7 +691,7 @@ Instructions:
 - org.springframework.boot:spring-boot-starter-batch
 - org.springframework.boot:spring-batch-test (scope test)
 
-> Créér une classe dans le package **fr.training.samples.spring.shop**
+> Créér une classe **SpringBootBatchApp** dans le package **fr.training.samples.spring.shop** contenant les annotations **@SpringBootApplication** et **@EnableBatchProcessing**.
  
 ```java
 @SpringBootApplication
