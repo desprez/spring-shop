@@ -780,6 +780,8 @@ Allo, Houston, on a un problème...
 Instructions:
 > Ajouter une classe **OrderItem**
 
+![OrderItem](./images/OrderItem.png)
+
 > Ajouter le contrôle dans la classe **Order** permettant de valider que l'on ne peut pas créer une commande (Order) sans lignes (OrderItem).
 
 Nous allons en profilter pour rendre les entités du Domaine imutable, afin de rendre explicite les modifications qui peuvent intervenir sur celle-ci.
@@ -809,6 +811,9 @@ Notre "Business Analyst", nous demande de rajouter une serie d'attributs permett
 Instructions:
 > Créer les ValueObjects **EmailAdress** et **PostalAdress** dans le package **fr.training.samples.spring.shop.domain.customer**.
 > Rajouter les attributs **email** (de type EmailAdress) et **address** (de type PostalAddress) correspondants dans la classe **Customer**.
+
+![Customer](./images/Csutomer.png)
+
 > Modifier le fichier **customer.orm.hbm.xml** pour prendre en compte ces nouvelles colonnes dans la table **CUSTOMER** :
 
 ```xml
