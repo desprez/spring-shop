@@ -807,8 +807,33 @@ Notre "Business Analyst", nous demande de rajouter une serie d'attributs permett
 	- postalCode
 
 Instructions:
-> Créer les ValueObjects **EmailAdress** et **EmailAdress** dans le package fr.training.samples.spring.shop.domain.customer.
+> Créer les ValueObjects **EmailAdress** et **PostalAdress** dans le package **fr.training.samples.spring.shop.domain.customer**.
+> Rajouter les attributs **email** (de type EmailAdress) et **address** (de type PostalAddress) correspondants dans la classe **Customer**.
+> Modifier le fichier **customer.orm.hbm.xml** pour prendre ne compte ces nouveaux atrtributs :
 
+			<embedded name="email">
+				<attribute-override name="value">
+					<column name="EMAIL" />
+				</attribute-override>
+			</embedded>
+
+			<embedded name="address">
+				<attribute-override name="street">
+					<column name="STREET" />
+				</attribute-override>
+				<attribute-override name="city">
+					<column name="CITY" />
+				</attribute-override>
+				<attribute-override name="country">
+					<column name="COUNTRY" />
+				</attribute-override>
+				<attribute-override name="postalCode">
+					<column name="POSTAL_CODE" />
+				</attribute-override>
+			</embedded>
+
+> Modifier le **CustomerMapper** et corriger les tests unitaires afin d'alimenter correctement ces nouveaux attributs lors de la création des objects **Customer**.
+			
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_value_objects
 
 
