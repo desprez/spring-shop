@@ -1,11 +1,14 @@
 package fr.training.samples.spring.shop.domain.customer;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Postal adress (Value Object).
  */
-public class PostalAddress {
+public class PostalAddress implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String street;
 	private String city;
