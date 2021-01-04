@@ -710,8 +710,14 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/init_batch_
 
 ## Ajout d'un job d'export
 
+Notre "Business Analyst" nous demande de rajouter une nouvelle fonctionnalité permettant d'exporter dans un fichier csv la liste des clients qui se sont enregistrés dans l'application pour le sercice marketing.
+
 Instructions:
-> 
+> Dans le package **fr.training.samples.spring.shop.exportjob** nous allons créer la classe **ExportCustomerJobConfig** permettant de configurer le job d'export des Customers.
+
+> Dans cette Classe nous allons déclarer le job **export-job**.
+
+> Puis le Step **export-step**
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_export_job
 
@@ -844,7 +850,7 @@ Instructions:
 
 ## Value Objects
 
-Notre "Business Analyst", nous demande de rajouter une serie d'attributs permettant au Client de renseigner :
+Notre "Business Analyst" nous demande de rajouter une serie d'attributs permettant au Client de renseigner :
 - son adresse mail 
 	- email
 - son adresse postale.
