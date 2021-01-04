@@ -773,12 +773,21 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_use_xml
 Notre Business analyste, nous demande de rajouter un contrôle sur le nombre de lignes de commande (OrderItems) qui doit être supérieur à zéro.
 
 Allo, Houston, on a un problème...
+
 ...l'objet **lignes de commande** (OrderItem) n'existe pas dans notre modèle, il va falloir l'ajouter.
 
 Instructions:
 > Ajouter une classe **OrderItem**
+
 > Ajouter le contrôle dans la classe **Order** permettant de valider que l'on ne peut pas créer une commande (Order) sans lignes (OrderItem).
 
+Nous allons en profilter pour rendre les entités du Domaine imutable, afin de rendre explicite les modifications qui peuvent intervenir sur celle-ci.
+
+> Supprimer les Setters de l'entité **Order** et créer le Builder qui sera responsable de la création de cette entité.
+
+> Faire de même avec les entités **OrderItem**, **Item** et **Customer**.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_orderitem
 
 ## Aggrégats
 
