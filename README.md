@@ -811,26 +811,28 @@ Instructions:
 > Rajouter les attributs **email** (de type EmailAdress) et **address** (de type PostalAddress) correspondants dans la classe **Customer**.
 > Modifier le fichier **customer.orm.hbm.xml** pour prendre en compte ces nouvelles colonnes dans la table **CUSTOMER** :
 
-			<embedded name="email">
-				<attribute-override name="value">
-					<column name="EMAIL" />
-				</attribute-override>
-			</embedded>
+```xml
+	<embedded name="email">
+		<attribute-override name="value">
+			<column name="EMAIL" />
+		</attribute-override>
+	</embedded>
 
-			<embedded name="address">
-				<attribute-override name="street">
-					<column name="STREET" />
-				</attribute-override>
-				<attribute-override name="city">
-					<column name="CITY" />
-				</attribute-override>
-				<attribute-override name="country">
-					<column name="COUNTRY" />
-				</attribute-override>
-				<attribute-override name="postalCode">
-					<column name="POSTAL_CODE" />
-				</attribute-override>
-			</embedded>
+	<embedded name="address">
+		<attribute-override name="street">
+			<column name="STREET" />
+		</attribute-override>
+		<attribute-override name="city">
+			<column name="CITY" />
+		</attribute-override>
+		<attribute-override name="country">
+			<column name="COUNTRY" />
+		</attribute-override>
+		<attribute-override name="postalCode">
+			<column name="POSTAL_CODE" />
+		</attribute-override>
+	</embedded>
+```
 
 > Modifier le **CustomerMapper** et corriger les tests unitaires afin d'alimenter correctement ces nouveaux attributs lors de la création des objects **Customer**.
 			
