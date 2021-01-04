@@ -810,6 +810,9 @@ Notre "Business Analyst", nous demande de rajouter une serie d'attributs permett
 
 Instructions:
 > Créer les ValueObjects **EmailAdress** et **PostalAdress** dans le package **fr.training.samples.spring.shop.domain.customer**.
+
+![Value objects](./images/ValueObjects.svg)
+
 > Rajouter les attributs **email** (de type EmailAdress) et **address** (de type PostalAddress) correspondants dans la classe **Customer**.
 
 ![Customer](./images/Customer.png)
