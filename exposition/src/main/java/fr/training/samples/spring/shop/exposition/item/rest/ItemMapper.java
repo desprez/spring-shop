@@ -22,18 +22,12 @@ public class ItemMapper extends AbstractMapper<ItemDto, Item> {
 
 	@Override
 	public Item mapToEntity(final ItemDto dto) {
-		final Item entity = new Item();
-		entity.setId(dto.getItemId());
-		entity.setDescription(dto.getDescription());
-		entity.setPrice(dto.getPrice());
-		return entity;
+		return Item.builder().id(dto.getItemId()).description(dto.getDescription()).price(dto.getPrice()).build();
 	}
 
 	public Item mapToEntity(final ItemLightDto dto) {
-		final Item entity = new Item();
-		entity.setDescription(dto.getDescription());
-		entity.setPrice(dto.getPrice());
-		return entity;
+		return Item.builder().description(dto.getDescription()).price(dto.getPrice()).build();
+
 	}
 
 }

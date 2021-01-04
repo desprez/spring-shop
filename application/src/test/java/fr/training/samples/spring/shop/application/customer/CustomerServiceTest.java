@@ -30,9 +30,7 @@ public class CustomerServiceTest {
 	@Test
 	public void createCustomer_should_success_when_not_already_exist() {
 		// Given
-		final Customer customer = new Customer();
-		customer.setName("name");
-		customer.setPassword("password");
+		final Customer customer = Customer.builder().name("name").password("password").build();
 		when(customerRepositoryMock.findByCustomerName("name")).thenReturn(null);
 
 		// When
@@ -46,9 +44,7 @@ public class CustomerServiceTest {
 	@Test
 	public void createCustomer_should_fail_when_already_exist() {
 		// Given
-		final Customer customer = new Customer();
-		customer.setName("name");
-		customer.setPassword("password");
+		final Customer customer = Customer.builder().name("name").password("password").build();
 		when(customerRepositoryMock.findByCustomerName("name")).thenReturn(customer);
 
 		// When
@@ -67,9 +63,7 @@ public class CustomerServiceTest {
 	public void findOne_should_call_findById_repository_1_time() {
 		// Given
 		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
-		final Customer customer = new Customer();
-		customer.setName("Michel Dupont");
-		customer.setPassword("password");
+		final Customer customer = Customer.builder().name("Michel Dupont").password("password").build();
 		when(customerRepositoryMock.findById(customerId)).thenReturn(customer);
 
 		// When
@@ -85,8 +79,7 @@ public class CustomerServiceTest {
 	@Test
 	public void update_should_call_save_repository_1_time() {
 		// Given
-		final Customer customer = new Customer();
-		customer.setName("Michel Dupont");
+		final Customer customer = Customer.builder().name("Michel Dupont").password("password").build();
 
 		// When
 		final Customer result = customerService.create(customer);

@@ -31,16 +31,14 @@ public class ItemRepositoryTest {
 		// Then
 		assertThat(item).isNotNull();
 		assertThat(item.getId()).isEqualTo(itemId);
-		assertThat(item.getDescription()).isEqualTo("DESC1");
+		assertThat(item.getDescription()).isEqualTo("Bananas");
 		assertThat(item.getPrice()).isEqualTo(10);
 	}
 
 	@Test
 	public void save_new_item_should_success() {
 		// Given
-		final Item item = new Item();
-		item.setDescription("Banana");
-		item.setPrice(5);
+		final Item item = Item.builder().description("Banana").price(5).build();
 
 		// When
 		itemRepository.save(item);

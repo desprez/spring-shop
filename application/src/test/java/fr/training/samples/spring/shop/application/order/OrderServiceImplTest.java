@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,7 @@ import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
 import fr.training.samples.spring.shop.domain.order.Order;
+import fr.training.samples.spring.shop.domain.order.OrderItem;
 import fr.training.samples.spring.shop.domain.order.OrderRepository;
 
 @RunWith(SpringRunner.class)
@@ -41,34 +43,21 @@ public class OrderServiceImplTest {
 	private ItemRepository itemRepositoryMock;
 
 	private Order getNewOrder() {
-		final Order order = new Order();
-		order.setCustomer(getCustomer());
-		order.setItems(getItems());
-		return order;
+		final List<OrderItem> orderItems = getItems().stream().map(item -> new OrderItem(item))
+				.collect(Collectors.toList());
+		return Order.builder().customer(getCustomer()).orderItems(orderItems).build();
 	}
 
 	private List<Item> getItems() {
 		final List<Item> items = new ArrayList<>();
-		final Item item1 = new Item();
-		item1.setDescription("item 1");
-		item1.setPrice(1);
-		items.add(item1);
-		final Item item2 = new Item();
-		item2.setDescription("item 2");
-		item2.setPrice(2);
-		items.add(item2);
-		final Item item3 = new Item();
-		item3.setDescription("item 3");
-		item3.setPrice(3);
-		items.add(item3);
+		items.add(Item.builder().description("item 1").price(1).build());
+		items.add(Item.builder().description("item 2").price(2).build());
+		items.add(Item.builder().description("item 3").price(3).build());
 		return items;
 	}
 
 	private Customer getCustomer() {
-		final Customer customer = new Customer();
-		customer.setName("Michel Dupont");
-		customer.setPassword("password");
-		return customer;
+		return Customer.builder().name("Michel Dupont").password("password").build();
 	}
 
 	@Test
@@ -97,7 +86,7 @@ public class OrderServiceImplTest {
 		when(orderRepositoryMock.findById(orderId)).thenReturn(order);
 		// When
 		final Order result = orderService.findOne(orderId);
-
+		System.out.println(result);
 		// Then
 		assertThat(result).isNotNull();
 		assertThat(result.getCustomer().getName()).isEqualTo("Michel Dupont");

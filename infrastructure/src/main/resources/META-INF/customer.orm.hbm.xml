@@ -23,13 +23,27 @@
 			<many-to-one name="customer" fetch="LAZY">
 				<join-column name="CUSTOMER_ID" />
 			</many-to-one>
-			<many-to-many name="items"
-				target-entity="fr.training.samples.spring.shop.domain.item.Item"
-				fetch="EAGER">
+
+			<one-to-many name="orderItems" fetch="LAZY"
+				orphan-removal="true">
+				<join-column name="ORDER_ID"
+					referenced-column-name="ID" nullable="false" updatable="false" />
 				<cascade>
 					<cascade-all />
 				</cascade>
-			</many-to-many>
+			</one-to-many>
+
+		</attributes>
+	</entity>
+
+	<entity
+		class="fr.training.samples.spring.shop.domain.order.OrderItem">
+		<table name="ORDER_ITEM" />
+		<attributes>
+			<basic name="quantity" />
+			<many-to-one name="item" fetch="LAZY">
+				<join-column name="ITEM_ID" />
+			</many-to-one>
 		</attributes>
 	</entity>
 

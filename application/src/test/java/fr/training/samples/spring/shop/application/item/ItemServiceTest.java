@@ -31,26 +31,22 @@ public class ItemServiceTest {
 	@Test
 	public void addItem_should_call_save_repository_1_time() {
 		// Given
-		final Item item = new Item();
-		item.setDescription("Banana");
-		item.setPrice(10);
+		final Item banana = Item.builder().description("Bananas").price(10).build();
 
 		// When
-		final Item expected = itemService.addItem(item);
+		final Item expected = itemService.addItem(banana);
 
 		// Then
 		assertThat(expected).isNotNull();
-		verify(itemRepositoryMock, times(1)).save(item);
+		verify(itemRepositoryMock, times(1)).save(banana);
 	}
 
 	@Test
 	public void findAll_should_return_item_list() {
 		// Given
-		final Item item = new Item();
-		item.setDescription("Banana");
-		item.setPrice(10);
+		final Item banana = Item.builder().description("Bananas").price(10).build();
 		final List<Item> items = new ArrayList<>();
-		items.add(item);
+		items.add(banana);
 		when(itemRepositoryMock.findAll()).thenReturn(items);
 
 		// When

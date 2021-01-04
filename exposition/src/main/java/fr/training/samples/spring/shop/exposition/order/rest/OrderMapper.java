@@ -1,10 +1,12 @@
 package fr.training.samples.spring.shop.exposition.order.rest;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.order.Order;
+import fr.training.samples.spring.shop.domain.order.OrderItem;
 import fr.training.samples.spring.shop.exposition.common.AbstractMapper;
 import fr.training.samples.spring.shop.exposition.item.rest.ItemMapper;
 
@@ -28,21 +30,18 @@ public class OrderMapper extends AbstractMapper<OrderDto, Order> {
 		if (entity.getCustomer() != null) {
 			orderDto.setCustomerId(entity.getCustomer().getId());
 		}
-		if (!CollectionUtils.isEmpty(entity.getItems())) {
-			orderDto.setItems(itemMapper.mapToDtoList(entity.getItems()));
+		final List<OrderItem> orderItems = entity.getOrderItems();
+		if (!CollectionUtils.isEmpty(orderItems)) {
+			for (final OrderItem orderItem : orderItems) {
+				orderDto.getItems().add(itemMapper.mapToDto(orderItem.getItem()));
+			}
 		}
 		return orderDto;
 	}
 
 	@Override
 	public Order mapToEntity(final OrderDto dto) {
-		final Order entity = new Order();
-		final Customer customerEntity = new Customer();
-		customerEntity.setId(dto.getCustomerId());
-		entity.setCustomer(customerEntity);
-		entity.setId(dto.getId());
-		entity.setItems(itemMapper.mapToEntityList(dto.getItems()));
-		return entity;
+		return null;
 	}
 
 }

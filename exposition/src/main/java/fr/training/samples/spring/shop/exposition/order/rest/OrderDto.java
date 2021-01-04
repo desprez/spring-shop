@@ -19,7 +19,7 @@ public class OrderDto implements Serializable {
 	private String customerId;
 
 	@JsonProperty("items")
-	private List<ItemDto> items;
+	private List<ItemDto> items = new ArrayList<>();
 
 	private int total;
 

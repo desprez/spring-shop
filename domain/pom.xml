@@ -19,5 +19,44 @@
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<bannedDependencies>
+									<excludes>
+										<exclude>*</exclude> <!-- forbids non domain dependencies -->
+									</excludes>
+									<includes>
+										<!-- but allow apache.commons dependencies -->
+										<include>org.apache.commons:commons-lang3</include>
+										<!-- and validation-api -->
+										<include>jakarta.validation:jakarta.validation-api</include>
+										<include>org.hibernate.validator:hibernate-validator</include>
+										<!-- and test dependencies -->
+										<include>*:*:*:*:test</include>
+									</includes>
+									<searchTransitive>false</searchTransitive>
+								</bannedDependencies>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

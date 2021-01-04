@@ -35,9 +35,8 @@ public class CustomerRepositoryTest {
 	@Test
 	public void save_new_customer_should_success() {
 		// Given
-		final Customer customer = new Customer();
-		customer.setName("MICHEL DUPONT");
-		customer.setPassword("password");
+		final Customer customer = Customer.builder().name("MICHEL DUPONT").password("password").build();
+
 		// When
 		customerRepository.save(customer);
 		// Then

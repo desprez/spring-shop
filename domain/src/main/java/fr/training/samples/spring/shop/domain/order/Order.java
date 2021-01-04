@@ -3,17 +3,25 @@ package fr.training.samples.spring.shop.domain.order;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
+
 import fr.training.samples.spring.shop.domain.common.entity.AbstractBaseEntity;
 import fr.training.samples.spring.shop.domain.customer.Customer;
-import fr.training.samples.spring.shop.domain.item.Item;
 
 public class Order extends AbstractBaseEntity {
 
 	private Customer customer;
 
-	private List<Item> items = new ArrayList<>();
+	private final List<OrderItem> orderItems = new ArrayList<>();
 
-	private Integer total = 0;
+	private Integer total;
+
+	/**
+	 * No-arg constructor for JavaBean tools
+	 */
+	Order() {
+
+	}
 
 	/**
 	 * @return the customer
@@ -23,24 +31,10 @@ public class Order extends AbstractBaseEntity {
 	}
 
 	/**
-	 * @param customer the customer to set
-	 */
-	public void setCustomer(final Customer customer) {
-		this.customer = customer;
-	}
-
-	/**
 	 * @return the items
 	 */
-	public List<Item> getItems() {
-		return items;
-	}
-
-	/**
-	 * @param items the items to set
-	 */
-	public void setItems(final List<Item> items) {
-		this.items = items;
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
 	}
 
 	/**
@@ -50,15 +44,76 @@ public class Order extends AbstractBaseEntity {
 		return total;
 	}
 
-	/**
-	 * @param total the total to set
-	 */
-	public void setTotal(final Integer total) {
-		this.total = total;
+	public void addOrderItem(final OrderItem orderItem) {
+		orderItems.add(orderItem);
+		total = Integer.sum(total, orderItem.getItem().getPrice() * orderItem.getQuantity());
 	}
 
-	public void addItem(final Item item) {
-		items.add(item);
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("Order [customer=").append(customer) //
+		.append(", orderItems=").append(orderItems) //
+		.append(", total=").append(total) //
+		.append("]");
+		return builder.toString();
+	}
+
+	/**
+	 * private constructor to enforce Builder usage
+	 */
+	private Order(final Builder builder) {
+		if (builder.id != null) {
+			id = builder.id;
+		}
+		customer = builder.customer;
+		total = 0;
+		for (final OrderItem item : builder.orderItems) {
+			addOrderItem(item);
+		}
+	}
+
+	/**
+	 * Builder static assessor
+	 */
+	public static Builder builder() {
+		return new Builder();
+	}
+
+	/**
+	 * Builder pattern to ensure Order is immutable.
+	 */
+	public static class Builder {
+		private String id;
+		private Customer customer;
+		private List<OrderItem> orderItems = new ArrayList<>();
+
+		public Builder id(final String id) {
+			this.id = id;
+			return this;
+		}
+
+		public Builder customer(final Customer customer) {
+			this.customer = customer;
+			return this;
+		}
+
+		public Builder addOrderItem(final OrderItem orderItem) {
+			orderItems.add(orderItem);
+			return this;
+		}
+
+		public Builder orderItems(final List<OrderItem> orderItems) {
+			this.orderItems = orderItems;
+			return this;
+		}
+
+		public Order build() {
+			Validate.notNull(customer, "Customer is required");
+			Validate.isTrue(!orderItems.isEmpty(), "Order must have one item at least");
+			return new Order(this);
+		}
+
 	}
 
 }

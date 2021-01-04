@@ -1,6 +1,7 @@
 package fr.training.samples.spring.shop.application.order;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
 import fr.training.samples.spring.shop.domain.order.Order;
+import fr.training.samples.spring.shop.domain.order.OrderItem;
 import fr.training.samples.spring.shop.domain.order.OrderRepository;
 
 @Service
@@ -33,28 +35,29 @@ public class OrderServiceImpl implements OrderService {
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.training.samples.spring.shop.application.order.OrderService#addOrder(java.lang.String, java.util.List)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.order.OrderService#addOrder(java.
+	 * lang.String, java.util.List)
 	 */
 	@Transactional
 	@Override
 	public Order addOrder(final String CustomerId, final List<String> itemIds) {
 		final Customer customer = customerRepository.findById(CustomerId);
-
-		final Order order = new Order();
-		order.setCustomer(customer);
-
 		final List<Item> items = itemRepository.findById(itemIds);
-		for (final Item item : items) {
-			order.addItem(item);
-			order.setTotal(Integer.sum(order.getTotal(), item.getPrice()));
-		}
+		final List<OrderItem> orderItems = items.stream().map(item -> new OrderItem(item))
+				.collect(Collectors.toList());
+		final Order order = Order.builder().customer(customer).orderItems(orderItems).build();
 		orderRepository.save(order);
 		return order;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.training.samples.spring.shop.application.order.OrderService#findOne(java.lang.String)
+	 *
+	 * @see
+	 * fr.training.samples.spring.shop.application.order.OrderService#findOne(java.
+	 * lang.String)
 	 */
 	@Transactional(readOnly = true)
 	@Override
@@ -64,7 +67,9 @@ public class OrderServiceImpl implements OrderService {
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.training.samples.spring.shop.application.order.OrderService#getOrdersForCustomer(java.lang.String)
+	 *
+	 * @see fr.training.samples.spring.shop.application.order.OrderService#
+	 * getOrdersForCustomer(java.lang.String)
 	 */
 	@Transactional(readOnly = true)
 	@Override

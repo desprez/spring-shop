@@ -15,6 +15,7 @@ import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
 import fr.training.samples.spring.shop.domain.order.Order;
+import fr.training.samples.spring.shop.domain.order.OrderItem;
 import fr.training.samples.spring.shop.domain.order.OrderRepository;
 
 @RunWith(SpringRunner.class)
@@ -42,18 +43,16 @@ public class OrderRepositoryTest {
 		assertThat(order).isNotNull();
 		assertThat(order.getId()).isEqualTo(orderId);
 		assertThat(order.getCustomer().getName()).isEqualTo("NAME1");
-		assertThat(order.getItems()).hasSize(2);
+		assertThat(order.getOrderItems()).hasSize(2);
 	}
 
 	@Test
 	public void save_new_order_should_success() {
 		// Given
-		final Order order = new Order();
-
 		final Customer customer = customerRepository.findById("123e4567-e89b-42d3-a456-556642440000");
-		order.setCustomer(customer);
 		final Item item = itemRepository.findById("123e4567-e89b-42d3-a456-556642440005");
-		order.addItem(item);
+		final Order order = Order.builder().customer(customer).addOrderItem(new OrderItem(item)).build();
+
 		// When
 		orderRepository.save(order);
 		// Then

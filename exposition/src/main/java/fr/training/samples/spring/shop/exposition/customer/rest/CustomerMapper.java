@@ -27,17 +27,10 @@ public class CustomerMapper extends AbstractMapper<CustomerDto, Customer> {
 
 	@Override
 	public Customer mapToEntity(final CustomerDto dto) {
-		final Customer customer = new Customer();
-		customer.setName(dto.getName());
-		customer.setPassword(dto.getPassword());
-		customer.setId(dto.getId());
-		return customer;
+		return Customer.builder().id(dto.getId()).name(dto.getName()).password(dto.getPassword()).build();
 	}
 
 	public Customer mapToEntity(@Valid final CustomerLightDto dto) {
-		final Customer customer = new Customer();
-		customer.setName(dto.getName());
-		customer.setPassword(dto.getPassword());
-		return customer;
+		return Customer.builder().name(dto.getName()).password(dto.getPassword()).build();
 	}
 }
