@@ -812,7 +812,7 @@ Instructions:
 > Créer les ValueObjects **EmailAdress** et **PostalAdress** dans le package **fr.training.samples.spring.shop.domain.customer**.
 > Rajouter les attributs **email** (de type EmailAdress) et **address** (de type PostalAddress) correspondants dans la classe **Customer**.
 
-![Customer](./images/Csutomer.png)
+![Customer](./images/Customer.png)
 
 > Modifier le fichier **customer.orm.hbm.xml** pour prendre en compte ces nouvelles colonnes dans la table **CUSTOMER** :
 
