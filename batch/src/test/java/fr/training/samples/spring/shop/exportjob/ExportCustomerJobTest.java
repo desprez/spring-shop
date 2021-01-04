@@ -30,9 +30,6 @@ public class ExportCustomerJobTest {
 	private static final Logger LOG = LoggerFactory.getLogger(ExportCustomerJobTest.class);
 
 	/** directory for temporary test files */
-	/**
-	 * TMP_DIR of type String
-	 */
 	private static final String TMP_DIR = "./tmp";
 
 	/**
