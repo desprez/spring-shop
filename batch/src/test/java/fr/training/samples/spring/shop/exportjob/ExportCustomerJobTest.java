@@ -1,7 +1,6 @@
 package fr.training.samples.spring.shop.exportjob;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 
@@ -65,19 +64,16 @@ public class ExportCustomerJobTest {
 	 */
 	@Test
 	public void testJob() throws Exception {
-
+		// Given
 		final File targetFile = new File(TMP_DIR + "/customer.txt");
 		final JobParametersBuilder jobParameterBuilder = new JobParametersBuilder();
 		jobParameterBuilder.addString("output-file", targetFile.getAbsolutePath());
-		// run job
+		// When
 		final JobExecution jobExecution = getJobLauncherTestUtils(exportJob)
 				.launchJob(jobParameterBuilder.toJobParameters());
-
-		// - job status
-		assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
-
-		// - exported data
-		assertTrue(targetFile.exists());
+		// Then
+		assertThat(jobExecution.getStatus()).isEqualTo(BatchStatus.COMPLETED);
+		assertThat(targetFile.exists()).isTrue();
 	}
 
 	/**
