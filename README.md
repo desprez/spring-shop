@@ -676,6 +676,51 @@ Instructions:
 > Ajouter un 2nd aspect qui va permettre de tracer le temps passé lors des appels de méthodes publiques de tous les sous package de **fr.training.samples.spring.shop.application**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_aspect
+# Batch
+
+Dans les étapes suivantes nous allons créer un module Batch utilisant **SpringBatch** afin d'exécuter des traitements par lots.
+
+## Ajout d'un module Batch
+
+Instructions:
+> Dans le répertoire **Spring-shop**, créer un sous-répertoire **batch**
+
+> Créer un fichier pom.xml contenant les dépendances suivantes :
+- fr.training.samples:spring-shop-infrastructure (scope runtime)
+- fr.training.samples:spring-shop-application
+- org.springframework.boot:spring-boot-starter-batch
+- org.springframework.boot:spring-batch-test (scope test)
+
+> Créér une classe dans le package **fr.training.samples.spring.shop**
+ 
+```java
+@SpringBootApplication
+@EnableBatchProcessing
+public class SpringBootBatchApp {
+
+	public static void main(final String[] args) {
+		final ApplicationContext context = SpringApplication.run(SpringBootBatchApp.class, args);
+		System.exit(SpringApplication.exit(context));
+	}
+
+}
+```
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/init_batch_module
+
+## Ajout d'un job d'export
+
+Instructions:
+> 
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/add_export_job
+
+## Ajout d'un job d'import
+
+Instructions:
+>
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/add_import_job
 
 # Domain Driven Design
 
