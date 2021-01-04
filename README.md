@@ -788,7 +788,7 @@ Nous allons en profilter pour rendre les entités du Domaine imutable, afin de r
 
 > Faire de même avec les entités **OrderItem**, **Item** et **Customer**.
 
-voir **correction** dans [ddd add orderitem](ddd_add_orderitem) 
+voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_orderitem
 
 ## Aggrégats
 
@@ -807,9 +807,9 @@ Notre "Business Analyst", nous demande de rajouter une serie d'attributs permett
 	- postalCode
 
 Instructions:
->  
+> Créer les ValueObjects **EmailAdress** et **EmailAdress** dans le package fr.training.samples.spring.shop.domain.customer.
 
-voir **correction** dans  
+voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_value_objects
 
 
 
