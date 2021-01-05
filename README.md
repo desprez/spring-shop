@@ -64,7 +64,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_item_fe
  **En tant que** client
 
  **Je veux** pouvoir passer une commande
- 
+
  **Afin** d'acheter des marchandises
 
 Instructions:
@@ -104,7 +104,7 @@ Instructions:
 
       }
 ```
-> La méthode **create()** devra vérifier qu'un **Customer** portant le même nom (name) n'existe pas déjà dans la base de données à l'aide d'une méthode findByName(name) de **CustomerJpaRepository**.  
+> La méthode **create()** devra vérifier qu'un **Customer** portant le même nom (name) n'existe pas déjà dans la base de données à l'aide d'une méthode findByName(name) de **CustomerJpaRepository**.
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_customer_service
@@ -171,7 +171,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/implements_
 
       }
 ```
-> La méthode **getOrdersForCustomer()** devra utiliser une méthode findByCustomerId(customerId) de **OrderJpaRepository**. 
+> La méthode **getOrdersForCustomer()** devra utiliser une méthode findByCustomerId(customerId) de **OrderJpaRepository**.
 
 > Les tests devront être autonomes et utiliser des mocks pour bouchonner l'accès au données.
 
@@ -184,7 +184,7 @@ Instructions:
 
 - List<ItemDto> getAllItemsUsingGet()
 - addItemUsingPost(ItemLightDto)
-    
+
 implémenter les 2 dto :
 - ItemLightDto pour les données en entrée (sans id)
 - ItemDto pour les données en sortie (avec id)
@@ -203,7 +203,7 @@ Instructions:
 - getCustomer(String)
 - addCustomerUsingPost(CustomerLightDto)
 - updateCustomerUsingPut(CustomerDto)
-    
+
 implémenter les 2 dto :
 - CustomerLightDto pour les données en entrée (sans id)
 - CustomerDto pour les données en sortie (avec id)
@@ -219,7 +219,7 @@ Instructions:
 
 - addOrder(OrderLightDto)
 - getOrders(String)
-    
+
 implémenter les 2 dto :
 - OrderLightDto pour les données en entrée contenant un identifiant de customer (customerId) et une liste d'identifiants d'Item (itemIds).
 - CustomerDto pour les données en sortie (avec id)
@@ -353,7 +353,7 @@ Instructions:
 - La description doit au moins contenir un caractère.
 
 > Ajouter les contrôles de surfaces sur l'object permettant la création d'un **Customer** :
-- Le nom (name) et le mot de passe (password) doivent au moins contenir un caractère. 
+- Le nom (name) et le mot de passe (password) doivent au moins contenir un caractère.
 
 > Ajouter les contrôles de surfaces sur l'object permettant la création d'un **Order** :
 - L'identifiant du customer doit être présent.
@@ -372,12 +372,12 @@ Instructions:
 	mvn clean install
 	cd exposition
 	mvn spring-boot:run
-	
+
 > Dans l'IDE lancer l'application **Front-End** via la classe **SpringBootApp** du module **presentation-mvc**.
 
 > Accèder à l'url : http://localhost:8081
 
-> Se connecter avec le compte **utilisateur** (user, password) ou le compte **administrateur** (admin, admin)> 
+> Se connecter avec le compte **utilisateur** (user, password) ou le compte **administrateur** (admin, admin)>
 
 
 ## Sécurité avec Json Web Stoken (JWT)
@@ -436,7 +436,7 @@ jwt:
 ```java
 		// Encode given password
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-		
+
 		// New customer has user role by default
 		customer.addRole(RoleTypeEnum.ROLE_USER);
 ```
@@ -599,7 +599,7 @@ Dans la méthode customImplementation, rajouter les **securityContexts** et **se
 				.securityContexts(Arrays.asList(securityContext())) //
 				.securitySchemes(Arrays.asList(apiKey()));
 	}
-```	
+```
 puis les méthodes suivantes :
 ```java
         private ApiKey apiKey() {
@@ -616,7 +616,7 @@ puis les méthodes suivantes :
 		authorizationScopes[0] = authorizationScope;
 		return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
 	}
-```			
+```
 
 > Ajouter les annotations **@Secured("ROLE_USER")** et **@Secured("ROLE_ADMIN")** pour que :
 - Seul un administrateur puisse créer un nouvel item.
@@ -635,10 +635,10 @@ Instructions:
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-```	
+```
 > Ajouter les endpoints **actuator** dans le fichier application.yml :
 ```yaml
-#Monitoring endpoints   
+#Monitoring endpoints
 management:
   endpoints:
     web:
@@ -692,7 +692,7 @@ Instructions:
 - org.springframework.boot:spring-batch-test (scope test)
 
 > Créér une classe **SpringBootBatchApp** dans le package **fr.training.samples.spring.shop** contenant les annotations **@SpringBootApplication** et **@EnableBatchProcessing**.
- 
+
 ```java
 @SpringBootApplication
 @EnableBatchProcessing
@@ -765,7 +765,7 @@ Instructions:
 ```yaml
 spring:
   batch:
-    job: 
+    job:
       enabled: false
 ```
 
@@ -777,7 +777,7 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_import_
 
 ## Remplacement des annotations JPA par des mappings xml
 
-Afin de garder une couche **Domain** la plus pure possible nous allons remplacer les annotations JPA présentes dans les entités par un mapping XML dans la couche **Infrastructure**. 
+Afin de garder une couche **Domain** la plus pure possible nous allons remplacer les annotations JPA présentes dans les entités par un mapping XML dans la couche **Infrastructure**.
 
 > Dans la couche **Infrastructure** créer les 2 fichiers **common.orm.hbm.xml** et **customer.orm.hbm.xml** dans le répertoire META_INF de src/main/resources :
 
@@ -852,12 +852,12 @@ customer.orm.hbm.xml
 ```yaml
 ...
   jpa:
-    mapping-resources: 
+    mapping-resources:
       - META-INF/common.orm.hbm.xml
       - META-INF/customer.orm.hbm.xml
     show-sql: true
     open-in-view: false
-...   
+...
 ```
 > Supprimer toutes les annotations **javax.persistance** dans les entités de la couche **Domaine** .
 
@@ -876,7 +876,7 @@ Allo, Houston, on a un problème...
 Instructions:
 > Ajouter une classe **OrderItem**
 
-![OrderItem](./images/OrderItem.png)
+![OrderItem](./images/OrderItem.svg)
 
 > Ajouter le contrôle dans la classe **Order** permettant de valider que l'on ne peut pas créer une commande (Order) sans lignes (OrderItem).
 
@@ -896,7 +896,7 @@ Instructions:
 ## Value Objects
 
 Notre "Business Analyst" nous demande de rajouter une serie d'attributs permettant au Client de renseigner :
-- son adresse mail 
+- son adresse mail
 	- email
 - son adresse postale.
 	- street
@@ -911,7 +911,7 @@ Instructions:
 
 > Rajouter les attributs **email** (de type EmailAdress) et **address** (de type PostalAddress) correspondants dans la classe **Customer**.
 
-![Customer](./images/Customer.png)
+![Customer](./images/Customer.svg)
 
 > Modifier le fichier **customer.orm.hbm.xml** pour prendre en compte ces nouvelles colonnes dans la table **CUSTOMER** :
 
@@ -939,5 +939,5 @@ Instructions:
 ```
 
 > Modifier le **CustomerMapper** et corriger les tests unitaires afin d'alimenter correctement ces nouveaux attributs lors de la création des objects **Customer**.
-			
+
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_value_objects
