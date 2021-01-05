@@ -968,6 +968,75 @@ Instructions:
 
 ![Value objects](./images/ValueObjects.svg)
 
+> Rendre passant les 2 tests unitaires ci-dessous :
+
+```java
+public class EmailAdressTest {
+
+	@Test
+	public void getValue_should_return_value() {
+		assertThat(EmailAdress.of("michel.dupont@gmail.com").getValue()).isEqualTo("michel.dupont@gmail.com");
+	}
+
+	@Test
+	public void two_same_objects_should_have_same_hashCode() {
+		assertThat(EmailAdress.of("michel.dupont@gmail.com").hashCode())
+		.isEqualTo(EmailAdress.of("michel.dupont@gmail.com").hashCode());
+	}
+
+	@Test
+	public void two_same_objects_should_be_equals() {
+		assertThat(EmailAdress.of("michel.dupont@gmail.com")).isEqualTo(EmailAdress.of("michel.dupont@gmail.com"));
+	}
+
+	@Test
+	public void two_different_objects_shouldnt_be_equals() {
+		assertThat(EmailAdress.of("michel.dupont@gmail.com")).isNotEqualTo(EmailAdress.of("michel.dupond@gmail.com"));
+	}
+
+	@Test
+	public void toString_should_display_content() {
+		assertThat(EmailAdress.of("michel.dupont@gmail.com")).asString().contains("michel.dupont@gmail.com");
+	}
+
+}
+```
+
+```java
+public class PostalAddressTest {
+
+	@Test
+	public void two_same_objects_should_have_same_hashCode() {
+		assertThat(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456").hashCode())
+		.isEqualTo(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456").hashCode());
+	}
+
+	@Test
+	public void two_same_objects_should_be_equals() {
+		assertThat(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
+		.isEqualTo(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"));
+	}
+
+	@Test
+	public void two_different_objects_shouldnt_be_equals() {
+		assertThat(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
+		.isNotEqualTo(new PostalAddress("110 main street", "Las Vegas", "Eldorado", "123456"));
+	}
+
+	@Test
+	public void toString_should_display_content() {
+		assertThat(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")).asString()
+		.contains("10 main street");
+		assertThat(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")).asString()
+		.contains("Las Vegas");
+		assertThat(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")).asString()
+		.contains("Eldorado");
+		assertThat(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")).asString()
+		.contains("123456");
+
+	}
+```
+
 > Rajouter les attributs **email** (de type EmailAdress) et **address** (de type PostalAddress) correspondants dans la classe **Customer**.
 
 ![Customer](./images/Customer.svg)
