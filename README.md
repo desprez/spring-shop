@@ -758,6 +758,17 @@ Instructions:
 
 > Implementer un Bean **importWriter** qui va renvoyer un **JdbcBatchItemWriter**.
 
+> Copier le fichier **sample-data.csv** dans le répertoire src/main/resources.
+
+> Ajouter la configuration springboot afin de ne pas démarrer automatiquement les job au lancement de l'application.
+
+```yaml
+spring:
+  batch:
+    job: 
+      enabled: false
+```
+
 > Implémenter le test unitaire **ImportItemJobTest**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_import_job
