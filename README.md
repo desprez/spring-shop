@@ -884,6 +884,65 @@ Nous allons en profilter pour rendre les entités du Domaine imutable, afin de r
 
 > Supprimer les Setters de l'entité **Order** et créer le Builder qui sera responsable de la création de cette entité.
 
+```java
+	/**
+	 * private constructor to enforce Builder usage
+	 */
+	private Order(final Builder builder) {
+		if (builder.id != null) {
+			id = builder.id;
+		}
+		customer = builder.customer;
+		total = 0;
+		for (final OrderItem item : builder.orderItems) {
+			addOrderItem(item);
+		}
+	}
+
+	/**
+	 * Builder static assessor
+	 */
+	public static Builder builder() {
+		return new Builder();
+	}
+
+	/**
+	 * Builder pattern to ensure Order is immutable.
+	 */
+	public static class Builder {
+		private String id;
+		private Customer customer;
+		private List<OrderItem> orderItems = new ArrayList<>();
+
+		public Builder id(final String id) {
+			this.id = id;
+			return this;
+		}
+
+		public Builder customer(final Customer customer) {
+			this.customer = customer;
+			return this;
+		}
+
+		public Builder addOrderItem(final OrderItem orderItem) {
+			orderItems.add(orderItem);
+			return this;
+		}
+
+		public Builder orderItems(final List<OrderItem> orderItems) {
+			this.orderItems = orderItems;
+			return this;
+		}
+
+		public Order build() {
+			Validate.notNull(customer, "Customer is required");
+			Validate.isTrue(!orderItems.isEmpty(), "Order must have one item at least");
+			return new Order(this);
+		}
+
+	}
+```
+
 > Faire de même avec les entités **OrderItem**, **Item** et **Customer**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_orderitem
