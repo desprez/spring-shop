@@ -34,7 +34,12 @@ public class CustomerDto {
 
 	@Override
 	public String toString() {
-		return "CustomerDto [id=" + id + ", name=" + name + ", password=" + password + "]";
+		final StringBuilder builder = new StringBuilder();
+		builder.append("CustomerDto [id=").append(id) //
+		.append(", name=").append(name) //
+		.append(", password=").append(password) //
+		.append("]");
+		return builder.toString();
 	}
 
 }
