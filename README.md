@@ -735,13 +735,13 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/add_export_
 
 ## Ajout d'un job d'import
 Le responsable "Produit" souhaiterait pouvoir importer en masse des produits dans le catalogue de l'application. Il dispose d'un fichier csv qui a la forme suivante :
-
+```
 id;description;price
 1;Bananas;10
 2;Papayas;20
 3;Mangos;30
 4;Pinaples;40
-
+```
 Instructions:
 
 > Dans le package **fr.training.samples.spring.shop.importjob** :
