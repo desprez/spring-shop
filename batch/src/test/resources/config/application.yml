@@ -1,0 +1,9 @@
+spring:
+  batch:
+    job: 
+      enabled: false
+    
+logging:
+  level:  
+    com.bnpparibas.dsibddf.architecture.sample.service: DEBUG    
+ 
