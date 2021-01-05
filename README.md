@@ -710,21 +710,55 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/init_batch_
 
 ## Ajout d'un job d'export
 
-Notre "Business Analyst" nous demande de rajouter une nouvelle fonctionnalité permettant d'exporter dans un fichier csv la liste des clients qui se sont enregistrés dans l'application pour le sercice marketing.
+Notre "Business Analyst" nous demande de rajouter une nouvelle fonctionnalité permettant d'exporter dans un fichier csv la liste des clients qui se sont enregistrés dans l'application afin de l'envoyer au service marketing.
 
 Instructions:
-> Dans le package **fr.training.samples.spring.shop.exportjob** nous allons créer la classe **ExportCustomerJobConfig** permettant de configurer le job d'export des Customers.
+> Dans le package **fr.training.samples.spring.shop.exportjob** :
 
-> Dans cette Classe nous allons déclarer le job **export-job**.
+> Créer la classe **CusomerDto** qui va contenir les informations contenues dans chaque enregistrement de la table CUSTOMER.
 
-> Puis le Step **export-step**
+> Créer la classe **ExportCustomerJobConfig** permettant de configurer le job d'export des Customers.
+
+> Dans cette Classe nous allons déclarer le job **export-job** dans un Bean Spring.
+
+> Puis le Step **export-step**.
+
+> Implémenter un Bean **exportReader** qui va renvoyer un **JdbcCursorItemReader** de **springBatch**
+
+> Implémenter un Bean **CustomerRowMapper** qui implémente le **RowMapper** afin de peupler un **CustomerDto** avec chaque enregistrement de la table.
+
+> Implémenter un Bean **exportWriter** qui va renvoyer un **FlatFileItemWriter**.
+
+> Implémenter le test unitaire **ExportCustomerJobTest**
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_export_job
 
 ## Ajout d'un job d'import
+Le responsable "Produit" souhaiterait pouvoir importer en masse des produits dans le catalogue de l'application. Il dispose d'un fichier csv qui a la forme suivante :
+
+id;description;price
+1;Bananas;10
+2;Papayas;20
+3;Mangos;30
+4;Pinaples;40
 
 Instructions:
->
+
+> Dans le package **fr.training.samples.spring.shop.importjob** :
+
+> Créer la classe **ItemDto** qui va contenir les informations contenues dans chaque ligne du fichier.
+
+> Créer la classe **ImportItemJobConfig** permettant de configurer le job d'import des Items.
+
+> Dans cette Classe nous allons déclarer le job **import-job** dans un Bean Spring. Ce job contiendra 2 steps :
+- **delete-step** qui va supprimer les Produits existants à l'aide d"une Tasklet
+- **import-step** qui lire les lignes du fichier et les re
+
+> Implémenter un Bean **importReader** qui va renvoyer un **FlatFileItemReader** de **springBatch**
+
+> Implementer un Bean **importWriter** qui va renvoyer un **JdbcBatchItemWriter**.
+
+> Implémenter le test unitaire **ImportItemJobTest**
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_import_job
 
