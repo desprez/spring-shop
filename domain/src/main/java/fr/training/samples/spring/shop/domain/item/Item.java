@@ -24,24 +24,10 @@ public class Item extends AbstractBaseEntity {
 	}
 
 	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(final String description) {
-		this.description = description;
-	}
-
-	/**
 	 * @return the price
 	 */
 	public Integer getPrice() {
 		return price;
-	}
-
-	/**
-	 * @param price the price to set
-	 */
-	public void setPrice(final Integer price) {
-		this.price = price;
 	}
 
 	@Override
