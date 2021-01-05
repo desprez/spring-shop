@@ -968,7 +968,7 @@ Instructions:
 
 ![Value objects](./images/ValueObjects.svg)
 
-> Rendre passant les 2 tests unitaires ci-dessous :
+> Pour rappel, l'égalité (equals() & hashCode()) des **ValueObjects** doit se faire __sur leur valeur__ : rendre passant les 2 tests unitaires ci-dessous :
 
 ```java
 public class EmailAdressTest {
