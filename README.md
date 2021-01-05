@@ -719,7 +719,7 @@ Instructions:
 
 > Créer la classe **ExportCustomerJobConfig** permettant de configurer le job d'export des Customers.
 
-> Dans cette Classe nous allons déclarer le job **export-job** dans un Bean Spring.
+> Dans cette classe nous allons déclarer le job **export-job** dans un Bean Spring.
 
 > Puis le Step **export-step**.
 
@@ -750,15 +750,15 @@ Instructions:
 
 > Créer la classe **ImportItemJobConfig** permettant de configurer le job d'import des Items.
 
-> Dans cette Classe nous allons déclarer le job **import-job** dans un Bean Spring. Ce job contiendra 2 steps :
-- **delete-step** qui va supprimer les Produits existants à l'aide d"une Tasklet
-- **import-step** qui lire les lignes du fichier et les re
+> Dans cette classe nous allons déclarer le job **import-job** dans un Bean Spring. Ce job contiendra 2 steps :
+- **delete-step** qui va supprimer les produits existants à l'aide d"une Tasklet.
+- **import-step** qui va lire les lignes du fichier et les stocker dans **ItemDto**.
 
 > Implémenter un Bean **importReader** qui va renvoyer un **FlatFileItemReader** de **springBatch**
 
 > Implementer un Bean **importWriter** qui va renvoyer un **JdbcBatchItemWriter**.
 
-> Implémenter le test unitaire **ImportItemJobTest**
+> Implémenter le test unitaire **ImportItemJobTest**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_import_job
 
@@ -930,7 +930,3 @@ Instructions:
 > Modifier le **CustomerMapper** et corriger les tests unitaires afin d'alimenter correctement ces nouveaux attributs lors de la création des objects **Customer**.
 			
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_value_objects
-
-
-
-
