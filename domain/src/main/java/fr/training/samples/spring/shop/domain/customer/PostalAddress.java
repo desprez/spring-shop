@@ -62,4 +62,12 @@ public class PostalAddress implements Serializable {
 		return Objects.hash(street, city, country, postalCode);
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("PostalAddress [street=").append(street).append(", city=").append(city).append(", country=")
+		.append(country).append(", postalCode=").append(postalCode).append("]");
+		return builder.toString();
+	}
+
 }

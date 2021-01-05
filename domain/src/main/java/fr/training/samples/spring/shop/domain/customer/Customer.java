@@ -8,7 +8,7 @@ public class Customer extends AbstractBaseEntity {
 
 	private String name;
 
-	private String password;
+	private Password password;
 
 	private EmailAdress email;
 
@@ -30,7 +30,7 @@ public class Customer extends AbstractBaseEntity {
 	/**
 	 * @return the password
 	 */
-	public String getPassword() {
+	public Password getPassword() {
 		return password;
 	}
 
@@ -85,7 +85,7 @@ public class Customer extends AbstractBaseEntity {
 	public static class Builder {
 		private String id;
 		private String name;
-		private String password;
+		private Password password;
 		private EmailAdress email;
 		private PostalAddress address;
 
@@ -99,7 +99,7 @@ public class Customer extends AbstractBaseEntity {
 			return this;
 		}
 
-		public Builder password(final String password) {
+		public Builder password(final Password password) {
 			this.password = password;
 			return this;
 		}

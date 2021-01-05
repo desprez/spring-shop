@@ -11,7 +11,12 @@
 		<table name="CUSTOMER" />
 		<attributes>
 			<basic name="name" />
-			<basic name="password" />
+
+			<embedded name="password">
+				<attribute-override name="value">
+					<column name="PASSWORD" />
+				</attribute-override>
+			</embedded>
 
 			<embedded name="email">
 				<attribute-override name="value">

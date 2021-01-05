@@ -17,6 +17,7 @@ import fr.training.samples.spring.shop.domain.common.exception.AlreadyExistingEx
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.Password;
 import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 
 @RunWith(SpringRunner.class)
@@ -34,7 +35,7 @@ public class CustomerServiceTest {
 		// Given
 		final Customer customer = Customer.builder() //
 				.name("Michel Dupont") //
-				.password("password")
+				.password(Password.of("password"))
 				.email(EmailAdress.of("michel.dupont@gmail.com")) //
 				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
 				.build();
@@ -53,7 +54,7 @@ public class CustomerServiceTest {
 		// Given
 		final Customer customer = Customer.builder() //
 				.name("name") //
-				.password("password")
+				.password(Password.of("password"))
 				.email(EmailAdress.of("michel.dupont@gmail.com")) //
 				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
 				.build();
@@ -77,7 +78,7 @@ public class CustomerServiceTest {
 		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
 		final Customer customer = Customer.builder() //
 				.name("Michel Dupont") //
-				.password("password")
+				.password(Password.of("password"))
 				.email(EmailAdress.of("michel.dupont@gmail.com")) //
 				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
 				.build();
@@ -98,7 +99,7 @@ public class CustomerServiceTest {
 		// Given
 		final Customer customer = Customer.builder() //
 				.name("Michel Dupont") //
-				.password("password")
+				.password(Password.of("password"))
 				.email(EmailAdress.of("michel.dupont@gmail.com")) //
 				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
 				.build();

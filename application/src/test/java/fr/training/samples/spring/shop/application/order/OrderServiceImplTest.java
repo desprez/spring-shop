@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.Password;
 import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
@@ -61,7 +62,7 @@ public class OrderServiceImplTest {
 	private Customer getCustomer() {
 		return Customer.builder() //
 				.name("Michel Dupont") //
-				.password("password") //
+				.password(Password.of("password")) //
 				.email(EmailAdress.of("michel.dupont@gmail.com")) //
 				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")) //
 				.build();
@@ -97,7 +98,8 @@ public class OrderServiceImplTest {
 		// Then
 		assertThat(result).isNotNull();
 		assertThat(result.getCustomer().getName()).isEqualTo("Michel Dupont");
-		assertThat(result.getCustomer().getPassword()).isEqualTo("password");
+		System.out.println(result.getCustomer().getPassword().getValue());
+		assertThat(result.getCustomer().getPassword().getValue()).isEqualTo("password");
 		verify(orderRepositoryMock, times(1)).findById(orderId);
 	}
 

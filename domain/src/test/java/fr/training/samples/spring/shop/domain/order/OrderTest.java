@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.Password;
 import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 import fr.training.samples.spring.shop.domain.item.Item;
 
@@ -16,7 +17,7 @@ public class OrderTest {
 		// Given
 		final Customer customer = Customer.builder() //
 				.name("Michel Martin") //
-				.password("password") //
+				.password(Password.of("password")) //
 				.email(EmailAdress.of("michel.martin@gmail.com")) //
 				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456"))
 				.build();

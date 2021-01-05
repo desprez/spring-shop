@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.customer.EmailAdress;
+import fr.training.samples.spring.shop.domain.customer.Password;
 import fr.training.samples.spring.shop.domain.customer.PostalAddress;
 
 @RunWith(SpringRunner.class)
@@ -40,7 +41,7 @@ public class CustomerRepositoryTest {
 		// Given
 		final Customer customer = Customer.builder() //
 				.name("MICHEL DUPONT")//
-				.password("password") //
+				.password(Password.of("password")) //
 				.email(EmailAdress.of("michel.dupont@gmail.com")) //
 				.address(new PostalAddress("10 main street", "Las Vegas", "Eldorado", "123456")) //
 				.build();
