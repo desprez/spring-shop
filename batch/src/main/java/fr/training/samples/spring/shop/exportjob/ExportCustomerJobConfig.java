@@ -120,7 +120,10 @@ public class ExportCustomerJobConfig {
 	public FlatFileItemWriter<CustomerDto> exportWriter(@Value("#{jobParameters['output-file']}") final String outputFile) {
 		final FlatFileItemWriter<CustomerDto> writer = new FlatFileItemWriter<CustomerDto>();
 		writer.setResource(new FileSystemResource(outputFile));
+		// DelimitedLineAggregator => csv
 		final DelimitedLineAggregator<CustomerDto> lineAggregator = new DelimitedLineAggregator<CustomerDto>();
+
+		// BeanWrapperFieldExtractor => extraire les champs du DTO dans des chaines de caractère
 		final BeanWrapperFieldExtractor<CustomerDto> fieldExtractor = new BeanWrapperFieldExtractor<CustomerDto>();
 		fieldExtractor.setNames(new String[] { "id", "name", "password" });
 		lineAggregator.setFieldExtractor(fieldExtractor);
