@@ -3,6 +3,8 @@ package fr.training.samples.spring.shop.domain.customer;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.constraints.Email;
+
 /**
  * Email adress (Value Object).
  */
@@ -19,7 +21,7 @@ public class EmailAdress implements Serializable {
 
 	}
 
-	public EmailAdress(final String value) {
+	public EmailAdress(@Email final String value) {
 		this.value = Objects.requireNonNull(value, "value is required");
 	}
 
