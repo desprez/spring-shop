@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Password (Value Object).
  */
@@ -31,6 +33,10 @@ public class Password implements Serializable {
 
 	public String getValue() {
 		return String.valueOf(value);
+	}
+
+	public String getObfuscatedValue() {
+		return StringUtils.repeat("*", value.length);
 	}
 
 	@Override

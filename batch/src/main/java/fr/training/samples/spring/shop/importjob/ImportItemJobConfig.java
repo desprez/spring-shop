@@ -9,6 +9,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.job.DefaultJobParametersValidator;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
@@ -48,6 +49,7 @@ public class ImportItemJobConfig {
 	@Bean
 	public Job importJob() {
 		return jobBuilderFactory.get("import-job") //
+				.validator(new DefaultJobParametersValidator(new String[] { "input-file" }, new String[] {})) //
 				.incrementer(new RunIdIncrementer()) //
 				.start(deleteStep()) //
 				.next(importStep()) //
@@ -81,9 +83,11 @@ public class ImportItemJobConfig {
 	}
 
 	/**
-	 * Fake processor that only logs
-	 *
-	 * @return an item processor
+	 * ItemProcessor represents the business processing of an item. The data read by
+	 * ItemReader can be passed on to ItemProcessor. In this unit, the data is
+	 * transformed and sent for writing. If, while processing the item, it becomes
+	 * invalid for further processing, you can return null. The nulls are not
+	 * written by ItemWriter.
 	 */
 	private ItemProcessor<ItemDto, ItemDto> importProcessor() {
 		return new ItemProcessor<ItemDto, ItemDto>() {
@@ -96,6 +100,10 @@ public class ImportItemJobConfig {
 		};
 	}
 
+	/**
+	 * ItemReader is an abstract representation of how data is provided as input to
+	 * a Step. When the inputs are exhausted, the ItemReader returns null.
+	 */
 	@StepScope // Mandatory for using jobParameters
 	@Bean
 	public FlatFileItemReader<ItemDto> importReader(@Value("#{jobParameters['input-file']}") final String inputFile) {
@@ -117,6 +125,12 @@ public class ImportItemJobConfig {
 		return reader;
 	}
 
+	/**
+	 * ItemWriter is the output of a Step. The writer writes one batch or chunk of
+	 * items at a time to the target system. ItemWriter has no knowledge of the
+	 * input it will receive next, only the item that was passed in its current
+	 * invocation.
+	 */
 	@Bean
 	public JdbcBatchItemWriter<ItemDto> importWriter() {
 		final JdbcBatchItemWriter<ItemDto> writer = new JdbcBatchItemWriter<ItemDto>();

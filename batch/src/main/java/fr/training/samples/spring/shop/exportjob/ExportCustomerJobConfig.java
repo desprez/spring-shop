@@ -1,22 +1,17 @@
 package fr.training.samples.spring.shop.exportjob;
 
-
 import java.io.IOException;
 import java.io.Writer;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.job.DefaultJobParametersValidator;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.file.FlatFileHeaderCallback;
 import org.springframework.batch.item.file.FlatFileItemWriter;
@@ -27,12 +22,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 
 @Configuration
 public class ExportCustomerJobConfig {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExportCustomerJobConfig.class);
 
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
@@ -44,17 +37,18 @@ public class ExportCustomerJobConfig {
 	public DataSource dataSource;
 
 	@Bean
-	public Step exportStep(final FlatFileItemWriter<CustomerDto> exportWriter) {
-		return stepBuilderFactory.get("export-step").<CustomerDto, CustomerDto>chunk(10) //
+	public Step exportStep(final FlatFileItemWriter<CustomerDto> exportWriter, final CustomerProcessor customerProcessor) {
+		return stepBuilderFactory.get("export-step").<String, CustomerDto>chunk(10) //
 				.reader(exportReader()) //
-				.processor(exportProcessor()) //
+				.processor(customerProcessor) //
 				.writer(exportWriter) //
 				.build();
 	}
 
 	@Bean(name = "exportJob")
-	public Job exportBookJob(final Step exportStep) {
+	public Job exportJob(final Step exportStep) {
 		return jobBuilderFactory.get("export-job") //
+				.validator(new DefaultJobParametersValidator(new String[] { "output-file" }, new String[] {})) //
 				.incrementer(new RunIdIncrementer()) //
 				.flow(exportStep) //
 				.end() //
@@ -66,47 +60,12 @@ public class ExportCustomerJobConfig {
 	 * a Step. When the inputs are exhausted, the ItemReader returns null.
 	 */
 	@Bean
-	public JdbcCursorItemReader<CustomerDto> exportReader() {
-		final JdbcCursorItemReader<CustomerDto> reader = new JdbcCursorItemReader<CustomerDto>();
+	public JdbcCursorItemReader<String> exportReader() {
+		final JdbcCursorItemReader<String> reader = new JdbcCursorItemReader<String>();
 		reader.setDataSource(dataSource);
-		reader.setSql("SELECT id, name, password FROM Customer");
-		reader.setRowMapper(new CustomerRowMapper());
-
+		reader.setSql("SELECT id  FROM Customer");
+		reader.setRowMapper(new SingleColumnRowMapper<String>());
 		return reader;
-	}
-
-	/**
-	 * RowMapper used to map resultset to OrderDto
-	 */
-	public class CustomerRowMapper implements RowMapper<CustomerDto> {
-
-		@Override
-		public CustomerDto mapRow(final ResultSet rs, final int rowNum) throws SQLException {
-			final CustomerDto customer = new CustomerDto();
-			customer.setId(rs.getString("id"));
-			customer.setName(rs.getString("name"));
-			customer.setPassword(rs.getString("password"));
-			return customer;
-		}
-	}
-
-	/**
-	 * ItemProcessor represents the business processing of an item. The data read by
-	 * ItemReader can be passed on to ItemProcessor. In this unit, the data is
-	 * transformed and sent for writing. If, while processing the item, it becomes
-	 * invalid for further processing, you can return null. The nulls are not
-	 * written by ItemWriter.
-	 */
-	@Bean
-	public ItemProcessor<CustomerDto, CustomerDto> exportProcessor() {
-		return new ItemProcessor<CustomerDto, CustomerDto>() {
-
-			@Override
-			public CustomerDto process(final CustomerDto customer) throws Exception {
-				LOGGER.info("Processing {}", customer);
-				return customer;
-			}
-		};
 	}
 
 	/**
@@ -117,19 +76,23 @@ public class ExportCustomerJobConfig {
 	 */
 	@StepScope // Mandatory for using jobParameters
 	@Bean
-	public FlatFileItemWriter<CustomerDto> exportWriter(@Value("#{jobParameters['output-file']}") final String outputFile) {
+	public FlatFileItemWriter<CustomerDto> exportWriter(
+			@Value("#{jobParameters['output-file']}") final String outputFile) {
 		final FlatFileItemWriter<CustomerDto> writer = new FlatFileItemWriter<CustomerDto>();
 		writer.setResource(new FileSystemResource(outputFile));
+
 		final DelimitedLineAggregator<CustomerDto> lineAggregator = new DelimitedLineAggregator<CustomerDto>();
+
 		final BeanWrapperFieldExtractor<CustomerDto> fieldExtractor = new BeanWrapperFieldExtractor<CustomerDto>();
-		fieldExtractor.setNames(new String[] { "id", "name", "password" });
+		fieldExtractor.setNames(new String[] { "id", "name", "password", "email", "street", "country", "postalCode" });
 		lineAggregator.setFieldExtractor(fieldExtractor);
 		lineAggregator.setDelimiter(";");
+
 		writer.setLineAggregator(lineAggregator);
 		writer.setHeaderCallback(new FlatFileHeaderCallback() {
 			@Override
 			public void writeHeader(final Writer writer) throws IOException {
-				writer.write("id;name;password");
+				writer.write("id;name;password;email;street;city;country;postalCode");
 			}
 		});
 		return writer;

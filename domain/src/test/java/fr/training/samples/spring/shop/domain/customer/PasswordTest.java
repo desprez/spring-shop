@@ -31,4 +31,8 @@ public class PasswordTest {
 		assertThat(Password.of("passwordinclear").toString()).isNotEqualTo("passwordinclear");
 	}
 
+	@Test
+	public void getObfuscatedValue_show_asterisks() {
+		assertThat(Password.of("password").getObfuscatedValue()).isEqualTo("********");
+	}
 }

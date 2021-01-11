@@ -8,6 +8,16 @@ public class CustomerDto {
 
 	private String password;
 
+	private String email;
+
+	private String street;
+
+	private String city;
+
+	private String country;
+
+	private String postalCode;
+
 	public String getId() {
 		return id;
 	}
@@ -30,6 +40,46 @@ public class CustomerDto {
 
 	public void setPassword(final String password) {
 		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(final String email) {
+		this.email = email;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(final String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(final String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(final String country) {
+		this.country = country;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(final String postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	@Override
