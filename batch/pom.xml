@@ -48,10 +48,14 @@
 				<version>${spring-boot.version}</version>
 				<executions>
 					<execution>
-						<id>build-info</id>
 						<goals>
 							<goal>repackage</goal>
 						</goals>
+						<configuration>
+							<mainClass>
+								fr.training.samples.spring.shop.SpringBootBatchApp
+							</mainClass>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
