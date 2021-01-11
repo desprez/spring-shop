@@ -1,7 +1,5 @@
 package fr.training.samples.spring.shop.importjob;
 
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -12,8 +10,7 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.DefaultJobParametersValidator;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
-import org.springframework.batch.item.database.JdbcBatchItemWriter;
+import org.springframework.batch.item.adapter.ItemWriterAdapter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
@@ -25,11 +22,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
 import fr.training.samples.spring.shop.common.FullReportListener;
+import fr.training.samples.spring.shop.domain.item.Item;
+import fr.training.samples.spring.shop.domain.item.ItemRepository;
 
 @Configuration
 public class ImportItemJobConfig {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ImportItemJobConfig.class);
+	private static final Logger logger = LoggerFactory.getLogger(ImportItemJobConfig.class);
 
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
@@ -38,13 +37,13 @@ public class ImportItemJobConfig {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	private DataSource dataSource;
-
-	@Autowired
 	private FullReportListener listener;
 
 	@Autowired
 	private DeleteTasklet deleteTasklet;
+
+	@Autowired
+	private ItemRepository itemRepository;
 
 	@Bean
 	public Job importJob() {
@@ -72,7 +71,7 @@ public class ImportItemJobConfig {
 	@Bean
 	public Step importStep() {
 		return stepBuilderFactory.get("import-step") //
-				.<ItemDto, ItemDto>chunk(5) //
+				.<ItemDto, Item>chunk(5) //
 				.reader(importReader(null)) //
 				.processor(importProcessor()) //
 				.writer(importWriter()) //
@@ -89,12 +88,14 @@ public class ImportItemJobConfig {
 	 * invalid for further processing, you can return null. The nulls are not
 	 * written by ItemWriter.
 	 */
-	private ItemProcessor<ItemDto, ItemDto> importProcessor() {
-		return new ItemProcessor<ItemDto, ItemDto>() {
+	private ItemProcessor<ItemDto, Item> importProcessor() {
+		return new ItemProcessor<ItemDto, Item>() {
 
 			@Override
-			public ItemDto process(final ItemDto item) throws Exception {
-				LOGGER.info(item.toString());
+			public Item process(final ItemDto itemDto) throws Exception {
+				final Item item = Item.builder().description(itemDto.getDescription()).price(itemDto.getPrice())
+						.build();
+				logger.info(item.toString());
 				return item;
 			}
 		};
@@ -132,11 +133,10 @@ public class ImportItemJobConfig {
 	 * invocation.
 	 */
 	@Bean
-	public JdbcBatchItemWriter<ItemDto> importWriter() {
-		final JdbcBatchItemWriter<ItemDto> writer = new JdbcBatchItemWriter<ItemDto>();
-		writer.setDataSource(dataSource);
-		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<ItemDto>());
-		writer.setSql("INSERT INTO item(id, description, price, version) VALUES (:id, :description, :price, 1)");
+	public ItemWriterAdapter<Item> importWriter() {
+		final ItemWriterAdapter<Item> writer = new ItemWriterAdapter<Item>();
+		writer.setTargetObject(itemRepository);
+		writer.setTargetMethod("save");
 		return writer;
 	}
 }
