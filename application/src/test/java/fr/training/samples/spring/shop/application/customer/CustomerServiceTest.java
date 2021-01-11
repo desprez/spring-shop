@@ -90,7 +90,7 @@ public class CustomerServiceTest {
 		// Then
 		assertThat(result).isNotNull();
 		assertThat(result.getName()).isEqualTo("Michel Dupont");
-		assertThat(result.getPassword()).isEqualTo("password");
+		assertThat(result.getPassword().getValue()).isEqualTo("password");
 		verify(customerRepositoryMock, times(1)).findById(customerId);
 	}
 

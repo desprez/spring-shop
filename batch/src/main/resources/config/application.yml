@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Spring-shop-batch
+
+  batch:
+    job: 
+      enabled: true
+    
+  jta:
+    enabled: false
+  jpa:
+    open-in-view: false
+    driver-class-name: org.postgresql.Driver
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+       
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: INFO
+    fr.training.samples.spring.shop: INFO
