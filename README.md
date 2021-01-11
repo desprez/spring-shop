@@ -1100,3 +1100,111 @@ public class PostalAddressTest {
 > Modifier le **CustomerMapper** et corriger les tests unitaires afin d'alimenter correctement ces nouveaux attributs lors de la création des objects **Customer**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_value_objects
+
+## Réutilisation des objets du domain dans le batch
+
+Instructions:
+> Pour le batch **exportCustomerJob** ajouter une classe **CustomerProcessor** :
+
+```java
+@Component
+@StepScope
+public class CustomerProcessor implements ItemProcessor<String, CustomerDto> {
+
+	private static final Logger logger = LoggerFactory.getLogger(CustomerProcessor.class);
+
+	@Autowired
+	private CustomerService customerService;
+
+	@Override
+	public CustomerDto process(final String customerId) throws Exception {
+		final Customer customer = customerService.findOne(customerId);
+		logger.info("Processing Customer {}", customer);
+
+		final CustomerDto customerDto = new CustomerDto();
+		customerDto.setId(customer.getId());
+		customerDto.setName(customer.getName());
+		customerDto.setPassword(customer.getPassword().getObfuscatedValue());
+		customerDto.setEmail(customer.getEmail().getValue());
+		customerDto.setStreet(customer.getAddress().getStreet());
+		customerDto.setCity(customer.getAddress().getCity());
+		customerDto.setCountry(customer.getAddress().getCountry());
+		customerDto.setPostalCode(customer.getAddress().getPostalCode());
+		return customerDto;
+	}
+}
+```
+> Puis dans la classe **ExportCustomerJobConfig**, modifier le **reader** pour ne renvoyer que l'id et utiliser un **SingleColumnRowMapper**.
+
+```java
+	@Bean
+	public JdbcCursorItemReader<String> exportReader() {
+		final JdbcCursorItemReader<String> reader = new JdbcCursorItemReader<String>();
+		reader.setDataSource(dataSource);
+		reader.setSql("SELECT id  FROM Customer");
+		reader.setRowMapper(new SingleColumnRowMapper<String>());
+		return reader;
+	}
+
+```
+> Toujours dans **ExportCustomerJobConfig**, modifier le **step** qui prend un String comment entrée et utilise le **CustomerProcessor** (supprimer l'ancien processor) 
+```java
+	@Bean
+	public Step exportStep(final FlatFileItemWriter<CustomerDto> exportWriter, final CustomerProcessor customerProcessor) {
+		return stepBuilderFactory.get("export-step").<String, CustomerDto>chunk(10) //
+				.reader(exportReader()) //
+				.processor(customerProcessor) //
+				.writer(exportWriter) //
+				.build();
+	}
+```
+
+> Pour le batch **importItemJob** modifier la classe **ImportItemJobConfig** pour utiliser une entité **Item** comme objet de sortie :
+
+```java
+	@Bean
+	public Step importStep() {
+		return stepBuilderFactory.get("import-step") //
+				.<ItemDto, Item>chunk(5) //
+				.reader(importReader(null)) //
+				.processor(importProcessor()) //
+				.writer(importWriter()) ///
+				.build();
+	}
+```
+> Modifier le **ItemProcessor** pour contruire l'entité **Item** en sortie :
+
+```java
+	private ItemProcessor<ItemDto, Item> importProcessor() {
+		return new ItemProcessor<ItemDto, Item>() {
+
+			@Override
+			public Item process(final ItemDto itemDto) throws Exception {
+				final Item item = Item.builder().description(itemDto.getDescription()).price(itemDto.getPrice())
+						.build();
+				logger.info(item.toString());
+				return item;
+			}
+		};
+	}
+```
+
+> Injecter le **ItemRepository** dans **ImportItemJobConfig**
+```java
+	@Autowired
+	private ItemRepository itemRepository;
+```
+
+> Adapter le **importWriter** pour utiliser un **ItemWriterAdapter** à la place du **JdbcItemWriter** :
+
+```java
+	@Bean
+	public ItemWriterAdapter<Item> importWriter() {
+		final ItemWriterAdapter<Item> writer = new ItemWriterAdapter<Item>();
+		writer.setTargetObject(itemRepository);
+		writer.setTargetMethod("save");
+		return writer;
+	}
+```
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_merge_batch_feature
