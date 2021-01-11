@@ -5,5 +5,5 @@ spring:
     
 logging:
   level:  
-    com.bnpparibas.dsibddf.architecture.sample.service: DEBUG    
+    fr.training.samples.spring.shop: DEBUG    
  
