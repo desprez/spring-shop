@@ -14,6 +14,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.FlatFileParseException;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
@@ -74,9 +75,10 @@ public class ImportItemJobConfig {
 				.reader(importReader(null)) //
 				.processor(importProcessor()) //
 				.writer(importWriter()) //
-				// .faultTolerant() //
-				// .skipPolicy(new CustomSkipPolicy()) //
-				// .skipLimit(2) //
+				.faultTolerant() //
+				//.skipPolicy(new CustomSkipPolicy()) //
+				.skip(FlatFileParseException.class) //
+				.skipLimit(2) //
 				.build();
 	}
 
