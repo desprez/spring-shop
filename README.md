@@ -780,6 +780,10 @@ Instructions:
 - **import-step** qui va lire les lignes du fichier et les stocker dans **ItemDto**.
 
 > Implémenter un Bean **importReader** qui va renvoyer un **FlatFileItemReader** de **SpringBatch**
+> Ce reader va devoir utiliser :
+- DefaultLineMapper
+- DelimitedLineTokenizer 
+- BeanWrapperFieldSetMapper
 
 > Implementer un Bean **importWriter** qui va renvoyer un **JdbcBatchItemWriter**.
 
