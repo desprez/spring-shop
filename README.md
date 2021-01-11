@@ -715,7 +715,7 @@ Notre "Business Analyst" nous demande de rajouter une nouvelle fonctionnalité p
 Instructions:
 > Dans le package **fr.training.samples.spring.shop.exportjob** :
 
-> Créer la classe **CusomerDto** qui va contenir les informations contenues dans chaque enregistrement de la table CUSTOMER.
+> Créer la classe **CustomerDto** qui va contenir les informations contenues dans chaque enregistrement de la table CUSTOMER.
 
 > Créer la classe **ExportCustomerJobConfig** permettant de configurer le job d'export des Customers.
 
@@ -727,7 +727,32 @@ Instructions:
 
 > Implémenter un Bean **CustomerRowMapper** qui implémente le **RowMapper** afin de peupler un **CustomerDto** avec chaque enregistrement de la table.
 
-> Implémenter un Bean **exportWriter** qui va renvoyer un **FlatFileItemWriter**.
+> Implémenter un Bean **exportWriter** qui va renvoyer un **FlatFileItemWriter**. Configurer ce FlatFileItemWriter de facçon à produire uenfichier csv à l'aide de 
+
+```java
+		// DelimitedLineAggregator => csv
+		final DelimitedLineAggregator<CustomerDto> lineAggregator = new DelimitedLineAggregator<CustomerDto>();
+		lineAggregator.setDelimiter(";");
+
+		// BeanWrapperFieldExtractor => extraire les champs du DTO dans des chaines de caractère
+		final BeanWrapperFieldExtractor<CustomerDto> fieldExtractor = new BeanWrapperFieldExtractor<CustomerDto>();
+		fieldExtractor.setNames(new String[] { "name", "password" });
+		lineAggregator.setFieldExtractor(fieldExtractor);
+		writer.setLineAggregator(lineAggregator);
+```		
+> Dans **application.yml** ajouter la configuration permettant de pointer sur la base de données PostGreSQL :
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
+```
+> Dans application-local.yml ajouter la configuration permettant d'initialiser le schema **SpringBatch** :
+```yaml
+  batch:
+    initialize-schema: always
+```
 
 > Implémenter le test unitaire **ExportCustomerJobTest**
 
@@ -754,7 +779,7 @@ Instructions:
 - **delete-step** qui va supprimer les produits existants à l'aide d"une Tasklet.
 - **import-step** qui va lire les lignes du fichier et les stocker dans **ItemDto**.
 
-> Implémenter un Bean **importReader** qui va renvoyer un **FlatFileItemReader** de **springBatch**
+> Implémenter un Bean **importReader** qui va renvoyer un **FlatFileItemReader** de **SpringBatch**
 
 > Implementer un Bean **importWriter** qui va renvoyer un **JdbcBatchItemWriter**.
 
