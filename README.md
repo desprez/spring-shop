@@ -798,6 +798,8 @@ spring:
       enabled: false
 ```
 
+> Pour lancer le job depuis la ligne de commande, rajouter le paramètre **--spring.batch.job.names=import-job** (program arguments).
+
 > Implémenter le test unitaire **ImportItemJobTest**.
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/add_import_job
