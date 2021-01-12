@@ -1134,6 +1134,8 @@ public class CustomerProcessor implements ItemProcessor<String, CustomerDto> {
 	}
 }
 ```
+> Adapter le **CustomerDto** afin de recevoir les attributs des **ValueObject** (email, Street, City, Country, PostalCode).
+
 > Puis dans la classe **ExportCustomerJobConfig**, modifier le **reader** pour ne renvoyer que l'id et utiliser un **SingleColumnRowMapper**.
 
 ```java
