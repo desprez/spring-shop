@@ -79,8 +79,9 @@ public class ImportItemJobConfig {
 				.writer(importWriter()) //
 				.faultTolerant() //
 				// .skipPolicy(new CustomSkipPolicy()) //
-				//.skipLimit(2) //
-				//.listener(new MySkipListener<>(new File("rejects.txt"))) //
+				// .skipLimit(2) //
+				// .skip(FlatFileParseException.class) //
+				// .listener(new MySkipListener<ItemDto, Item>(new File("rejects.txt"))) //
 				.build();
 	}
 
