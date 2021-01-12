@@ -9,6 +9,9 @@ spring:
   jta:
     enabled: false
   jpa:
+    mapping-resources: 
+      - META-INF/common.orm.hbm.xml
+      - META-INF/customer.orm.hbm.xml  
     open-in-view: false
     driver-class-name: org.postgresql.Driver
     database-platform: org.hibernate.dialect.PostgreSQLDialect

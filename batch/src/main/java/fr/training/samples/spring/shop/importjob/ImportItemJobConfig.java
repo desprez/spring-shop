@@ -1,5 +1,7 @@
 package fr.training.samples.spring.shop.importjob;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -46,7 +48,7 @@ public class ImportItemJobConfig {
 	private ItemRepository itemRepository;
 
 	@Bean
-	public Job importJob() {
+	public Job importJob() throws IOException {
 		return jobBuilderFactory.get("import-job") //
 				.validator(new DefaultJobParametersValidator(new String[] { "input-file" }, new String[] {})) //
 				.incrementer(new RunIdIncrementer()) //
@@ -69,15 +71,16 @@ public class ImportItemJobConfig {
 	}
 
 	@Bean
-	public Step importStep() {
+	public Step importStep() throws IOException {
 		return stepBuilderFactory.get("import-step") //
 				.<ItemDto, Item>chunk(5) //
 				.reader(importReader(null)) //
 				.processor(importProcessor()) //
 				.writer(importWriter()) //
-				// .faultTolerant() //
+				.faultTolerant() //
 				// .skipPolicy(new CustomSkipPolicy()) //
-				// .skipLimit(2) //
+				//.skipLimit(2) //
+				//.listener(new MySkipListener<>(new File("rejects.txt"))) //
 				.build();
 	}
 
