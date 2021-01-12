@@ -53,7 +53,7 @@ public class ExportCustomerJobConfig {
 	}
 
 	@Bean(name = "exportJob")
-	public Job exportBookJob(final Step exportStep) {
+	public Job exportCustomerJob(final Step exportStep) {
 		return jobBuilderFactory.get("export-job") //
 				.incrementer(new RunIdIncrementer()) //
 				.flow(exportStep) //
@@ -76,7 +76,7 @@ public class ExportCustomerJobConfig {
 	}
 
 	/**
-	 * RowMapper used to map resultset to OrderDto
+	 * RowMapper used to map resultset to CustomerDto
 	 */
 	public class CustomerRowMapper implements RowMapper<CustomerDto> {
 
