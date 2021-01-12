@@ -1103,6 +1103,8 @@ voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_add_val
 
 ## Réutilisation des objets du domain dans le batch
 
+### Job Export Customer
+
 Instructions:
 > Pour le batch **exportCustomerJob** ajouter une classe **CustomerProcessor** dans le package **fr.training.samples.spring.shop.exportjob** :
 
@@ -1164,6 +1166,10 @@ public class CustomerProcessor implements ItemProcessor<String, CustomerDto> {
 ```
 
 > Adapter **exportWriter** afin de rajouter les nouvelles colonnes dans le fichier (email, Street, City, Country, PostalCode). 
+
+### Job Import Item
+
+Instructions:
 
 > Pour le batch **importItemJob** modifier la classe **ImportItemJobConfig** pour utiliser une entité **Item** comme objet de sortie :
 
