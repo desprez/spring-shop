@@ -38,8 +38,8 @@ public class CustomerLightDto implements Serializable {
 	}
 
 	/**
-	 * @param name
-	 * @param password
+	 * @param name the customer name
+	 * @param password the customer password
 	 */
 	public CustomerLightDto(final String name, final String password) {
 		super();

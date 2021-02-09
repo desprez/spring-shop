@@ -37,7 +37,8 @@ public class ExportCustomerJobConfig {
 	public DataSource dataSource;
 
 	@Bean
-	public Step exportStep(final FlatFileItemWriter<CustomerDto> exportWriter, final CustomerProcessor customerProcessor) {
+	public Step exportStep(final FlatFileItemWriter<CustomerDto> exportWriter,
+			final CustomerProcessor customerProcessor) {
 		return stepBuilderFactory.get("export-step").<String, CustomerDto>chunk(10) //
 				.reader(exportReader()) //
 				.processor(customerProcessor) //
@@ -58,6 +59,8 @@ public class ExportCustomerJobConfig {
 	/**
 	 * ItemReader is an abstract representation of how data is provided as input to
 	 * a Step. When the inputs are exhausted, the ItemReader returns null.
+	 *
+	 * @return an JdbcCursorItemReader instance
 	 */
 	@Bean
 	public JdbcCursorItemReader<String> exportReader() {
@@ -73,6 +76,9 @@ public class ExportCustomerJobConfig {
 	 * items at a time to the target system. ItemWriter has no knowledge of the
 	 * input it will receive next, only the item that was passed in its current
 	 * invocation.
+	 *
+	 * @param outputFile file name job parameter injected by spring with @StepScope
+	 * @return an FlatFileItemWriter instance
 	 */
 	@StepScope // Mandatory for using jobParameters
 	@Bean

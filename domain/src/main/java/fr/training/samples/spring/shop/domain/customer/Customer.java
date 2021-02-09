@@ -61,6 +61,8 @@ public class Customer extends AbstractBaseEntity {
 
 	/**
 	 * private constructor to enforce Builder usage
+	 *
+	 * @param builder the Customer.builder
 	 */
 	private Customer(final Builder builder) {
 		if (builder.id != null) {
@@ -74,6 +76,8 @@ public class Customer extends AbstractBaseEntity {
 
 	/**
 	 * Builder static assessor
+	 *
+	 * @return a Customer.Builder
 	 */
 	public static Builder builder() {
 		return new Builder();

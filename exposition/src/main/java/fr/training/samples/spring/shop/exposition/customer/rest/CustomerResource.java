@@ -45,6 +45,11 @@ public class CustomerResource {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param customerService the CustomerService bean
+	 * @param customerMapper  the CustomerMapper bean
+	 * @param orderService    the OrderService bean
+	 * @param orderMapper     the OrderMapper bean
 	 */
 	public CustomerResource(final CustomerService customerService, final CustomerMapper customerMapper,
 			final OrderService orderService, final OrderMapper orderMapper) {
@@ -60,7 +65,8 @@ public class CustomerResource {
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/customers/{id}", produces = { "application/json" })
 	@Timed
-	public CustomerDto getCustomer(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
+	public CustomerDto getCustomer(
+			@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
 
 		final Customer customer = customerService.findOne(customerId);
 		return customerMapper.mapToDto(customer);
@@ -120,11 +126,12 @@ public class CustomerResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 403, message = "Forbidden"),
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
-	/**
+	/*
 	 * En doublon avec la méthode OrderResource.getOrders(String)
 	 */
 	@GetMapping(value = "/customers/{id}/orders", produces = { "application/json" })
-	public List<OrderDto> getOrders(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
+	public List<OrderDto> getOrders(
+			@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
 
 		final List<Order> orders = orderService.getOrdersForCustomer(customerId);
 		return orderMapper.mapToDtoList(orders);

@@ -25,8 +25,8 @@ public class CustomerDto implements Serializable {
 	}
 
 	/**
-	 * @param name
-	 * @param password
+	 * @param name the customer name
+	 * @param password the customer password
 	 */
 	public CustomerDto(final String name, final String password) {
 		this.name = name;
@@ -34,9 +34,9 @@ public class CustomerDto implements Serializable {
 	}
 
 	/**
-	 * @param customerID
-	 * @param name
-	 * @param password
+	 * @param id the customer identifier
+	 * @param name the customer name
+	 * @param password the customer password
 	 */
 	public CustomerDto(final String id, final String name, final String password) {
 		this.id = id;

@@ -7,6 +7,9 @@ import fr.training.samples.spring.shop.domain.common.exception.AlreadyExistingEx
 import fr.training.samples.spring.shop.domain.customer.Customer;
 import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 
+/**
+ * These class methods implements Customer's Use cases.
+ */
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -14,6 +17,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param customerRepository the CustomerRepository bean
 	 */
 	public CustomerServiceImpl(final CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;

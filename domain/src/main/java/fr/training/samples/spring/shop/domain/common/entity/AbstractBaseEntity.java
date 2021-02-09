@@ -19,14 +19,14 @@ public abstract class AbstractBaseEntity {
 	protected Integer version = 0;
 
 	/**
-	 * @return
+	 * @return the technical identifier
 	 */
 	public String getId() {
 		return id;
 	}
 
 	/**
-	 * @param id
+	 * @param id generated technical identifier
 	 */
 	public void setId(final String id) {
 		this.id = id;

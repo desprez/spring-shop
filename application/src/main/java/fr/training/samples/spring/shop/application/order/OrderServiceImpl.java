@@ -14,6 +14,9 @@ import fr.training.samples.spring.shop.domain.order.Order;
 import fr.training.samples.spring.shop.domain.order.OrderItem;
 import fr.training.samples.spring.shop.domain.order.OrderRepository;
 
+/**
+ * These class methods implements Order's Use cases.
+ */
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -25,6 +28,10 @@ public class OrderServiceImpl implements OrderService {
 
 	/**
 	 * Constructor for Bean injection
+
+	 * @param orderRepository the OrderRepository bean
+	 * @param customerRepository the CustomerRepository bean
+	 * @param itemRepository the ItemRepository bean
 	 */
 	public OrderServiceImpl(final OrderRepository orderRepository, final CustomerRepository customerRepository,
 			final ItemRepository itemRepository) {

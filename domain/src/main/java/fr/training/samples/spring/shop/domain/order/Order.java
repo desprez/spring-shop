@@ -61,6 +61,8 @@ public class Order extends AbstractBaseEntity {
 
 	/**
 	 * private constructor to enforce Builder usage
+	 *
+	 * @param builder the Order.builder
 	 */
 	private Order(final Builder builder) {
 		if (builder.id != null) {
@@ -75,6 +77,8 @@ public class Order extends AbstractBaseEntity {
 
 	/**
 	 * Builder static assessor
+	 *
+	 * @return the Order.builder
 	 */
 	public static Builder builder() {
 		return new Builder();

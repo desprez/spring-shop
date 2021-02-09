@@ -36,6 +36,9 @@ public class OrderResource {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param orderService the OrderService bean
+	 * @param orderMapper  the OrderMapper bean
 	 */
 	public OrderResource(final OrderService orderService, final OrderMapper orderMapper) {
 		this.orderService = orderService;
@@ -59,7 +62,7 @@ public class OrderResource {
 		return ResponseEntity.created(location).build();
 	}
 
-	/**
+	/*
 	 * En doublon avec la méthode CustomerResource.getOrders(String)
 	 */
 	@ApiOperation(value = "This operation allow to retrieve all customer orders", nickname = "retrieveOrdersByCustomer", notes = "Return customer orders according to the customer number")

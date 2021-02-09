@@ -30,8 +30,10 @@ public interface CustomerService {
 	/**
 	 * Find a custome by his name
 	 *
-	 * @param customer the found customer
+	 * @param name the customer name
+	 * @return customer the found customer
 	 */
+
 	public Customer findByName(String name);
 
 }

@@ -8,6 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.training.samples.spring.shop.domain.item.Item;
 import fr.training.samples.spring.shop.domain.item.ItemRepository;
 
+/**
+ * These class methods implements Item's Use cases.
+ */
 @Service
 public class ItemServiceImpl implements ItemService {
 
@@ -15,6 +18,8 @@ public class ItemServiceImpl implements ItemService {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param itemRepository the ItemRepository bean
 	 */
 	public ItemServiceImpl(final ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;

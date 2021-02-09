@@ -16,6 +16,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param customerDataJpaRepository the CustomerJpaRepository bean
 	 */
 	public CustomerRepositoryImpl(final CustomerJpaRepository customerDataJpaRepository) {
 		this.customerDataJpaRepository = customerDataJpaRepository;

@@ -108,6 +108,8 @@ public class ErrorModel {
 
 	/**
 	 * Builder static assessor
+	 *
+	 * @return the ErrorModel.Builder
 	 */
 	public static Builder builder() {
 		return new Builder();

@@ -18,6 +18,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param orderJpaRepository the OrderJpaRepository bean
 	 */
 	public OrderRepositoryImpl(final OrderJpaRepository orderJpaRepository) {
 		this.orderJpaRepository = orderJpaRepository;
@@ -32,7 +34,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 	 */
 	@Override
 	public Order findById(final String orderId) {
-		return orderJpaRepository.findById(orderId).orElseThrow(() -> new NotFoundException("Order " + orderId + " Not found"));
+		return orderJpaRepository.findById(orderId)
+				.orElseThrow(() -> new NotFoundException("Order " + orderId + " Not found"));
 	}
 
 	/*

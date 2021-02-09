@@ -39,6 +39,8 @@ public class Item extends AbstractBaseEntity {
 
 	/**
 	 * private constructor to enforce Builder usage
+	 *
+	 * @param builder the Item.builder
 	 */
 	private Item(final Builder builder) {
 		if (builder.id != null) {
@@ -50,6 +52,8 @@ public class Item extends AbstractBaseEntity {
 
 	/**
 	 * Builder static assessor
+	 *
+	 * @return the Item.builder
 	 */
 	public static Builder builder() {
 		return new Builder();

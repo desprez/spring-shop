@@ -37,6 +37,9 @@ public class ItemResource {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param itemService the ItemService bean
+	 * @param itemMapper the ItemMapper bean
 	 */
 	public ItemResource(final ItemService itemService, final ItemMapper itemMapper) {
 		this.itemService = itemService;

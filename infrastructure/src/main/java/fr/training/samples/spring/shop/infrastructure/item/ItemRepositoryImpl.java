@@ -18,6 +18,8 @@ public class ItemRepositoryImpl implements ItemRepository {
 
 	/**
 	 * Constructor for Bean injection
+	 *
+	 * @param itemJpaRepository the ItemJpaRepository bean
 	 */
 	public ItemRepositoryImpl(final ItemJpaRepository itemJpaRepository) {
 		this.itemJpaRepository = itemJpaRepository;
@@ -32,7 +34,8 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 */
 	@Override
 	public Item findById(final String itemId) {
-		return itemJpaRepository.findById(itemId).orElseThrow(() -> new NotFoundException("Item " + itemId + " Not found"));
+		return itemJpaRepository.findById(itemId)
+				.orElseThrow(() -> new NotFoundException("Item " + itemId + " Not found"));
 	}
 
 	/*

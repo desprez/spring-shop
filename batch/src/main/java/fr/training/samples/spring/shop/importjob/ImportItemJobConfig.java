@@ -91,6 +91,8 @@ public class ImportItemJobConfig {
 	 * transformed and sent for writing. If, while processing the item, it becomes
 	 * invalid for further processing, you can return null. The nulls are not
 	 * written by ItemWriter.
+	 *
+	 * @return an ItemProcessor instance
 	 */
 	private ItemProcessor<ItemDto, Item> importProcessor() {
 		return new ItemProcessor<ItemDto, Item>() {
@@ -108,6 +110,9 @@ public class ImportItemJobConfig {
 	/**
 	 * ItemReader is an abstract representation of how data is provided as input to
 	 * a Step. When the inputs are exhausted, the ItemReader returns null.
+	 *
+	 * @param inputFile file name job parameter injected by spring with @StepScope
+	 * @return an FlatFileItemReader instance
 	 */
 	@StepScope // Mandatory for using jobParameters
 	@Bean
@@ -135,6 +140,8 @@ public class ImportItemJobConfig {
 	 * items at a time to the target system. ItemWriter has no knowledge of the
 	 * input it will receive next, only the item that was passed in its current
 	 * invocation.
+	 *
+	 * @return an ItemWriterAdapter instance
 	 */
 	@Bean
 	public ItemWriterAdapter<Item> importWriter() {
