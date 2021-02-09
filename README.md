@@ -1243,13 +1243,7 @@ Afin de générer la **javadoc**, d'un projet **Maven** multi-modules, il est n�
 										</reports>
 									</reportSet>
 								</reportSets>
-								<configuration>
-									<!-- Here you can add special configurations for your javadoc, if
-										needed -->
-								</configuration>
 							</plugin>
-							<!-- Here you can also configure more report plugins -->
-							<!-- for your site, such as maven-project-info-reports-plugin -->
 						</reportPlugins>
 					</configuration>
 				</plugin>
