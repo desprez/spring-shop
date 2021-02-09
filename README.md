@@ -1220,3 +1220,43 @@ Instructions:
 ```
 
 voir **correction** dans https://github.com/desprez/spring-shop/tree/ddd_merge_batch_feature
+
+## Javadoc
+
+Afin de générer la **javadoc**, d'un projet **Maven** multi-modules, il est nécessaire d'ajouter la configuration du plugin suivante :
+```xml
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.3</version>
+					<configuration>
+						<reportPlugins>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-javadoc-plugin</artifactId>
+								<version>2.9</version>
+								<reportSets>
+									<reportSet>
+										<id>aggregate</id>
+										<reports>
+											<report>aggregate</report>
+										</reports>
+									</reportSet>
+								</reportSets>
+								<configuration>
+									<!-- Here you can add special configurations for your javadoc, if
+										needed -->
+								</configuration>
+							</plugin>
+							<!-- Here you can also configure more report plugins -->
+							<!-- for your site, such as maven-project-info-reports-plugin -->
+						</reportPlugins>
+					</configuration>
+				</plugin>
+```
+
+> Lancer la gérération de la javadoc à l'aide de la commande 
+
+	mvn javadoc:aggregate
+
+Les fichiers html générés sont disponible dans le répetoire **target** du projet racine.
