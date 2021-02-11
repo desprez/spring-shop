@@ -1254,3 +1254,11 @@ Afin de générer la **javadoc**, d'un projet **Maven** multi-modules, il est n�
 	mvn javadoc:aggregate
 
 Les fichiers html générés sont disponible dans le répetoire **target** du projet racine.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/generate_javadoc
+
+## Logging
+
+Voir le fichier logback-spring.xml pour la confiugation des appender et encoder.
+
+voir **correction** dans https://github.com/desprez/spring-shop/tree/logging_stuff
