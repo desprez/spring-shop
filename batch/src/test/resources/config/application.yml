@@ -2,12 +2,13 @@ spring:
   batch:
     job: 
       enabled: false
+      initialize-schema: always
 
   jpa:
     mapping-resources: 
       - META-INF/common.orm.hbm.xml
       - META-INF/customer.orm.hbm.xml
-    show-sql: true
+    show-sql: false
     
 logging:
   level:  

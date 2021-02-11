@@ -30,6 +30,7 @@
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 		<resource.delimiter>@</resource.delimiter>
 		<mq-jms-spring-boot.version>2.0.0</mq-jms-spring-boot.version>
+		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
 	</properties>
 
 	<dependencyManagement>

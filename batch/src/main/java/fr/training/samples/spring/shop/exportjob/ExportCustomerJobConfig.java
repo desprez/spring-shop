@@ -6,6 +6,7 @@ import java.io.Writer;
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -24,6 +25,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
 
+import fr.training.samples.spring.shop.common.ItemCountListener;
+
 @Configuration
 public class ExportCustomerJobConfig {
 
@@ -36,6 +39,9 @@ public class ExportCustomerJobConfig {
 	@Autowired
 	public DataSource dataSource;
 
+	@Autowired
+	private JobExecutionListener fullReportListener;
+
 	@Bean
 	public Step exportStep(final FlatFileItemWriter<CustomerDto> exportWriter,
 			final CustomerProcessor customerProcessor) {
@@ -43,6 +49,7 @@ public class ExportCustomerJobConfig {
 				.reader(exportReader()) //
 				.processor(customerProcessor) //
 				.writer(exportWriter) //
+				.listener(progressListener()) //
 				.build();
 	}
 
@@ -51,6 +58,7 @@ public class ExportCustomerJobConfig {
 		return jobBuilderFactory.get("export-job") //
 				.validator(new DefaultJobParametersValidator(new String[] { "output-file" }, new String[] {})) //
 				.incrementer(new RunIdIncrementer()) //
+				.listener(fullReportListener) //
 				.flow(exportStep) //
 				.end() //
 				.build();
@@ -103,4 +111,16 @@ public class ExportCustomerJobConfig {
 		});
 		return writer;
 	}
+
+	/**
+	 * Used for logging step progression
+	 */
+	@Bean
+	public ItemCountListener progressListener() {
+		final ItemCountListener listener = new ItemCountListener();
+		listener.setItemName("Customer(s)");
+		listener.setLoggingInterval(5); // Log process item count every 5
+		return listener;
+	}
+
 }

@@ -5,6 +5,7 @@ spring:
   batch:
     job: 
       enabled: true
+    initialize-schema: always
     
   jta:
     enabled: false

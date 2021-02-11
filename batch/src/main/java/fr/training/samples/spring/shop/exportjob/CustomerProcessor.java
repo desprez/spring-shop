@@ -27,17 +27,24 @@ public class CustomerProcessor implements ItemProcessor<String, CustomerDto> {
 	@Override
 	public CustomerDto process(final String customerId) throws Exception {
 		final Customer customer = customerService.findOne(customerId);
-		logger.info("Processing Customer {}", customer);
+		logger.debug("Processing Customer {}", customer);
 
 		final CustomerDto customerDto = new CustomerDto();
 		customerDto.setId(customer.getId());
 		customerDto.setName(customer.getName());
-		customerDto.setPassword(customer.getPassword().getObfuscatedValue());
-		customerDto.setEmail(customer.getEmail().getValue());
-		customerDto.setStreet(customer.getAddress().getStreet());
-		customerDto.setCity(customer.getAddress().getCity());
-		customerDto.setCountry(customer.getAddress().getCountry());
-		customerDto.setPostalCode(customer.getAddress().getPostalCode());
+		if (customer.getPassword() != null) {
+			customerDto.setPassword(customer.getPassword().getObfuscatedValue());
+		}
+		if (customer.getEmail() != null) {
+			customerDto.setEmail(customer.getEmail().getValue());
+		}
+
+		if (customer.getAddress() != null) {
+			customerDto.setStreet(customer.getAddress().getStreet());
+			customerDto.setCity(customer.getAddress().getCity());
+			customerDto.setCountry(customer.getAddress().getCountry());
+			customerDto.setPostalCode(customer.getAddress().getPostalCode());
+		}
 
 		return customerDto;
 	}

@@ -8,4 +8,14 @@ spring:
 
 logging:
   level:
-    org.springframework.batch: DEBUG
+    root: info
+    org.springframework.batch: info
+    com.zaxxer.hikari.HikariDataSource: warn
+    
+# Logging Configurations
+application: 
+  orgEntity: BDDF
+  version: '@project.version@'
+  timezone: ${user.timezone}
+  apCode: AP2020
+  type: service_logs    
