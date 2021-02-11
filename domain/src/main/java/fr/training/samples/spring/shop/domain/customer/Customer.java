@@ -21,6 +21,10 @@ public class Customer extends AbstractBaseEntity {
 	@Enumerated(EnumType.STRING)
 	private final Set<RoleTypeEnum> roles = new HashSet<>();
 
+	public Customer() {
+
+	}
+
 	public String getName() {
 		return name;
 	}

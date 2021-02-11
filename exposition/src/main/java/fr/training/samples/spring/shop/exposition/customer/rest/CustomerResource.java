@@ -59,7 +59,8 @@ public class CustomerResource {
 	public CustomerDto getCustomer(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
 
 		final Customer customer = customerService.findOne(customerId);
-		return customerMapper.mapToDto(customer);
+		CustomerDto customerDto = customerMapper.mapToDto(customer);
+		return customerDto;
 
 	}
 
