@@ -17,9 +17,9 @@ public class OrderLightDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String customerId;
+	private Long customerId;
 
-	private List<String> itemIds;
+	private List<Long> itemIds;
 
 	/**
 	 * No-arg constructor for JavaBean tools
@@ -29,21 +29,21 @@ public class OrderLightDto implements Serializable {
 
 	@ApiModelProperty(required = true, value = "customerId")
 	@NotNull
-	public String getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(final String customerId) {
+	public void setCustomerId(final Long customerId) {
 		this.customerId = customerId;
 	}
 
 	@ApiModelProperty(required = true, value = "itemIds")
 	@NotEmpty
-	public List<String> getItemIds() {
+	public List<Long> getItemIds() {
 		return itemIds;
 	}
 
-	public void setItemIds(final List<String> itemIds) {
+	public void setItemIds(final List<Long> itemIds) {
 		this.itemIds = itemIds;
 	}
 

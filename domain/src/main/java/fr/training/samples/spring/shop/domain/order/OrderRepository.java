@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface OrderRepository {
 
-	Order findById(String orderId);
+	Order findById(Long orderId);
 
 	void save(Order order);
 
-	List<Order> findByCustomerId(String customerId);
+	List<Order> findByCustomerId(Long customerId);
 
 }

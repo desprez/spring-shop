@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.training.samples.spring.shop.domain.item.Item;
 
-public interface ItemJpaRepository extends JpaRepository<Item, String> {
+public interface ItemJpaRepository extends JpaRepository<Item, Long> {
 
 }

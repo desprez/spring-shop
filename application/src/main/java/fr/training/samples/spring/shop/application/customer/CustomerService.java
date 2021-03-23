@@ -18,7 +18,7 @@ public interface CustomerService {
 	 * @param customerId the customer identifier
 	 * @return the retrieved Customer
 	 */
-	public Customer findOne(String customerId);
+	public Customer findOne(Long customerId);
 
 	/**
 	 * Update an existing customer

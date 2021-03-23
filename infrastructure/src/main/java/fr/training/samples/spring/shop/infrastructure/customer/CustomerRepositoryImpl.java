@@ -29,7 +29,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 	 * java.lang.String)
 	 */
 	@Override
-	public Customer findById(final String id) {
+	public Customer findById(final Long id) {
 		return customerDataJpaRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Customer " + id + " Not found"));
 	}

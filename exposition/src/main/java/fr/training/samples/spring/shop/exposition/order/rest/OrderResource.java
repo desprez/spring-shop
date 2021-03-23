@@ -67,7 +67,7 @@ public class OrderResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/orders", produces = { "application/json" })
-	public List<OrderDto> retrieveOrdersByCustomer(@NotNull @RequestParam final String customerId) {
+	public List<OrderDto> retrieveOrdersByCustomer(@NotNull @RequestParam final Long customerId) {
 
 		final List<Order> order = orderService.getOrdersForCustomer(customerId);
 

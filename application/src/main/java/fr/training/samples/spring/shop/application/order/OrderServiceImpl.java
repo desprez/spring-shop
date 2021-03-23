@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Transactional
 	@Override
-	public Order addOrder(final String CustomerId, final List<String> itemIds) {
+	public Order addOrder(final Long CustomerId, final List<Long> itemIds) {
 		final Customer customer = customerRepository.findById(CustomerId);
 
 		final Order order = new Order();
@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Transactional(readOnly = true)
 	@Override
-	public Order findOne(final String orderId) {
+	public Order findOne(final Long orderId) {
 		return orderRepository.findById(orderId);
 	}
 
@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Transactional(readOnly = true)
 	@Override
-	public List<Order> getOrdersForCustomer(final String customerId) {
+	public List<Order> getOrdersForCustomer(final Long customerId) {
 		return orderRepository.findByCustomerId(customerId);
 	}
 

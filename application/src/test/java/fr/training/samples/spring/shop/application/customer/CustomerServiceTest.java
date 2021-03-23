@@ -66,7 +66,7 @@ public class CustomerServiceTest {
 	@Test
 	public void findOne_should_call_findById_repository_1_time() {
 		// Given
-		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
+		final Long customerId = Long.valueOf(1234567);
 		final Customer customer = new Customer();
 		customer.setName("Michel Dupont");
 		customer.setPassword("password");

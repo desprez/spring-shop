@@ -14,7 +14,7 @@ public interface OrderService {
 	 * @param itemIds    list of items ids
 	 * @return then created order
 	 */
-	public Order addOrder(String customerId, List<String> itemIds);
+	public Order addOrder(Long customerId, List<Long> itemIds);
 
 	/**
 	 * Get Order according to the given orderId
@@ -22,7 +22,7 @@ public interface OrderService {
 	 * @param orderId the order identifier
 	 * @return the Order found
 	 */
-	public Order findOne(String orderId);
+	public Order findOne(Long orderId);
 
 	/**
 	 * Retreive all orders for a customer according to the customer id.
@@ -30,6 +30,6 @@ public interface OrderService {
 	 * @param customerId the customer identifier
 	 * @return the list of Orders submited by the customer
 	 */
-	public List<Order> getOrdersForCustomer(String customerId);
+	public List<Order> getOrdersForCustomer(Long customerId);
 
 }

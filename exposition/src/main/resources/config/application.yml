@@ -8,9 +8,20 @@ spring:
   jpa:
     open-in-view: false
     driver-class-name: org.postgresql.Driver
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
     hibernate:
       ddl-auto: update
+    generate-ddl: true
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: create.sql
+
   cache: 
     jcache:
       config: classpath:cache/ehcache.xml

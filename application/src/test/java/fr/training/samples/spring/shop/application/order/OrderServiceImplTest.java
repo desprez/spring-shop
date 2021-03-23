@@ -74,8 +74,8 @@ public class OrderServiceImplTest {
 	@Test
 	public void addOrder_should_call_save_repositories_1_time() {
 		// Given
-		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
-		final List<String> itemIds = Arrays.asList(new String[] { "1", "2", "3" });
+		final Long customerId = Long.valueOf(1234567);
+		final List<Long> itemIds = Arrays.asList(new Long[] { 1L, 2L, 3L });
 		when(customerRepositoryMock.findById(customerId)).thenReturn(getCustomer());
 		when(itemRepositoryMock.findById(itemIds)).thenReturn(getItems());
 		// When
@@ -92,7 +92,7 @@ public class OrderServiceImplTest {
 	@Test
 	public void findOne_should_call_findById_repository_1_time() {
 		// Given
-		final String orderId = "1234567";
+		final Long orderId = Long.valueOf(1234567);
 		final Order order = getNewOrder();
 		when(orderRepositoryMock.findById(orderId)).thenReturn(order);
 		// When
@@ -108,7 +108,7 @@ public class OrderServiceImplTest {
 	@Test
 	public void getOrdersForCustomer_should_return_Order_list() {
 		// Given
-		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
+		final Long customerId = Long.valueOf(1234567);
 		final List<Order> orders = new ArrayList<>();
 		orders.add(getNewOrder());
 

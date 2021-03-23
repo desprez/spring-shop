@@ -31,7 +31,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 * .String)
 	 */
 	@Override
-	public Item findById(final String itemId) {
+	public Item findById(final Long itemId) {
 		return itemJpaRepository.findById(itemId).orElseThrow(() -> new NotFoundException("Item " + itemId + " Not found"));
 	}
 
@@ -43,7 +43,7 @@ public class ItemRepositoryImpl implements ItemRepository {
 	 * .List)
 	 */
 	@Override
-	public List<Item> findById(final List<String> ids) {
+	public List<Item> findById(final List<Long> ids) {
 		return itemJpaRepository.findAllById(ids);
 	}
 

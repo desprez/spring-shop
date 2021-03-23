@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.training.samples.spring.shop.domain.order.Order;
 
-public interface OrderJpaRepository extends JpaRepository<Order, String> {
+public interface OrderJpaRepository extends JpaRepository<Order, Long> {
 
-	List<Order> findByCustomerId(String customerId);
+	List<Order> findByCustomerId(Long customerId);
 
 }

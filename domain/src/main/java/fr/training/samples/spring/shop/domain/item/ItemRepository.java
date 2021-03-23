@@ -4,12 +4,12 @@ import java.util.List;
 
 public interface ItemRepository {
 
-	public Item findById(String itemId);
+	public Item findById(Long itemId);
 
 	public void save(Item item);
 
 	public List<Item> findAll();
 
-	public List<Item> findById(List<String> ids);
+	public List<Item> findById(List<Long> ids);
 
 }

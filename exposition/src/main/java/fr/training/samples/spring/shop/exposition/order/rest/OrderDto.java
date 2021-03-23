@@ -13,10 +13,10 @@ public class OrderDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("id")
-	private String id;
+	private Long id;
 
 	@JsonProperty("customerId")
-	private String customerId;
+	private Long customerId;
 
 	@JsonProperty("items")
 	private List<ItemDto> items;
@@ -30,7 +30,7 @@ public class OrderDto implements Serializable {
 
 	}
 
-	public OrderDto(final String id, final String customerId) {
+	public OrderDto(final Long id, final Long customerId) {
 		this.id = id;
 		this.customerId = customerId;
 		items = new ArrayList<>();
@@ -40,19 +40,19 @@ public class OrderDto implements Serializable {
 		items.add(itemDto);
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(final String id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
-	public String getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(final String customerId) {
+	public void setCustomerId(final Long customerId) {
 		this.customerId = customerId;
 	}
 

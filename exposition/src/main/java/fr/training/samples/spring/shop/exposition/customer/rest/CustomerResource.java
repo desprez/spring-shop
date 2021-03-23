@@ -58,7 +58,7 @@ public class CustomerResource {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorModel.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
 	@GetMapping(value = "/customers/{id}", produces = { "application/json" })
-	public CustomerDto getCustomer(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
+	public CustomerDto getCustomer(@ApiParam(value = "id", required = true) @PathVariable("id") final Long customerId) {
 
 		final Customer customer = customerService.findOne(customerId);
 		return customerMapper.mapToDto(customer);
@@ -119,7 +119,7 @@ public class CustomerResource {
 	 * En doublon avec la méthode OrderResource.getOrders(String)
 	 */
 	@GetMapping(value = "/customers/{id}/orders", produces = { "application/json" })
-	public List<OrderDto> getOrders(@ApiParam(value = "id", required = true) @PathVariable("id") final String customerId) {
+	public List<OrderDto> getOrders(@ApiParam(value = "id", required = true) @PathVariable("id") final Long customerId) {
 
 		final List<Order> orders = orderService.getOrdersForCustomer(customerId);
 		return orderMapper.mapToDtoList(orders);

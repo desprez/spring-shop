@@ -13,7 +13,7 @@ public class CustomerDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("id")
-	private String id;
+	private Long id;
 
 	@JsonProperty("name")
 	private String name;
@@ -42,17 +42,17 @@ public class CustomerDto implements Serializable {
 	 * @param name
 	 * @param password
 	 */
-	public CustomerDto(final String id, final String name, final String password) {
+	public CustomerDto(final Long id, final String name, final String password) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(final String id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 

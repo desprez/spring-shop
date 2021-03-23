@@ -31,7 +31,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	 * lang.String)
 	 */
 	@Override
-	public Order findById(final String orderId) {
+	public Order findById(final Long orderId) {
 		return orderJpaRepository.findById(orderId).orElseThrow(() -> new NotFoundException("Order " + orderId + " Not found"));
 	}
 
@@ -55,7 +55,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	 * (java.lang.String)
 	 */
 	@Override
-	public List<Order> findByCustomerId(final String customerId) {
+	public List<Order> findByCustomerId(final Long customerId) {
 		return orderJpaRepository.findByCustomerId(customerId);
 	}
 

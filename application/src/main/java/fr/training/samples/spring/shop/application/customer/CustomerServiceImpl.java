@@ -48,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	@Transactional(readOnly = true)
 	@Override
-	public Customer findOne(final String customerId) {
+	public Customer findOne(final Long customerId) {
 		return customerRepository.findById(customerId);
 	}
 

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import fr.training.samples.spring.shop.domain.customer.Customer;
@@ -18,10 +19,13 @@ public class CustomerRepositoryTest {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	@Autowired
+	private TestEntityManager entityManager;
+
 	@Test
 	public void existing_customer_should_be_found() {
 		// Given existing customer in db
-		final String customerId = "123e4567-e89b-42d3-a456-556642440000";
+		final Long customerId = Long.valueOf(1234567);
 
 		// When
 		final Customer customer = customerRepository.findById(customerId);
@@ -40,6 +44,8 @@ public class CustomerRepositoryTest {
 		customer.setPassword("password");
 		// When
 		customerRepository.save(customer);
+		entityManager.persistAndFlush(customer);
+
 		// Then
 		assertThat(customerRepository.findById(customer.getId())).isNotNull();
 	}
@@ -54,6 +60,6 @@ public class CustomerRepositoryTest {
 
 		// Then
 		assertThat(result).isNotNull();
-		assertThat(result.getId()).isEqualTo("323e4567-e89b-42d3-a456-556642440000");
+		assertThat(result.getId()).isEqualTo(Long.valueOf(3234567));
 	}
 }

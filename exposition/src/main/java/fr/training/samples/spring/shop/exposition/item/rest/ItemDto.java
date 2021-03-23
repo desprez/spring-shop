@@ -9,7 +9,7 @@ public class ItemDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("itemId")
-	private String itemId;
+	private Long itemId;
 
 	@JsonProperty("description")
 	private String description;
@@ -37,17 +37,17 @@ public class ItemDto implements Serializable {
 	 * @param description description
 	 * @param price       price
 	 */
-	public ItemDto(final String itemId, final String description, final int price) {
+	public ItemDto(final Long itemId, final String description, final int price) {
 		this.itemId = itemId;
 		this.description = description;
 		this.price = price;
 	}
 
-	public String getItemId() {
+	public Long getItemId() {
 		return itemId;
 	}
 
-	public void setItemId(final String itemId) {
+	public void setItemId(final Long itemId) {
 		this.itemId = itemId;
 	}
 
